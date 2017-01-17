@@ -82,6 +82,8 @@ public class MyGdxGame extends Game {
 		Assets.unload();
 	}
 
+	int eletErtelme = 42;
+
 	@Override
 	public void pause() {
 		super.pause();
