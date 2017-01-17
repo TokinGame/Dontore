@@ -1,12 +1,11 @@
-package hu.tokingame.rewind.MyBaseClasses;
+package hu.tokingame.dontore.MyBaseClasses;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import hu.tokingame.rewind.*;
 
 /**
- * Created by tuskeb on 2016. 09. 30..
+ * Created by davimatyi on 2017. 01. 10..
  */
 abstract public class MyActor extends Actor implements InitableInterface{
 

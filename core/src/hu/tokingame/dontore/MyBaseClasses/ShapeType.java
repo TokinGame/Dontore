@@ -1,7 +1,7 @@
-package hu.tokingame.rewind.MyBaseClasses;
+package hu.tokingame.dontore.MyBaseClasses;
 
 /**
- * Created by tuskeb on 2016. 10. 03..
+ * Created by davimatyi on 2017. 01. 10..
  */
 public enum ShapeType {
     Circle, Rectangle, Polygon

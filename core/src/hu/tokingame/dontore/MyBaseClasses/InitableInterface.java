@@ -1,7 +1,7 @@
-package hu.tokingame.rewind.MyBaseClasses;
+package hu.tokingame.dontore.MyBaseClasses;
 
 /**
- * Created by tuskeb on 2016. 10. 29..
+ * Created by davimatyi on 2017. 01. 10..
  */
 
 public interface InitableInterface {

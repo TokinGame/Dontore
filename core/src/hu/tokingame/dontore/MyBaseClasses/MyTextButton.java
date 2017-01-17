@@ -1,23 +1,18 @@
-package hu.tokingame.rewind.MyBaseClasses;
+package hu.tokingame.dontore.MyBaseClasses;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-
-/**
- * Created by M on 10/21/2016.
- */
-
-    import com.badlogic.gdx.graphics.Pixmap;
-    import com.badlogic.gdx.graphics.Texture;
-    import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-import hu.tokingame.rewind.Global.Assets;
+import hu.tokingame.dontore.Global.Assets;
 
 /**
-     * Created by tuskeb on 2016. 09. 30..
+     * Created by davimatyi on 2017. 01. 10..
      */
-    public class MyTextButton extends TextButton{
+    public class MyTextButton extends TextButton {
         private TextButton button;
         static TextButtonStyle textButtonStyle;
         private TextButtonStyle style;
@@ -32,7 +27,7 @@ import hu.tokingame.rewind.Global.Assets;
         public static void refresh()
         {
             textButtonStyle = new TextButtonStyle();
-            textButtonStyle.font = Assets.manager.get(Assets.VERMIN_FONT_BIG);
+            textButtonStyle.font = Assets.manager.get(Assets.ANTON_FONT);
 
             Pixmap p = new Pixmap(1,1, Pixmap.Format.Alpha);
             p.setColor(1);
@@ -60,7 +55,7 @@ import hu.tokingame.rewind.Global.Assets;
             style.up = new TextureRegionDrawable(new TextureRegion(texture));
             style.over = new TextureRegionDrawable(new TextureRegion(texture));
             style.down = new TextureRegionDrawable(new TextureRegion(texture));
-            style.font = Assets.manager.get(Assets.VERMIN_FONT_BIG);
+            style.font = Assets.manager.get(Assets.ANTON_FONT);
             this.setStyle(style);
         }
         public void setTextureUpDown(Texture up, Texture down){
@@ -82,7 +77,7 @@ import hu.tokingame.rewind.Global.Assets;
 
         protected void init() {
             style = new TextButtonStyle();
-            style.font = Assets.manager.get(Assets.VERMIN_FONT_BIG);
+            style.font = Assets.manager.get(Assets.ANTON_FONT);
             Pixmap p = new Pixmap(1,1, Pixmap.Format.Alpha);
             p.setColor(1);
             p.fill();

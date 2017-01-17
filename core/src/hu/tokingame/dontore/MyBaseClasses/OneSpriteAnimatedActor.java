@@ -1,11 +1,11 @@
-package hu.tokingame.rewind.MyBaseClasses;
+package hu.tokingame.dontore.MyBaseClasses;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /**
- * Created by tuskeb on 2016. 09. 30..
+ * Created by davimatyi on 2017. 01. 10..
  */
 public class OneSpriteAnimatedActor extends OneSpriteActor {
 

@@ -1,6 +1,5 @@
-package hu.tokingame.rewind.MyBaseClasses;
+package hu.tokingame.dontore.MyBaseClasses;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,13 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import hu.tokingame.rewind.Global.Globals;
-import hu.tokingame.rewind.MyGdxGame;
-
+import hu.tokingame.dontore.MyGdxGame;
 
 
 /**
- * Created by tuskeb on 2016. 09. 30..
+ * Created by davimatyi on 2017. 01. 10..
  */
 abstract public class MyStage extends Stage implements InitableInterface {
     public final MyGdxGame game;
