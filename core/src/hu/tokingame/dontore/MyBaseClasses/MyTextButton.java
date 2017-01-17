@@ -1,18 +1,23 @@
-package hu.tokingame.dontore.MyBaseClasses;
+package hu.tokingame.rewind.MyBaseClasses;
 
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-
-import hu.tokingame.dontore.Global.Assets;
 
 /**
-     * Created by davimatyi on 2017. 01. 10..
+ * Created by M on 10/21/2016.
+ */
+
+    import com.badlogic.gdx.graphics.Pixmap;
+    import com.badlogic.gdx.graphics.Texture;
+    import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+import hu.tokingame.rewind.Global.Assets;
+
+/**
+     * Created by tuskeb on 2016. 09. 30..
      */
-    public class MyTextButton extends TextButton {
+    public class MyTextButton extends TextButton{
         private TextButton button;
         static TextButtonStyle textButtonStyle;
         private TextButtonStyle style;
@@ -27,7 +32,7 @@ import hu.tokingame.dontore.Global.Assets;
         public static void refresh()
         {
             textButtonStyle = new TextButtonStyle();
-            textButtonStyle.font = Assets.manager.get(Assets.ANTON_FONT);
+            textButtonStyle.font = Assets.manager.get(Assets.VERMIN_FONT_BIG);
 
             Pixmap p = new Pixmap(1,1, Pixmap.Format.Alpha);
             p.setColor(1);
@@ -55,7 +60,7 @@ import hu.tokingame.dontore.Global.Assets;
             style.up = new TextureRegionDrawable(new TextureRegion(texture));
             style.over = new TextureRegionDrawable(new TextureRegion(texture));
             style.down = new TextureRegionDrawable(new TextureRegion(texture));
-            style.font = Assets.manager.get(Assets.ANTON_FONT);
+            style.font = Assets.manager.get(Assets.VERMIN_FONT_BIG);
             this.setStyle(style);
         }
         public void setTextureUpDown(Texture up, Texture down){
@@ -77,7 +82,7 @@ import hu.tokingame.dontore.Global.Assets;
 
         protected void init() {
             style = new TextButtonStyle();
-            style.font = Assets.manager.get(Assets.ANTON_FONT);
+            style.font = Assets.manager.get(Assets.VERMIN_FONT_BIG);
             Pixmap p = new Pixmap(1,1, Pixmap.Format.Alpha);
             p.setColor(1);
             p.fill();

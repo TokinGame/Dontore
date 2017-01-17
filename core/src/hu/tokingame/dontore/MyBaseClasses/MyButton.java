@@ -1,14 +1,14 @@
-package hu.tokingame.dontore.MyBaseClasses;
+package hu.tokingame.rewind.MyBaseClasses;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-import hu.tokingame.dontore.Global.Assets;
+import hu.tokingame.rewind.Global.Assets;
 
 /**
- * Created by davimatyi on 2017. 01. 10..
+ * Created by tuskeb on 2016. 09. 30..
  */
 public class MyButton extends TextButton implements InitableInterface{
 
@@ -24,7 +24,7 @@ public class MyButton extends TextButton implements InitableInterface{
         style.up = new TextureRegionDrawable(new TextureRegion(texture));
         style.over = new TextureRegionDrawable(new TextureRegion(texture));
         style.down = new TextureRegionDrawable(new TextureRegion(texture));
-        style.font = Assets.manager.get(Assets.ANTON_FONT);
+        style.font = Assets.manager.get(Assets.VERMIN_FONT);
         this.setStyle(style);
     }
 

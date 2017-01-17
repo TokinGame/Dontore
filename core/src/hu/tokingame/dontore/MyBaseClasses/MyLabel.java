@@ -1,27 +1,36 @@
-package hu.tokingame.dontore.MyBaseClasses;
+package hu.tokingame.rewind.MyBaseClasses;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 
-import hu.tokingame.dontore.Global.Assets;
+import hu.tokingame.rewind.Global.Assets;
+import hu.tokingame.rewind.MyGdxGame;
 
 
 /**
- * Created by davimatyi on 2017. 01. 10..
+ * Created by tuskeb on 2016. 10. 01..
  */
 public class MyLabel extends Label implements InitableInterface{
 
-    public static LabelStyle style1, style2;
+    public static com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle style1, style2;
 
     static {
         refresh();
     }
 
     public static void refresh(){
-        style1 = new LabelStyle();
-        style1.font = Assets.manager.get(Assets.ANTON_FONT);
+        style1 = new com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle();
+        style1.font = Assets.manager.get(Assets.VERMIN_FONT);
         style1.fontColor = Color.WHITE;
 
+        style2 = new com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle();
+        style2.font = Assets.manager.get(Assets.VERMIN_FONT_SMALL);
+        style2.fontColor = Color.WHITE;
     }
 
     public MyLabel(CharSequence text, LabelStyle style) {

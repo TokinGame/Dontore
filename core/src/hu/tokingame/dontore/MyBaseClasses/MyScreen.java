@@ -1,17 +1,24 @@
-package hu.tokingame.dontore.MyBaseClasses;
+package hu.tokingame.rewind.MyBaseClasses;
 
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-
-import hu.tokingame.dontore.MyGdxGame;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ObjectSet;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import hu.tokingame.rewind.*;
 
 /**
- * Created by davimatyi on 2017. 01. 10..
+ * Created by tuskeb on 2016. 09. 30..
  */
 abstract public class MyScreen implements Screen, InitableInterface {
+    //public final static float WORLD_WIDTH = 640, WORLD_HEIGHT = 480;
+    //protected SpriteBatch spriteBatch = new SpriteBatch();
+    //protected OrthographicCamera camera = new OrthographicCamera(WORLD_WIDTH, WORLD_HEIGHT);
+    //protected ExtendViewport viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
 
     public float r=0,g=0,b=0;
 
