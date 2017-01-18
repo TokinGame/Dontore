@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.tokingame.dontore.CreditsScreen.CreditsScreen;
 import hu.tokingame.dontore.CreditsScreen.HowToPlayScreen;
+import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
@@ -43,7 +44,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(10, 100);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 100);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -54,17 +55,30 @@ public class MenuStage extends MyStage {
             }
         });
 
-        addActor(new MyTextButton("Play"){
+        addActor(new MyTextButton("Play singleplayer"){
             @Override
             protected void init() {
                 super.init();
-                setPosition(10, 400);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 400);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        //game.setScreen(new LevelSelectScreen(game));
-                        //game.setScreen(new LevelSelectScreen(game));
+
+                    }
+                });
+            }
+
+        });
+        addActor(new MyTextButton("Play bluetooth multiplayer"){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 320);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
 
                     }
                 });
@@ -75,7 +89,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(10, 10);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 10);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -85,7 +99,33 @@ public class MenuStage extends MyStage {
                 });
             }
         });
-
+        addActor(new MyTextButton("Exit"){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH-this.getWidth()-10, 10);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        game.setScreen(new ExitScreen(game));
+                    }
+                });
+            }
+        });
+        addActor(new MyTextButton("Settings"){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(10, 10);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                    }
+                });
+            }
+        });
 
 
     }
