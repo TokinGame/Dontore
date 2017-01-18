@@ -30,13 +30,9 @@ public class Assets {
     public static final AssetDescriptor<BitmapFont> ANTON_FONT = new AssetDescriptor<BitmapFont>("Fonts/Anton-Regular.ttf", BitmapFont.class, fontParameter);
 
 
-    //<editor-fold desc="Car Textures>
-
-    //</editor-fold>
-
     //<editor-fold desc="Map Elements">
-
-
+    public static final AssetDescriptor<Texture>  SPIKE = new AssetDescriptor<Texture>("textures/spikes.png", Texture.class);
+    public static final AssetDescriptor<Texture>  CRATE = new AssetDescriptor<Texture>("textures/wooden-crate.png", Texture.class);
     //</editor-fold>
 
     //<editor-fold desc="Music">
@@ -59,7 +55,8 @@ public class Assets {
 
         //<editor-fold desc="Loading">
         manager.load(ANTON_FONT);
-
+        manager.load(SPIKE);
+        manager.load(CRATE);
         //</editor-fold>
 
     }

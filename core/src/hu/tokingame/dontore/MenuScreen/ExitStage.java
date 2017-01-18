@@ -50,7 +50,7 @@ public class ExitStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        System.exit(0);
+                        Gdx.app.exit();
                     }
                 });
             }
