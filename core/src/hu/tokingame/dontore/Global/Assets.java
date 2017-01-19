@@ -33,6 +33,7 @@ public class Assets {
     //<editor-fold desc="Map Elements">
     public static final AssetDescriptor<Texture>  SPIKE = new AssetDescriptor<Texture>("textures/spikes.png", Texture.class);
     public static final AssetDescriptor<Texture>  CRATE = new AssetDescriptor<Texture>("textures/wooden-crate.png", Texture.class);
+    public static final AssetDescriptor<Texture> CHARACTER = new AssetDescriptor<Texture>("textures/weed.png", Texture.class);
     //</editor-fold>
 
     //<editor-fold desc="Music">
@@ -57,6 +58,7 @@ public class Assets {
         manager.load(ANTON_FONT);
         manager.load(SPIKE);
         manager.load(CRATE);
+        manager.load(CHARACTER);
         //</editor-fold>
 
     }

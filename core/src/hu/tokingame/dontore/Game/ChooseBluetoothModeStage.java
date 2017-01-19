@@ -21,18 +21,6 @@ public class ChooseBluetoothModeStage extends MyStage {
 
     @Override
     public void init() {
-
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-    }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-
         addActor(new MyTextButton("Host Game as runner"){
             @Override
             protected void init() {
@@ -42,7 +30,7 @@ public class ChooseBluetoothModeStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-
+                        Globals.host = true;
                     }
                 });
             }
@@ -56,10 +44,36 @@ public class ChooseBluetoothModeStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-
+                        Globals.host = true;
                     }
                 });
             }
         });
+        addActor(new MyTextButton("Back"){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(10, 10);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        game.setScreenBackByStackPop();
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+
     }
 }

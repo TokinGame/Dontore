@@ -47,6 +47,20 @@ public class BluetoothChooseServerStage extends MyStage {
                 setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
             }
         });
+        addActor(new MyTextButton("Back"){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(10, 10);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        game.setScreenBackByStackPop();
+                    }
+                });
+            }
+        });
 
     }
 }

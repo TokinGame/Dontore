@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.tokingame.dontore.CreditsScreen.CreditsScreen;
 import hu.tokingame.dontore.CreditsScreen.HowToPlayScreen;
+import hu.tokingame.dontore.Game.GameScreen;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
@@ -64,7 +65,8 @@ public class MenuStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-
+                        Globals.multiPlayer = false;
+                        game.setScreen(new GameScreen(game));
                     }
                 });
             }
@@ -79,6 +81,8 @@ public class MenuStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
+                        Globals.multiPlayer = true;
+                        game.setScreen(new GameScreen(game));
 
                     }
                 });
@@ -129,5 +133,6 @@ public class MenuStage extends MyStage {
 
 
     }
+
 }
 

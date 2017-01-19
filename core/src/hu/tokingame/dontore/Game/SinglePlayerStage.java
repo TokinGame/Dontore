@@ -10,8 +10,12 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.tokingame.dontore.Bodies.Character;
+import hu.tokingame.dontore.Bodies.CrateActor;
+import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
+import hu.tokingame.dontore.MyBaseClasses.ShapeType;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -26,6 +30,8 @@ public class SinglePlayerStage extends MyStage {
     WorldBodyEditorLoader loader;
     ControlStage controlStage;
     PauseStage pauseStage;
+
+
 
     public SinglePlayerStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -47,15 +53,35 @@ public class SinglePlayerStage extends MyStage {
     @Override
     public void dispose() {
         super.dispose();
+        controlStage.dispose();
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
+        world.step(delta, 10, 10);
+        controlStage.act(delta);
+    }
+
+    @Override
+    public void draw() {
+        updateFrustum(1.25f);
+        super.draw();
+        controlStage.draw();
+        box2DDebugRenderer.render(world, getCamera().combined);
     }
 
     @Override
     public void init() {
 
+        //addActor(new CrateActor(world, loader, 0, 0));
+        //addActor(new SpikeActor(world, loader, 2, 0));
+        addActor(new Character(world, 0, 0));
+
+    }
+    @Override
+    public void resize(int screenWidth, int screenHeight) {
+        super.resize(screenWidth, screenHeight);
+        controlStage.resize(screenWidth, screenHeight);
     }
 }

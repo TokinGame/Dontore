@@ -16,11 +16,15 @@ public class CrateActor extends WorldActorGroup {
     public OneSpriteStaticActor actor;
 
     public CrateActor(World world, WorldBodyEditorLoader loader, float X, float Y) {
-        super(world, loader, "wooden-crate.png", BodyDef.BodyType.DynamicBody, 1000, 0.02f, 10, false);
+        super(world, loader, "wooden-crate.png", BodyDef.BodyType.StaticBody, 1000, 0.02f, 10, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CRATE));
         actor.setSize(0.5f, 0.5f);
         setSize(getWidth() / 4, getHeight() / 4);
         addActor(actor);
         addToWorld();
+    }
+    @Override
+    public void act(float delta) {
+        super.act(delta);
     }
 }
