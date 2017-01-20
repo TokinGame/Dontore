@@ -14,6 +14,7 @@ import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
+import hu.tokingame.dontore.SettingsScreen.SettingsScreen;
 
 /**
  * Created by M on 11/14/2016.
@@ -126,6 +127,7 @@ public class MenuStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
+                        game.setScreen(new SettingsScreen(game));
                     }
                 });
             }
