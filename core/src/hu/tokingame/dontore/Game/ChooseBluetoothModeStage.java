@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
@@ -21,7 +22,7 @@ public class ChooseBluetoothModeStage extends MyStage {
 
     @Override
     public void init() {
-        addActor(new MyTextButton("Host Game as runner"){
+        addActor(new BackgroundTextButton("Host Game as runner",1){
             @Override
             protected void init() {
                 super.init();
@@ -35,7 +36,7 @@ public class ChooseBluetoothModeStage extends MyStage {
                 });
             }
         });
-        addActor(new MyTextButton("Join Game as builder"){
+        addActor(new BackgroundTextButton("Join Game as builder",1){
             @Override
             protected void init() {
                 super.init();
@@ -49,7 +50,7 @@ public class ChooseBluetoothModeStage extends MyStage {
                 });
             }
         });
-        addActor(new MyTextButton("Back"){
+        addActor(new BackgroundTextButton("Back",2){
             @Override
             protected void init() {
                 super.init();

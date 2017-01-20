@@ -11,6 +11,7 @@ import hu.tokingame.dontore.CreditsScreen.CreditsScreen;
 import hu.tokingame.dontore.CreditsScreen.HowToPlayScreen;
 import hu.tokingame.dontore.Game.GameScreen;
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
@@ -41,7 +42,7 @@ public class MenuStage extends MyStage {
     @Override
     public void init() {
 
-        addActor(new MyTextButton("How To Play"){
+        addActor(new BackgroundTextButton("How To Play",1){
             @Override
             protected void init() {
                 super.init();
@@ -56,7 +57,7 @@ public class MenuStage extends MyStage {
             }
         });
 
-        addActor(new MyTextButton("Play singleplayer"){
+        addActor(new BackgroundTextButton("Play singleplayer",1){
             @Override
             protected void init() {
                 super.init();
@@ -72,7 +73,7 @@ public class MenuStage extends MyStage {
             }
 
         });
-        addActor(new MyTextButton("Play bluetooth multiplayer"){
+        addActor(new BackgroundTextButton("Play bluetooth multiplayer",1){
             @Override
             protected void init() {
                 super.init();
@@ -89,7 +90,7 @@ public class MenuStage extends MyStage {
             }
 
         });
-        addActor(new MyTextButton("Credits"){
+        addActor(new BackgroundTextButton("Credits",1){
             @Override
             protected void init() {
                 super.init();
@@ -103,7 +104,7 @@ public class MenuStage extends MyStage {
                 });
             }
         });
-        addActor(new MyTextButton("Exit"){
+        addActor(new BackgroundTextButton("Exit",2){
             @Override
             protected void init() {
                 super.init();
@@ -117,7 +118,7 @@ public class MenuStage extends MyStage {
                 });
             }
         });
-        addActor(new MyTextButton("Settings"){
+        addActor(new BackgroundTextButton("Settings",1){
             @Override
             protected void init() {
                 super.init();
