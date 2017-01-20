@@ -22,8 +22,8 @@ public class Character extends WorldActorGroup {
     public Character(World world, float x, float y) {
         super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 100, 0.02f, 10, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CHARACTER));
-        actor.setSize(0.25f, 0.5f);
-        setSize(getWidth() / 4, getHeight() / 4);
+        actor.setSize(5, 10);
+        setSize(5, 10);
         addActor(actor);
         addToWorld();
         setPosition(x, y);
@@ -33,7 +33,7 @@ public class Character extends WorldActorGroup {
     public void act(float delta) {
         super.act(delta);
         getBody().setLinearVelocity(getBody().getLinearVelocity().rotateRad(getBody().getAngularVelocity() * delta));
-        getBody().applyForceToCenter(new Vector2(0, delta * 24).rotateRad(getBody().getAngle()), true);
+        getBody().applyForceToCenter(new Vector2(100, 0).rotateRad(getBody().getAngle()), true);
     }
 
     @Override

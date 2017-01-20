@@ -36,17 +36,7 @@ public class SinglePlayerStage extends MyStage {
     public SinglePlayerStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
 
-        world = new World(new Vector2(1, 0), false);
-        box2DDebugRenderer = new Box2DDebugRenderer();
-        loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
-        controlStage = new ControlStage(new ExtendViewport(16, 16, Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT), new SpriteBatch(), game);
-        pauseStage = new PauseStage(new ExtendViewport(16, 16, Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT), new SpriteBatch(), game);
 
-        InputMultiplexer inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(this);
-        inputMultiplexer.addProcessor(controlStage);
-        inputMultiplexer.addProcessor(pauseStage);
-        Gdx.input.setInputProcessor(inputMultiplexer);
 
     }
 
@@ -73,7 +63,17 @@ public class SinglePlayerStage extends MyStage {
 
     @Override
     public void init() {
+        world = new World(new Vector2(0, -1), false);
+        box2DDebugRenderer = new Box2DDebugRenderer();
+        loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
+        controlStage = new ControlStage(new ExtendViewport(16, 16, Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT), new SpriteBatch(), game);
+        pauseStage = new PauseStage(new ExtendViewport(16, 16, Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT), new SpriteBatch(), game);
 
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(this);
+        inputMultiplexer.addProcessor(controlStage);
+        inputMultiplexer.addProcessor(pauseStage);
+        Gdx.input.setInputProcessor(inputMultiplexer);
         //addActor(new CrateActor(world, loader, 0, 0));
         //addActor(new SpikeActor(world, loader, 2, 0));
         addActor(new Character(world, 0, 0));

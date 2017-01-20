@@ -67,6 +67,7 @@ public class GameScreen extends MyScreen {
             singlestage.draw();
         }
         else{
+            System.out.println("multiplayer, "+bluetoothState);
             switch(bluetoothState){
                 case Choose:
                     chooseModeStage.act(delta);
@@ -95,6 +96,7 @@ public class GameScreen extends MyScreen {
             }
         }
     }
+
 
     @Override
     public void init() {
