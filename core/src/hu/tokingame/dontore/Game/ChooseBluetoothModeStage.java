@@ -74,6 +74,10 @@ public class ChooseBluetoothModeStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
 
+    }
 
+    @Override
+    public void draw() {
+        super.draw();
     }
 }
