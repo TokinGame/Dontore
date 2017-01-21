@@ -22,6 +22,7 @@ import hu.tokingame.dontore.Bodies.BGActor;
 import hu.tokingame.dontore.Bodies.Character;
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
+import hu.tokingame.dontore.Bodies.PhantomActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Bodies.TopActor;
@@ -42,6 +43,7 @@ public class SinglePlayerStage extends MyStage {
     WorldBodyEditorLoader loader;
     ControlStage controlStage;
     PauseStage pauseStage;
+    PhantomActor phantomActor;
 
     public static Character character;
 
@@ -70,6 +72,8 @@ public class SinglePlayerStage extends MyStage {
     }
     @Override
     public void init() {
+        bgStage = new BackgroundStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+        world = new World(new Vector2(0, -10), false);
         world = new World(new Vector2(0, -5), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
@@ -78,6 +82,7 @@ public class SinglePlayerStage extends MyStage {
         //pauseStage = new PauseStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
 
         character = new Character(world, 1, 1);
+        phantomActor = new PhantomActor(world, loader, 1, 1);
         grassV = new Vector();
         bgV = new Vector();
         top = new TopActor(world, loader, character.getX(),2);
@@ -105,7 +110,7 @@ public class SinglePlayerStage extends MyStage {
         addActor(bg3);
 
         addActor(character);
-
+        addActor(phantomActor);
         addActor(top);
 
 
@@ -173,7 +178,7 @@ public class SinglePlayerStage extends MyStage {
         super.act(delta);
         world.step(delta, 1, 1);
         controlStage.act(delta);
-        setCameraMoveToXY(character.getX(), 4, 0.01f, 10000);
+        setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
 
         top.setPosition(character.getX(),7.5f);
 

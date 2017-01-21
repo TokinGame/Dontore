@@ -20,12 +20,14 @@ public class Character extends WorldActorGroup {
 
     public OneSpriteActor actor;
     public boolean alive = true;
+    public int maxSpeed = 5;
+    float currentSpeed;
 
     public Character(World world, float x, float y) {
         super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 5, 0.2f, 5, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CHARACTER));
-        actor.setSize(1, 2);
-        setSize(1, 2);
+        actor.setSize(0.5f, 1);
+        setSize(0.5f, 1);
         addActor(actor);
         addToWorld();
         setPosition(x, y);
@@ -35,15 +37,17 @@ public class Character extends WorldActorGroup {
     @Override
     public void act(float delta) {
         super.act(delta);
+
         if(alive) {
+            currentSpeed = (maxSpeed - this.getBody().getLinearVelocity().x) * 500;
             getBody().setLinearVelocity(getBody().getLinearVelocity());
-            getBody().applyForceToCenter(new Vector2(300 * delta, 0), true);
+            getBody().applyForceToCenter(new Vector2(currentSpeed * delta, 0), true);
         }
     }
 
 
     public void jump(){
-        if(alive) getBody().applyForceToCenter(new Vector2(100, 3000), true);
+        if(alive) getBody().applyForceToCenter(new Vector2(100, 1250), true);
     }
     public void die(){
         alive = false;

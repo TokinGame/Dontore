@@ -1,5 +1,6 @@
 package hu.tokingame.dontore.Bodies;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -14,6 +15,7 @@ import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 
 public class BGActor extends WorldActorGroup {
     public OneSpriteStaticActor actor;
+
 
     public BGActor(World world, WorldBodyEditorLoader loader, float X, float Y) {
         super(world, loader, "bg.png", BodyDef.BodyType.StaticBody, 0, 0.2f, 5, false);
@@ -30,5 +32,6 @@ public class BGActor extends WorldActorGroup {
     @Override
     public void act(float delta) {
         super.act(delta);
+
     }
 }
