@@ -72,9 +72,7 @@ public class SinglePlayerStage extends MyStage {
     }
     @Override
     public void init() {
-        bgStage = new BackgroundStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         world = new World(new Vector2(0, -10), false);
-        world = new World(new Vector2(0, -5), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
         controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
@@ -110,7 +108,7 @@ public class SinglePlayerStage extends MyStage {
         addActor(bg3);
 
         addActor(character);
-        addActor(phantomActor);
+        //addActor(phantomActor);
         addActor(top);
 
 
@@ -140,7 +138,7 @@ public class SinglePlayerStage extends MyStage {
                         }
                     });
                     character.die();
-                    controlStage.addActor(new MyLabel("RIP", MyLabel.style1){
+                    controlStage.addActor(new MyLabel("DED", MyLabel.style1){
                         @Override
                         public void init() {
                             super.init();
@@ -178,7 +176,7 @@ public class SinglePlayerStage extends MyStage {
         super.act(delta);
         world.step(delta, 1, 1);
         controlStage.act(delta);
-        setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
+        setCameraMoveToXY(character.getX(), 4, 0.01f, 10000);
 
         top.setPosition(character.getX(),7.5f);
 

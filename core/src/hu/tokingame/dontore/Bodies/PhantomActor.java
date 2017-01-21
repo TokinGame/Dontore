@@ -21,7 +21,7 @@ public class PhantomActor extends WorldActorGroup {
     float currentSpeed;
 
     public PhantomActor(World world, WorldBodyEditorLoader loader, float x, float y) {
-        super(world, loader, "bg.png", BodyDef.BodyType.KinematicBody, 0, 0, 0, false);
+        super(world, loader, "bg.png", BodyDef.BodyType.DynamicBody, 0, 0, 0, false);
         setSize(1, 1);
         setPosition(x, y);
     }
