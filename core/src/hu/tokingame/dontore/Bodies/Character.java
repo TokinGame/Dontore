@@ -20,10 +20,10 @@ public class Character extends WorldActorGroup {
     public OneSpriteActor actor;
 
     public Character(World world, float x, float y) {
-        super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 100, 0.02f, 10, false);
+        super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 5, 0.2f, 5, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CHARACTER));
-        actor.setSize(5, 10);
-        setSize(5, 10);
+        actor.setSize(1, 2);
+        setSize(1, 2);
         addActor(actor);
         addToWorld();
         setPosition(x, y);
@@ -32,12 +32,26 @@ public class Character extends WorldActorGroup {
     @Override
     public void act(float delta) {
         super.act(delta);
-        getBody().setLinearVelocity(getBody().getLinearVelocity().rotateRad(getBody().getAngularVelocity() * delta));
-        getBody().applyForceToCenter(new Vector2(100, 0).rotateRad(getBody().getAngle()), true);
+        getBody().setLinearVelocity(getBody().getLinearVelocity());
+        getBody().applyForceToCenter(new Vector2(300*delta, 0), true);
     }
 
+
+    public void jump(){
+        getBody().applyForceToCenter(new Vector2(0, 4000), true);
+    }
     @Override
     public void init() {
         super.init();
+    }
+
+    @Override
+    public float getX() {
+        return super.getX();
+    }
+
+    @Override
+    public float getY() {
+        return super.getY();
     }
 }
