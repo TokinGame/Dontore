@@ -17,6 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.Vector;
+
 import hu.tokingame.dontore.Bodies.Character;
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
@@ -42,6 +44,9 @@ public class SinglePlayerStage extends MyStage {
 
     public Character character;
 
+    Vector<GrassActor> grassV;
+    GrassActor g1, g2, g3;
+
 
 
     public SinglePlayerStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -58,6 +63,7 @@ public class SinglePlayerStage extends MyStage {
         //pauseStage = new PauseStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
 
         character = new Character(world, 1, 1);
+        grassV = new Vector();
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(this);
@@ -78,11 +84,19 @@ public class SinglePlayerStage extends MyStage {
         setCameraMoveToXY(1, 4, 0.01f, 10000);
 
         addActor(character);
-        addActor(new GrassActor(world, loader, 0, 0));
-        addActor(new GrassActor(world, loader, -8, 0));
-        addActor(new GrassActor(world, loader, 8, 0));
+
         addActor(new CrateActor(world, loader, 3, 1));
         addActor(new SpikeActor(world, loader, 8, 1));
+
+        g1 = new GrassActor(world, loader, -8, 0);
+        g2 = new GrassActor(world, loader, 0, 0);
+        g3 = new GrassActor(world, loader, 8, 0);
+        grassV.add(g1);
+        grassV.add(g2);
+        grassV.add(g3);
+        addActor(g1);
+        addActor(g2);
+        addActor(g3);
 
         world.setContactListener(new ContactListener() {
             @Override
@@ -130,6 +144,12 @@ public class SinglePlayerStage extends MyStage {
         world.step(delta, 1, 1);
         controlStage.act(delta);
         setCameraMoveToXY(character.getX(), 4, 0.01f, 10000);
+
+        if(character.getX() > grassV.get(2).getX()){
+            grassV.get(0).setX(grassV.get(2).getX()+8);
+            grassV.add(grassV.get(0));
+            grassV.remove(0);
+        }
     }
 
     @Override
