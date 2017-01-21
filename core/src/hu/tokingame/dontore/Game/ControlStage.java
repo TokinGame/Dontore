@@ -7,9 +7,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.awt.event.ActionEvent;
 
+import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
+import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -33,6 +35,20 @@ public class ControlStage extends MyStage {
 
     @Override
     public void init() {
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.NEM)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        SinglePlayerStage.character.jump();
+                    }
+                });
+            }
+        });
         addActor(new MyTextButton("Quit"){
             @Override
             protected void init() {

@@ -18,8 +18,8 @@ public class CrateActor extends WorldActorGroup {
     public CrateActor(World world, WorldBodyEditorLoader loader, float X, float Y) {
         super(world, loader, "wooden-crate.png", BodyDef.BodyType.StaticBody, 0, 0.2f, 5, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CRATE));
-        actor.setSize(2, 2);
-        setSize(2, 2);
+        actor.setSize(1, 1);
+        setSize(1, 1);
         addActor(actor);
         addToWorld();
         setPosition(X, Y);

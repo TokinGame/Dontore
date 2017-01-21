@@ -1,6 +1,7 @@
 package hu.tokingame.dontore.Game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -24,6 +25,7 @@ import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MenuScreen.ExitScreen;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.ShapeType;
@@ -42,16 +44,25 @@ public class SinglePlayerStage extends MyStage {
     ControlStage controlStage;
     PauseStage pauseStage;
 
-    public Character character;
+    public static Character character;
 
     Vector<GrassActor> grassV;
     GrassActor g1, g2, g3;
 
+    int rdm(int a, int b){return (int)(Math.random()*(b-a+1)+a);}
 
 
     public SinglePlayerStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
 
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if(keycode == Input.Keys.BACK){
+            game.setScreenBackByStackPop();
+        }
+        return false;
     }
     @Override
     public void init() {
@@ -74,19 +85,13 @@ public class SinglePlayerStage extends MyStage {
         //addActor(new SpikeActor(world, loader, 2, 0));
 
 
-        addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                character.jump();
-            }
-        });
+
         setCameraMoveToXY(1, 4, 0.01f, 10000);
 
         addActor(character);
 
-        addActor(new CrateActor(world, loader, 3, 1));
-        addActor(new SpikeActor(world, loader, 8, 1));
+        /*addActor(new CrateActor(world, loader, 3, 1));
+        addActor(new SpikeActor(world, loader, 8, 1));*/
 
         g1 = new GrassActor(world, loader, -8, 0);
         g2 = new GrassActor(world, loader, 0, 0);
@@ -149,6 +154,7 @@ public class SinglePlayerStage extends MyStage {
             grassV.get(0).setX(grassV.get(2).getX()+8);
             grassV.add(grassV.get(0));
             grassV.remove(0);
+            generateMap();
         }
     }
 
@@ -165,5 +171,49 @@ public class SinglePlayerStage extends MyStage {
     public void resize(int screenWidth, int screenHeight) {
         super.resize(screenWidth, screenHeight);
         controlStage.resize(screenWidth, screenHeight);
+    }
+
+    void generateMap(){
+        int ref = (int)grassV.get(2).getX();
+        int nr = rdm(1, 2);
+        switch(nr){
+            case 1:{
+                if(rdm(1,2) == 1){
+                    switch(rdm(1,3)){
+                        case 1: addActor(new CrateActor(world, loader, ref + 4, 1)); break;
+                        case 2: addActor(new CrateActor(world, loader, ref + 4, 1));
+                            addActor(new CrateActor(world, loader, ref + 4, 2)); break;
+                        case 3: addActor(new CrateActor(world, loader, ref + 4, 1));
+                            addActor(new CrateActor(world, loader, ref + 4, 2));
+                            addActor(new CrateActor(world, loader, ref + 4, 3)); break;
+                    }
+                }else addActor(new SpikeActor(world, loader, ref + 4, 1));
+                break;
+            }
+            case 2:{
+                if(rdm(1,2) == 1){
+                    switch(rdm(1,3)){
+                        case 1: addActor(new CrateActor(world, loader, ref + 2, 1)); break;
+                        case 2: addActor(new CrateActor(world, loader, ref + 2, 1));
+                            addActor(new CrateActor(world, loader, ref + 2, 2)); break;
+                        case 3: addActor(new CrateActor(world, loader, ref + 2, 1));
+                            addActor(new CrateActor(world, loader, ref + 2, 2));
+                            addActor(new CrateActor(world, loader, ref + 2, 3)); break;
+                    }
+                    switch(rdm(1,3)){
+                        case 1: addActor(new CrateActor(world, loader, ref + 5, 1)); break;
+                        case 2: addActor(new CrateActor(world, loader, ref + 5, 1));
+                            addActor(new CrateActor(world, loader, ref + 5, 2)); break;
+                        case 3: addActor(new CrateActor(world, loader, ref + 5, 1));
+                            addActor(new CrateActor(world, loader, ref + 5, 2));
+                            addActor(new CrateActor(world, loader, ref + 5, 3)); break;
+                    }
+                }else {
+                    addActor(new SpikeActor(world, loader, ref + 2, 1));
+                    addActor(new SpikeActor(world, loader, ref + 5, 1));
+                }
+                break;
+            }
+        }
     }
 }
