@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
+import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteActor;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
@@ -48,6 +49,7 @@ public class Character extends WorldActorGroup {
         alive = false;
         removeFromWorld();
         actor.remove();
+
     }
     @Override
     public void init() {

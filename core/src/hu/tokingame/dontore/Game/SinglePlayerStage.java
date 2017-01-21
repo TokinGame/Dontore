@@ -24,6 +24,7 @@ import hu.tokingame.dontore.Bodies.Character;
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
+import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Bodies.TopActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.ExitScreen;
@@ -112,8 +113,16 @@ public class SinglePlayerStage extends MyStage {
                 if (contact.getFixtureA().getUserData() instanceof SpikeActor && contact.getFixtureB().getUserData() instanceof Character ||
                         contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof SpikeActor) {
                     System.out.println("collision");
+                    controlStage.addActor(new ExplosionActor(){
+                        @Override
+                        public void init() {
+                            super.init();
+                            setSize(Globals.WORLD_HEIGHT, Globals.WORLD_HEIGHT);
+                            setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 0);
+                        }
+                    });
                     character.die();
-                    controlStage.addActor(new MyLabel("DED", MyLabel.style1){
+                    controlStage.addActor(new MyLabel("RIP", MyLabel.style1){
                         @Override
                         public void init() {
                             super.init();
