@@ -192,7 +192,7 @@ public class SinglePlayerStage extends MyStage {
         int nr = rdm(1, 2);
         switch(nr){
             case 1:{
-                if(rdm(1,2) == 1){
+                if(rdm(1,5) != 1){
                     switch(rdm(1,3)){
                         case 1: addActor(new CrateActor(world, loader, ref + 4, 1)); break;
                         case 2: addActor(new CrateActor(world, loader, ref + 4, 1));
@@ -205,7 +205,7 @@ public class SinglePlayerStage extends MyStage {
                 break;
             }
             case 2:{
-                if(rdm(1,2) == 1){
+                if(rdm(1,5) != 1){
                     switch(rdm(1,3)){
                         case 1: addActor(new CrateActor(world, loader, ref + 2, 1)); break;
                         case 2: addActor(new CrateActor(world, loader, ref + 2, 1));
