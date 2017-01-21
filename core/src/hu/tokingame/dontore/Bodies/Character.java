@@ -18,6 +18,7 @@ import hu.tokingame.dontore.MyBaseClasses.WorldActorGroup;
 public class Character extends WorldActorGroup {
 
     public OneSpriteActor actor;
+    public boolean alive = true;
 
     public Character(World world, float x, float y) {
         super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 5, 0.2f, 5, false);
@@ -27,18 +28,26 @@ public class Character extends WorldActorGroup {
         addActor(actor);
         addToWorld();
         setPosition(x, y);
+        getBody().setFixedRotation(true);
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        getBody().setLinearVelocity(getBody().getLinearVelocity());
-        getBody().applyForceToCenter(new Vector2(300*delta, 0), true);
+        if(alive) {
+            getBody().setLinearVelocity(getBody().getLinearVelocity());
+            getBody().applyForceToCenter(new Vector2(300 * delta, 0), true);
+        }
     }
 
 
     public void jump(){
-        getBody().applyForceToCenter(new Vector2(0, 4000), true);
+        if(alive) getBody().applyForceToCenter(new Vector2(100, 4000), true);
+    }
+    public void die(){
+        alive = false;
+        removeFromWorld();
+        actor.remove();
     }
     @Override
     public void init() {
