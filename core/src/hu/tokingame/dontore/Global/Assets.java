@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
@@ -48,6 +49,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> BUTTON_BG_RED = new AssetDescriptor<Texture>("textures/buttonbg_red.png", Texture.class);
     public static final AssetDescriptor<Texture> GRASS = new AssetDescriptor<Texture>("textures/grass.png", Texture.class);
     public static final AssetDescriptor<Texture> NEM = new AssetDescriptor<Texture>("textures/zolipls.png", Texture.class);
+    public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS = new AssetDescriptor<TextureAtlas>("textures/explosion.atlas", TextureAtlas.class);
     //</editor-fold>
 
     //<editor-fold desc="Music">
@@ -78,6 +80,7 @@ public class Assets {
         manager.load(BUTTON_BG_RED);
         manager.load(GRASS);
         manager.load(NEM);
+        manager.load(EXPLOSION_TEXTUREATLAS);
         //</editor-fold>
 
     }
