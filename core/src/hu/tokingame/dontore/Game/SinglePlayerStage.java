@@ -24,6 +24,7 @@ import hu.tokingame.dontore.Bodies.Character;
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
+import hu.tokingame.dontore.Bodies.TopActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.ExitScreen;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
@@ -48,6 +49,7 @@ public class SinglePlayerStage extends MyStage {
 
     Vector<GrassActor> grassV;
     GrassActor g1, g2, g3;
+    TopActor top;
 
     int rdm(int a, int b){return (int)(Math.random()*(b-a+1)+a);}
 
@@ -75,6 +77,7 @@ public class SinglePlayerStage extends MyStage {
 
         character = new Character(world, 1, 1);
         grassV = new Vector();
+        top = new TopActor(world, loader, character.getX(),2);
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(this);
@@ -90,8 +93,8 @@ public class SinglePlayerStage extends MyStage {
 
         addActor(character);
 
-        /*addActor(new CrateActor(world, loader, 3, 1));
-        addActor(new SpikeActor(world, loader, 8, 1));*/
+        addActor(top);
+
 
         g1 = new GrassActor(world, loader, -8, 0);
         g2 = new GrassActor(world, loader, 0, 0);
@@ -149,6 +152,8 @@ public class SinglePlayerStage extends MyStage {
         world.step(delta, 1, 1);
         controlStage.act(delta);
         setCameraMoveToXY(character.getX(), 4, 0.01f, 10000);
+
+        top.setPosition(character.getX(),7.5f);
 
         if(character.getX() > grassV.get(2).getX()){
             grassV.get(0).setX(grassV.get(2).getX()+8);
