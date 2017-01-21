@@ -1,5 +1,6 @@
 package hu.tokingame.dontore.Global;
 
+
 /**
  * Created by M on 10/14/2016.
  */
@@ -15,9 +16,7 @@ public class Globals {
     public static boolean host = true;
     public static boolean multiPlayer = false;
 
-    enum Mode{
-
-    }
+    public static Mode gameMode = Mode.SinglePlayer;
 }
 
 

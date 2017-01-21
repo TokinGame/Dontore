@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Vector;
 
+import hu.tokingame.dontore.Bodies.BGActor;
 import hu.tokingame.dontore.Bodies.Character;
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
@@ -40,13 +41,16 @@ public class SinglePlayerStage extends MyStage {
     Box2DDebugRenderer box2DDebugRenderer;
     WorldBodyEditorLoader loader;
     ControlStage controlStage;
-    BackgroundStage bgStage;
     PauseStage pauseStage;
 
     public static Character character;
 
     Vector<GrassActor> grassV;
     GrassActor g1, g2, g3;
+
+    Vector<BGActor> bgV;
+    BGActor bg1, bg2, bg3;
+
     TopActor top;
 
     int rdm(int a, int b){return (int)(Math.random()*(b-a+1)+a);}
@@ -66,7 +70,6 @@ public class SinglePlayerStage extends MyStage {
     }
     @Override
     public void init() {
-        bgStage = new BackgroundStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         world = new World(new Vector2(0, -5), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
@@ -76,6 +79,7 @@ public class SinglePlayerStage extends MyStage {
 
         character = new Character(world, 1, 1);
         grassV = new Vector();
+        bgV = new Vector();
         top = new TopActor(world, loader, character.getX(),2);
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
@@ -89,6 +93,16 @@ public class SinglePlayerStage extends MyStage {
 
 
         setCameraMoveToXY(1, 4, 0.01f, 10000);
+
+        bg1 = new BGActor(world, loader, -8, 0);
+        bg2 = new BGActor(world, loader, 0, 0);
+        bg3 = new BGActor(world, loader, 8, 0);
+        bgV.add(bg1);
+        bgV.add(bg2);
+        bgV.add(bg3);
+        addActor(bg1);
+        addActor(bg2);
+        addActor(bg3);
 
         addActor(character);
 
@@ -104,6 +118,7 @@ public class SinglePlayerStage extends MyStage {
         addActor(g1);
         addActor(g2);
         addActor(g3);
+
 
         world.setContactListener(new ContactListener() {
             @Override
@@ -155,13 +170,18 @@ public class SinglePlayerStage extends MyStage {
 
     @Override
     public void act(float delta) {
-        bgStage.act(delta);
         super.act(delta);
         world.step(delta, 1, 1);
         controlStage.act(delta);
         setCameraMoveToXY(character.getX(), 4, 0.01f, 10000);
 
         top.setPosition(character.getX(),7.5f);
+
+        if(character.getX() > bgV.get(2).getX()){
+            bgV.get(0).setX(bgV.get(2).getX()+8);
+            bgV.add(bgV.get(0));
+            bgV.remove(0);
+        }
 
         if(character.getX() > grassV.get(2).getX()){
             grassV.get(0).setX(grassV.get(2).getX()+8);
@@ -174,7 +194,6 @@ public class SinglePlayerStage extends MyStage {
     @Override
     public void draw() {
         updateFrustum(1.25f);
-        bgStage.draw();
         super.draw();
         controlStage.draw();
         box2DDebugRenderer.render(world, getCamera().combined);
@@ -183,7 +202,6 @@ public class SinglePlayerStage extends MyStage {
 
     @Override
     public void resize(int screenWidth, int screenHeight) {
-        bgStage.resize(screenWidth, screenHeight);
         super.resize(screenWidth, screenHeight);
         controlStage.resize(screenWidth, screenHeight);
     }

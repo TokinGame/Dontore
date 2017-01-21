@@ -18,11 +18,13 @@ public class BGActor extends WorldActorGroup {
     public BGActor(World world, WorldBodyEditorLoader loader, float X, float Y) {
         super(world, loader, "bg.png", BodyDef.BodyType.StaticBody, 0, 0.2f, 5, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CRATE));
-        actor.setSize(16, 9);
-        setSize(16, 9);
+        actor.setSize(8, 9);
+        setSize(8, 9);
+        setZIndex(0);
         addActor(actor);
         addToWorld();
         setPosition(X, Y);
+        debug();
     }
 
     @Override
