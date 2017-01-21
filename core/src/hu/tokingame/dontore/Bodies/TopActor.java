@@ -19,9 +19,9 @@ public class TopActor extends WorldActorGroup {
     public TopActor(World world, WorldBodyEditorLoader loader, float x, float y) {
         super(world, loader, "maptop.png", BodyDef.BodyType.StaticBody, 0, 0.2f, 1, false);
 
-        actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CRATE));
-        actor.setSize(8, 1);
-        setSize(8, 1);
+        actor = new OneSpriteStaticActor(Assets.manager.get(Assets.NEM));
+        actor.setSize(1, 1);
+        setSize(1, 1);
         addActor(actor);
         addToWorld();
         setPosition(x, y);
