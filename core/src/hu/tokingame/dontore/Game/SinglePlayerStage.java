@@ -44,6 +44,7 @@ public class SinglePlayerStage extends MyStage {
     Box2DDebugRenderer box2DDebugRenderer;
     WorldBodyEditorLoader loader;
     ControlStage controlStage;
+    BackGroundStage bgStage;
     PauseStage pauseStage;
 
     public static Character character;
@@ -69,6 +70,7 @@ public class SinglePlayerStage extends MyStage {
     }
     @Override
     public void init() {
+        bgStage = new BackGroundStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         world = new World(new Vector2(0, -5), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
@@ -157,6 +159,7 @@ public class SinglePlayerStage extends MyStage {
 
     @Override
     public void act(float delta) {
+        bgStage.act(delta);
         super.act(delta);
         world.step(delta, 1, 1);
         controlStage.act(delta);
@@ -175,6 +178,7 @@ public class SinglePlayerStage extends MyStage {
     @Override
     public void draw() {
         updateFrustum(1.25f);
+        bgStage.draw();
         super.draw();
         controlStage.draw();
         box2DDebugRenderer.render(world, getCamera().combined);
@@ -183,6 +187,7 @@ public class SinglePlayerStage extends MyStage {
 
     @Override
     public void resize(int screenWidth, int screenHeight) {
+        bgStage.resize(screenWidth, screenHeight);
         super.resize(screenWidth, screenHeight);
         controlStage.resize(screenWidth, screenHeight);
     }

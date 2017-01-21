@@ -3,8 +3,11 @@ package hu.tokingame.dontore.Game;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.tokingame.dontore.Global.Assets;
+import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
+import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -18,7 +21,14 @@ public class BackGroundStage extends MyStage {
 
     @Override
     public void init() {
-        addActor(new MyLabel("Succ", game.getLabelStyle()));
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.CRATE)){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(0,0);
+                this.setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
+            }
+        });
     }
 
     @Override
