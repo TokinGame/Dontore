@@ -14,8 +14,11 @@ import hu.tokingame.dontore.MyGdxGame;
  * Created by M on 1/21/2017.
  */
 
-public class BackGroundStage extends MyStage {
-    public BackGroundStage(Viewport viewport, Batch batch, MyGdxGame game) {
+public class BackgroundStage extends MyStage {
+
+
+
+    public BackgroundStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
     }
 
@@ -34,6 +37,13 @@ public class BackGroundStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if(character.getX() > grassV.get(2).getX()){
+            grassV.get(0).setX(grassV.get(2).getX()+8);
+            grassV.add(grassV.get(0));
+            grassV.remove(0);
+        }
+
     }
 
     @Override

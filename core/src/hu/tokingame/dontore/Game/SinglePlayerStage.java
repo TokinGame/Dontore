@@ -13,8 +13,6 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -27,10 +25,8 @@ import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Bodies.TopActor;
 import hu.tokingame.dontore.Global.Globals;
-import hu.tokingame.dontore.MenuScreen.ExitScreen;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
-import hu.tokingame.dontore.MyBaseClasses.ShapeType;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -44,7 +40,7 @@ public class SinglePlayerStage extends MyStage {
     Box2DDebugRenderer box2DDebugRenderer;
     WorldBodyEditorLoader loader;
     ControlStage controlStage;
-    BackGroundStage bgStage;
+    BackgroundStage bgStage;
     PauseStage pauseStage;
 
     public static Character character;
@@ -70,7 +66,7 @@ public class SinglePlayerStage extends MyStage {
     }
     @Override
     public void init() {
-        bgStage = new BackGroundStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+        bgStage = new BackgroundStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         world = new World(new Vector2(0, -5), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
