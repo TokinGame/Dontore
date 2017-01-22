@@ -23,7 +23,7 @@ public class Character extends WorldActorGroup {
     public boolean alive = true;
     public int maxSpeed = 5;
     float currentSpeed;
-    boolean doubleJumpAvalaible = true;
+    public boolean doubleJumpAvalaible = true;
 
     public Character(World world, float x, float y) {
         super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 5, 0.2f, 5, false);

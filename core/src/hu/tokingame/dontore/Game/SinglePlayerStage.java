@@ -138,6 +138,14 @@ public class SinglePlayerStage extends MyStage {
                     System.out.println("collision");
                     death();
                 }
+                if (contact.getFixtureA().getUserData() instanceof CrateActor && contact.getFixtureB().getUserData() instanceof Character ||
+                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof CrateActor){
+                    character.doubleJumpAvalaible = true;
+                }
+                if (contact.getFixtureA().getUserData() instanceof GrassActor && contact.getFixtureB().getUserData() instanceof Character ||
+                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof GrassActor){
+                    character.doubleJumpAvalaible = true;
+                }
             }
 
             @Override
