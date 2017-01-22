@@ -21,17 +21,24 @@ public class PhantomActor extends WorldActorGroup {
     float currentSpeed;
 
     public PhantomActor(World world, WorldBodyEditorLoader loader, float x, float y) {
-        super(world, loader, "bg.png", BodyDef.BodyType.DynamicBody, 0, 0, 0, false);
+        super(world, loader, "bg.png", BodyDef.BodyType.DynamicBody, 0, 0.1f, 0, false);
         setSize(1, 1);
+        actor = new OneSpriteStaticActor(Assets.manager.get(Assets.NEM));
+        actor.setSize(1, 1);
+        addActor(actor);
+        addToWorld();
         setPosition(x, y);
+    }
+
+    @Override
+    public void init() {
+        super.init();
+
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        actor = new OneSpriteStaticActor(Assets.manager.get(Assets.NEM));
-        actor.setSize(1, 1);
-        addActor(actor);
         currentSpeed = (maxSpeed - getBody().getLinearVelocity().x) * 500;
         getBody().setLinearVelocity(getBody().getLinearVelocity());
         getBody().applyForceToCenter(new Vector2(currentSpeed * delta, 0), true);

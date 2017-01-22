@@ -111,7 +111,7 @@ public class SinglePlayerStage extends MyStage {
 
 
         addActor(character);
-        //addActor(phantomActor);
+        addActor(phantomActor);
         addActor(top);
 
 
@@ -132,22 +132,7 @@ public class SinglePlayerStage extends MyStage {
                 if (contact.getFixtureA().getUserData() instanceof SpikeActor && contact.getFixtureB().getUserData() instanceof Character ||
                         contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof SpikeActor) {
                     System.out.println("collision");
-                    controlStage.addActor(new ExplosionActor(){
-                        @Override
-                        public void init() {
-                            super.init();
-                            setSize(Globals.WORLD_HEIGHT, Globals.WORLD_HEIGHT);
-                            setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 0);
-                        }
-                    });
-                    character.die();
-                    controlStage.addActor(new MyLabel("DED", MyLabel.style1){
-                        @Override
-                        public void init() {
-                            super.init();
-                            setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, Globals.WORLD_HEIGHT/2-this.getHeight()/2);
-                        }
-                    });
+                    death();
                 }
             }
 
@@ -179,28 +164,35 @@ public class SinglePlayerStage extends MyStage {
         super.act(delta);
         world.step(delta, 1, 1);
         controlStage.act(delta);
-        setCameraMoveToXY(character.getX(), 4, 0.01f, 10000);
+        if(character.alive) {
+            setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
 
-        top.setPosition(character.getX(),7.5f);
+            top.setPosition(character.getX(), 7.5f);
 
-        currentX = (character.getX() - lastX) / 2;
-        bg1.setX(bg1.getX() + currentX);
-        bg2.setX(bg2.getX() + currentX);
-        bg3.setX(bg3.getX() + currentX);
-        lastX = character.getX();
+            currentX = (phantomActor.getX() - lastX) / 2;
+            bg1.setX(bg1.getX() + currentX);
+            bg2.setX(bg2.getX() + currentX);
+            bg3.setX(bg3.getX() + currentX);
+            lastX = phantomActor.getX();
 
-        if(character.getX() > bgV.get(2).getX()){
-            bgV.get(0).setX(bgV.get(2).getX()+8);
-            bgV.add(bgV.get(0));
-            bgV.remove(0);
+            if (phantomActor.getX() > bgV.get(2).getX()) {
+                bgV.get(0).setX(bgV.get(2).getX() + 8);
+                bgV.add(bgV.get(0));
+                bgV.remove(0);
+            }
+
+            if (phantomActor.getX() > grassV.get(2).getX()) {
+                grassV.get(0).setX(grassV.get(2).getX() + 8);
+                grassV.add(grassV.get(0));
+                grassV.remove(0);
+                generateMap();
+            }
+            if(character.getX() < phantomActor.getX()-1){
+                character.getBody().applyForceToCenter(new Vector2((phantomActor.getX()-1-character.getX())* 500 * delta, 0), true);
+
+            }
         }
-
-        if(character.getX() > grassV.get(2).getX()){
-            grassV.get(0).setX(grassV.get(2).getX()+8);
-            grassV.add(grassV.get(0));
-            grassV.remove(0);
-            generateMap();
-        }
+        if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
     }
 
     @Override
@@ -260,5 +252,30 @@ public class SinglePlayerStage extends MyStage {
                 break;
             }
         }
+    }
+
+    public PhantomActor getPhantomActor() {
+        return phantomActor;
+    }
+
+    void death(){
+        controlStage.addActor(new ExplosionActor(){
+            @Override
+            public void init() {
+                super.init();
+                setSize(Globals.WORLD_HEIGHT, Globals.WORLD_HEIGHT);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 0);
+            }
+        });
+        character.die();
+        controlStage.addActor(new MyLabel("DED", MyLabel.style1){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, Globals.WORLD_HEIGHT/2-this.getHeight()/2);
+            }
+        });
+
+
     }
 }
