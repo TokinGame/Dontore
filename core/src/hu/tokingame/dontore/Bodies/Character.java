@@ -47,7 +47,7 @@ public class Character extends WorldActorGroup {
 
 
     public void jump(){
-        if(alive) getBody().applyForceToCenter(new Vector2(100, 1250), true);
+        if(alive) getBody().applyForceToCenter(new Vector2(0, 2250), true);
     }
     public void die(){
         alive = false;

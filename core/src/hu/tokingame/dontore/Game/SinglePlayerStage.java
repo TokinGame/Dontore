@@ -55,6 +55,8 @@ public class SinglePlayerStage extends MyStage {
 
     TopActor top;
 
+    float lastX = 1, currentX = 1;
+
     int rdm(int a, int b){return (int)(Math.random()*(b-a+1)+a);}
 
 
@@ -72,7 +74,7 @@ public class SinglePlayerStage extends MyStage {
     }
     @Override
     public void init() {
-        world = new World(new Vector2(0, -10), false);
+        world = new World(new Vector2(0, -20), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
         controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
@@ -106,6 +108,7 @@ public class SinglePlayerStage extends MyStage {
         addActor(bg1);
         addActor(bg2);
         addActor(bg3);
+
 
         addActor(character);
         //addActor(phantomActor);
@@ -179,6 +182,12 @@ public class SinglePlayerStage extends MyStage {
         setCameraMoveToXY(character.getX(), 4, 0.01f, 10000);
 
         top.setPosition(character.getX(),7.5f);
+
+        currentX = (character.getX() - lastX) / 2;
+        bg1.setX(bg1.getX() + currentX);
+        bg2.setX(bg2.getX() + currentX);
+        bg3.setX(bg3.getX() + currentX);
+        lastX = character.getX();
 
         if(character.getX() > bgV.get(2).getX()){
             bgV.get(0).setX(bgV.get(2).getX()+8);
