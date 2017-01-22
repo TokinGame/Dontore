@@ -1,5 +1,7 @@
 package hu.tokingame.dontore.SettingsScreen;
 
+import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
+import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import java.lang.String;
+import java.util.Vector;
 
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;
@@ -22,11 +25,10 @@ import hu.tokingame.dontore.MyGdxGame;
  */
 
 public class SettingsStage extends MyStage {
-    public static boolean cameraRotation = true;
-    final private static String camText = "Camera rotation: ";
 
-    public static boolean onScreenMode = false;
-    final private static String onScreen = "Controls: ";
+
+    MenuBackgroundActor a1, a2, a3;
+    Vector<MenuBackgroundActor> actorVector;
 
     public SettingsStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -43,7 +45,20 @@ public class SettingsStage extends MyStage {
 
     @Override
     public void init() {
-        addActor(new MyTextButton("I Don't Know"){
+
+        actorVector = new Vector<MenuBackgroundActor>();
+        a1 = new MenuBackgroundActor(1, 0, 0);
+        a2 = new MenuBackgroundActor(2, 720, 0);
+        a3 = new MenuBackgroundActor(3, 1440, 0);
+        actorVector.add(a1);
+        actorVector.add(a2);
+        actorVector.add(a3);
+        addActor(a1);
+        addActor(a2);
+        addActor(a3);
+
+
+        addActor(new MyTextButton("nem"){
             @Override
             public void init() {
                 super.init();
@@ -52,7 +67,7 @@ public class SettingsStage extends MyStage {
             }
         });
 
-        addActor(new MyTextButton("Back"){
+        addActor(new BackgroundTextButton("Back", 2){
             @Override
             protected void init() {
                 super.init();
@@ -67,28 +82,19 @@ public class SettingsStage extends MyStage {
             }
         });
 
-        addActor(new MyTextButton(camText){
-            @Override
-            protected void init() {
-                this.setPosition(120,40);
-                super.init();
-                final MyTextButton button = this;
-                if(cameraRotation)
-                    this.setText(camText + "enabled");
-                else
-                    this.setText(camText + "disabled");
-                addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        cameraRotation = !cameraRotation;
-                        if(cameraRotation)
-                            button.setText(camText + "enabled");
-                        else
-                            button.setText(camText + "disabled");
-                    }
-                });
-            }
-        });
+
+    }
+    void moveBackground(){
+        if(actorVector.get(0).getX() < -719.9f) actorVector.get(0).setX(1440);
+        actorVector.add(actorVector.get(0)); actorVector.remove(0);
+        actorVector.get(0).setX(actorVector.get(0).getX()-1f);
+        actorVector.get(1).setX(actorVector.get(1).getX()-1f);
+        actorVector.get(2).setX(actorVector.get(2).getX()-1f);
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        moveBackground();
     }
 }

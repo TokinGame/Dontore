@@ -27,6 +27,7 @@ public class BGActor extends WorldActorGroup {
         addToWorld();
         setPosition(X, Y);
         debug();
+        setZIndex(0);
     }
 
     @Override

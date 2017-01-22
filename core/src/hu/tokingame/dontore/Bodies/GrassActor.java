@@ -17,13 +17,14 @@ public class GrassActor extends WorldActorGroup {
     public OneSpriteStaticActor actor;
 
     public GrassActor(World world, WorldBodyEditorLoader loader, float x, float y) {
-        super(world, loader, "grass.png", BodyDef.BodyType.StaticBody, 0, 0.2f, 1, false);
+        super(world, loader, "grass.png", BodyDef.BodyType.StaticBody, 0.01f, 0.2f, 1, false);
 
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.GRASS));
-        actor.setSize(8, 1);
+        actor.setSize(8, 1.5f);
         setSize(8, 1);
         addActor(actor);
         addToWorld();
         setPosition(x, y);
+        setZIndex(10000);
     }
 }

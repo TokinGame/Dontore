@@ -124,6 +124,9 @@ public class SinglePlayerStage extends MyStage {
         addActor(g1);
         addActor(g2);
         addActor(g3);
+        g1.setZIndex(10000);
+        g2.setZIndex(10000);
+        g3.setZIndex(10000);
 
 
         world.setContactListener(new ContactListener() {

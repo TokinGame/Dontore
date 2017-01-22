@@ -23,6 +23,7 @@ public class CrateActor extends WorldActorGroup {
         addActor(actor);
         addToWorld();
         setPosition(X, Y);
+        setZIndex(50);
     }
     @Override
     public void act(float delta) {

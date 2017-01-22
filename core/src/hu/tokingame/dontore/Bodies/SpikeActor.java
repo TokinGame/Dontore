@@ -17,12 +17,13 @@ public class SpikeActor extends WorldActorGroup {
     public OneSpriteStaticActor actor;
 
     public SpikeActor(World world, WorldBodyEditorLoader loader, float X, float Y) {
-        super(world, loader, "spikes.png", BodyDef.BodyType.DynamicBody, 100, 0.02f, 10000, false);
+        super(world, loader, "spikes.png", BodyDef.BodyType.DynamicBody, 10000, 0.02f, 10000, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.SPIKE));
-        actor.setSize(1, 1);
-        setSize(1, 1);
+        actor.setSize(1.5f, 1.5f);
+        setSize(1.5f, 1.5f);
         addActor(actor);
         addToWorld();
         setPosition(X, Y);
+        setZIndex(50);
     }
 }

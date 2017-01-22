@@ -47,7 +47,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> CHARACTER = new AssetDescriptor<Texture>("textures/weed.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_BG = new AssetDescriptor<Texture>("textures/buttonbg.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_BG_RED = new AssetDescriptor<Texture>("textures/buttonbg_red.png", Texture.class);
-    public static final AssetDescriptor<Texture> GRASS = new AssetDescriptor<Texture>("textures/grass.png", Texture.class);
+    public static final AssetDescriptor<Texture> GRASS = new AssetDescriptor<Texture>("textures/grass_seamless.png", Texture.class);
     public static final AssetDescriptor<Texture> NEM = new AssetDescriptor<Texture>("textures/zolipls.png", Texture.class);
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS = new AssetDescriptor<TextureAtlas>("textures/explosion.atlas", TextureAtlas.class);
     //</editor-fold>

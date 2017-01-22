@@ -33,6 +33,7 @@ public class Character extends WorldActorGroup {
         addToWorld();
         setPosition(x, y);
         getBody().setFixedRotation(true);
+        setZIndex(60);
     }
 
     @Override
