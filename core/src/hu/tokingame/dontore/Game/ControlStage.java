@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 
 import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
@@ -44,7 +45,11 @@ public class ControlStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        SinglePlayerStage.character.jump();
+                        switch (Globals.gameMode){
+                            case SinglePlayer: SinglePlayerStage.character.jump(); break;
+                            case Host: HostedGameStage.character.jump(); break;
+                            case Client: break;
+                        }
                     }
                 });
             }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g3d.utils.shapebuilders.ConeShapeBuilder;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;
 import hu.tokingame.dontore.MyBaseClasses.MyScreen;
 import hu.tokingame.dontore.MyGdxGame;
@@ -31,7 +32,7 @@ public class GameScreen extends MyScreen {
 
 
 
-    BluetoothState bluetoothState = BluetoothState.Choose;
+    BluetoothState bluetoothState = BluetoothState.Connected;
 
     public GameScreen(MyGdxGame game) {
         super(game);
@@ -87,9 +88,11 @@ public class GameScreen extends MyScreen {
                     if(Globals.host){
                         hostedGameStage.act(delta);
                         hostedGameStage.draw();
+                        Globals.gameMode = Mode.Host;
                     }else{
                         clientGameStage.act(delta);
                         clientGameStage.draw();
+                        Globals.gameMode = Mode.Client;
                     }
                     break;
                 case Disconnected:
