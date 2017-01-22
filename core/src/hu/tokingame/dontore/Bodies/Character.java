@@ -23,6 +23,7 @@ public class Character extends WorldActorGroup {
     public boolean alive = true;
     public int maxSpeed = 5;
     float currentSpeed;
+    boolean doubleJumpAvalaible = true;
 
     public Character(World world, float x, float y) {
         super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 5, 0.2f, 5, false);
@@ -49,7 +50,19 @@ public class Character extends WorldActorGroup {
 
 
     public void jump(){
-        if(alive) getBody().applyForceToCenter(new Vector2(0, 2250), true);
+        if(alive){
+            if(getY()<  1.25) {
+                getBody().applyForceToCenter(new Vector2(0, 2250), true);
+                doubleJumpAvalaible = true;
+            }else{
+                if(doubleJumpAvalaible){
+                    getBody().applyForceToCenter(new Vector2(0, 2250), true);
+                    doubleJumpAvalaible = false;
+                }
+            }
+
+        }
+        System.out.println(getY());
     }
     public void die(){
         alive = false;

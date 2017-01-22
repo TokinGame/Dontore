@@ -44,6 +44,7 @@ public class SinglePlayerStage extends MyStage {
     ControlStage controlStage;
     PauseStage pauseStage;
     PhantomActor phantomActor;
+    float elapsedtime = 0;
 
     public static Character character;
 
@@ -165,6 +166,7 @@ public class SinglePlayerStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        elapsedtime += delta;
         world.step(delta, 1, 1);
         controlStage.act(delta);
         if(character.alive) {
@@ -193,6 +195,11 @@ public class SinglePlayerStage extends MyStage {
             if(character.getX() < phantomActor.getX()-1){
                 character.getBody().applyForceToCenter(new Vector2((phantomActor.getX()-1-character.getX())* 500 * delta, 0), true);
 
+            }
+            if(elapsedtime > 20){
+                character.maxSpeed += 1;
+                phantomActor.maxSpeed += 1;
+                elapsedtime = 0;
             }
         }
         if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
