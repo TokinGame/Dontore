@@ -8,7 +8,6 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import hu.tokingame.dontore.MyGdxGame;
 
-
 /**
  * Created by tuskeb on 2017. 01. 18..
  */
@@ -25,7 +24,7 @@ abstract public class BluetoothDisconectionStage extends BluetoothStage {
             @Override
             public void init() {
                 super.init();
-                setPosition(700, 380);
+                setPosition(300, 380);
                 addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {

@@ -21,8 +21,6 @@ import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.UUID;
 
-import hu.tokingame.dontore.MyBaseClasses.iBluetooth;
-
 
 public class BluetoothManager implements iBluetooth {
 

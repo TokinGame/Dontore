@@ -3,7 +3,6 @@ package hu.tokingame.dontore.MyBaseClasses;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-
 import java.util.ArrayList;
 
 import hu.tokingame.dontore.MyGdxGame;

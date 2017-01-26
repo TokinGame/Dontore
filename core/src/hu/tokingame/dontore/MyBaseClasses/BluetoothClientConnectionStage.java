@@ -1,12 +1,12 @@
 package hu.tokingame.dontore.MyBaseClasses;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-
 
 import java.util.ArrayList;
 
@@ -41,6 +41,7 @@ abstract public class BluetoothClientConnectionStage extends BluetoothStage {
 
     @Override
     public void init() {
+        Gdx.app.error("BTM", "Client start discovering");
         startBluetoothDiscovering();
         addActor(waitingLabel = new MyLabel("", game.getLabelStyle()));
         waitingLabel.setPosition(300,300);
@@ -58,10 +59,10 @@ abstract public class BluetoothClientConnectionStage extends BluetoothStage {
                 }
             }
         }
-        ArrayList<String> strings = getDiscoveredDevicesName();
+        ArrayList<java.lang.String> strings = getDiscoveredDevicesName();
 
         int d = 0;
-        for (String s : strings) {
+        for (java.lang.String s : strings) {
             final MyButton myButton = new MyButton(s, game.getTextButtonStyle());
             myButton.setPosition(0, 600 - d  * 70);
             myButton.setUserObject(new Integer(d));
