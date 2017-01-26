@@ -13,7 +13,7 @@ public class Globals {
 
 
     public static boolean music = true;
-    public static boolean host = true;
+    public static boolean host = false;
     public static boolean multiPlayer = false;
 
     public static Mode gameMode = Mode.SinglePlayer;

@@ -30,8 +30,6 @@ public class GameScreen extends MyScreen {
     }
 
 
-
-
     BluetoothState bluetoothState = BluetoothState.Connected;
 
     public GameScreen(MyGdxGame game) {
@@ -70,7 +68,7 @@ public class GameScreen extends MyScreen {
             singlestage.draw();
         }
         else{
-            System.out.println("multiplayer, "+bluetoothState);
+            //System.out.println("multiplayer, "+bluetoothState);
             switch(bluetoothState){
                 case Choose:
                     chooseModeStage.act(delta);
