@@ -230,6 +230,14 @@ public class HostedGameStage extends MyStage {
         return phantomActor;
     }
 
+    public void addMapElement(float x, float y, MapElement element){
+        int ref = (int)grassV.get(2).getX();
+        switch (element){
+            case CRATE: addActor(new CrateActor(world, loader, ref + 4, 1)); break;
+            case SPIKE: addActor(new SpikeActor(world, loader, ref + 5, 1)); break;
+        }
+    }
+
     void death(){
         controlStage.addActor(new ExplosionActor(){
             @Override
