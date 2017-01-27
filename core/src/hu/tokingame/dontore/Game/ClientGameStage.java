@@ -24,9 +24,11 @@ import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.PhantomActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Bodies.TopActor;
+import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
+import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -39,7 +41,7 @@ public class ClientGameStage extends MyStage {
     World world;
     Box2DDebugRenderer box2DDebugRenderer;
     WorldBodyEditorLoader loader;
-    //ControlStage controlStage;
+    ControlStage controlStage;
     AdderStage adderStage;
     PauseStage pauseStage;
     PhantomActor phantomActor;
@@ -87,7 +89,7 @@ public class ClientGameStage extends MyStage {
         world = new World(new Vector2(0, -20), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
-        //controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+        controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game, this);
         adderStage = new AdderStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game, this);
         //pauseStage = new PauseStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
 
@@ -144,8 +146,8 @@ public class ClientGameStage extends MyStage {
         super.act(delta);
         elapsedtime += delta;
         world.step(delta, 1, 1);
-        //controlStage.act(delta);
-        adderStage.act();
+        controlStage.act(delta);
+
         setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
 
 
@@ -171,13 +173,15 @@ public class ClientGameStage extends MyStage {
             phantomActor.maxSpeed += 1;
             elapsedtime = 0;
         }
-
+        adderStage.act();
     }
-    void add(float x, float y, int what){
-        x = phantomActor.getX() + x - 3;
+    public void addElement(float x, float y, int what){
+        System.out.println("Added");
+        int X = (int)(phantomActor.getX() + x - 6);
         switch(what){
-            case 1: addActor(new CrateActor(world, loader, x, y)); break;
-            case 2: addActor(new SpikeActor(world, loader, x, y)); break;
+            case 1: addActor(new CrateActor(world, loader, X, y)); break;
+            case 2: addActor(new SpikeActor(world, loader, X, y)); break;
         }
+
     }
 }

@@ -80,7 +80,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 400);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 410);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {

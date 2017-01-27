@@ -20,11 +20,11 @@ import hu.tokingame.dontore.MyGdxGame;
 
 public class AdderStage extends MyStage {
 
-    ClientGameStage gameStage;
+    ClientGameStage clientGameStage;
 
     public AdderStage(Viewport viewport, Batch batch, MyGdxGame game, ClientGameStage g) {
         super(viewport, batch, game);
-        gameStage = g;
+        clientGameStage = g;
     }
 
     @Override
@@ -62,17 +62,19 @@ public class AdderStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        gameStage.add(0,1, 1);
+                        clientGameStage.addElement(0,1, 1);
                         System.out.println("k");
                     }
                 });
             }
         });
+        //clientGameStage.addElement(0,10,1);
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
+        //clientGameStage.addElement(0, 1, 1);
     }
 
     @Override
