@@ -24,11 +24,10 @@ import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.PhantomActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Bodies.TopActor;
-import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
+import hu.tokingame.dontore.MyBaseClasses.BluetoothConnectedStage;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
-import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -36,12 +35,12 @@ import hu.tokingame.dontore.MyGdxGame;
  * Created by davimatyi on 2017. 01. 18..
  */
 
-public class ClientGameStage extends MyStage {
+abstract public class ClientGameStage extends BluetoothConnectedStage {
 
     World world;
     Box2DDebugRenderer box2DDebugRenderer;
     WorldBodyEditorLoader loader;
-    ControlStage controlStage;
+    //ControlStage controlStage;
     AdderStage adderStage;
     PauseStage pauseStage;
     PhantomActor phantomActor;
@@ -53,12 +52,13 @@ public class ClientGameStage extends MyStage {
     Vector<BGActor> bgV;
     BGActor bg1, bg2, bg3;
 
+    public Character character;
 
     float lastX = 1, currentX = 1;
 
 
-    public ClientGameStage(Viewport viewport, Batch batch, MyGdxGame game) {
-        super(viewport, batch, game);
+    public ClientGameStage(MyGdxGame game) {
+        super(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), new SpriteBatch(), game);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ClientGameStage extends MyStage {
         world = new World(new Vector2(0, -20), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
-        controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game, this);
+        //controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         adderStage = new AdderStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game, this);
         //pauseStage = new PauseStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
 
@@ -122,6 +122,9 @@ public class ClientGameStage extends MyStage {
 
         addActor(phantomActor);
 
+        character = new Character(world, 1, 1);
+        //character.removeFromWorld();
+        addActor(character);
 
         g1 = new GrassActor(world, loader, -8, 0);
         g2 = new GrassActor(world, loader, 0, 0);
@@ -145,9 +148,9 @@ public class ClientGameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         elapsedtime += delta;
-        world.step(delta, 1, 1);
-        controlStage.act(delta);
-
+        //world.step(delta, 1, 1);
+        //controlStage.act(delta);
+        adderStage.act();
         setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
 
 
@@ -173,15 +176,21 @@ public class ClientGameStage extends MyStage {
             phantomActor.maxSpeed += 1;
             elapsedtime = 0;
         }
-        adderStage.act();
-    }
-    public void addElement(float x, float y, int what){
-        System.out.println("Added");
-        int X = (int)(phantomActor.getX() + x - 6);
-        switch(what){
-            case 1: addActor(new CrateActor(world, loader, X, y)); break;
-            case 2: addActor(new SpikeActor(world, loader, X, y)); break;
+        String m;
+        if ((m = getMessage())!=null){
+            String[] strings = m.split(";");
+            if (strings.length==3){
+                if (strings[0].compareTo("c")==0){
+                    character.setPosition(Float.valueOf(strings[1]), Float.valueOf(strings[2]));
+                }
+            }
         }
-
+    }
+    void add(float x, float y, int what){
+        x = phantomActor.getX() + x - 3;
+        switch(what){
+            case 1: addActor(new CrateActor(world, loader, x, y)); break;
+            case 2: addActor(new SpikeActor(world, loader, x, y)); break;
+        }
     }
 }

@@ -27,6 +27,7 @@ import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Bodies.TopActor;
 import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MyBaseClasses.BluetoothConnectedStage;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
@@ -36,7 +37,7 @@ import hu.tokingame.dontore.MyGdxGame;
  * Created by davimatyi on 2017. 01. 18..
  */
 
-public class HostedGameStage extends MyStage {
+abstract public class HostedGameStage extends BluetoothConnectedStage {
 
     World world;
     Box2DDebugRenderer box2DDebugRenderer;
@@ -60,8 +61,8 @@ public class HostedGameStage extends MyStage {
 
     int rdm(int a, int b){return (int)(Math.random()*(b-a+1)+a);}
 
-    public HostedGameStage(Viewport viewport, Batch batch, MyGdxGame game) {
-        super(viewport, batch, game);
+    public HostedGameStage(MyGdxGame game) {
+        super(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), new SpriteBatch(), game);
     }
 
     @Override
@@ -208,6 +209,7 @@ public class HostedGameStage extends MyStage {
             }
         }
         if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
+        sendMessage("c;" + character.getX() + ";" + character.getY());
     }
 
     @Override

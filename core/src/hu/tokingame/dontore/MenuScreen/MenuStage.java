@@ -12,6 +12,7 @@ import java.util.Vector;
 import hu.tokingame.dontore.CreditsScreen.CreditsScreen;
 import hu.tokingame.dontore.CreditsScreen.HowToPlayScreen;
 import hu.tokingame.dontore.Game.GameScreen;
+import hu.tokingame.dontore.Game.MultiGameScreen;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
@@ -103,7 +104,7 @@ public class MenuStage extends MyStage {
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
                         Globals.multiPlayer = true;
-                        game.setScreen(new GameScreen(game));
+                        game.setScreen(new MultiGameScreen(game));
 
                     }
                 });
