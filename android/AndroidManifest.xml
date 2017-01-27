@@ -30,7 +30,7 @@
 
         <activity
             android:name="hu.tokingame.dontore.BTActivity"
-            android:label="@string/app_name"
+            android:label="BT"
             android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
             <intent-filter>

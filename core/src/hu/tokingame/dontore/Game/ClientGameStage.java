@@ -26,6 +26,7 @@ import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Bodies.TopActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
+import hu.tokingame.dontore.MyBaseClasses.BluetoothConnectedStage;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
@@ -34,7 +35,7 @@ import hu.tokingame.dontore.MyGdxGame;
  * Created by davimatyi on 2017. 01. 18..
  */
 
-public class ClientGameStage extends MyStage {
+abstract public class ClientGameStage extends BluetoothConnectedStage {
 
     World world;
     Box2DDebugRenderer box2DDebugRenderer;
@@ -51,12 +52,13 @@ public class ClientGameStage extends MyStage {
     Vector<BGActor> bgV;
     BGActor bg1, bg2, bg3;
 
+    public Character character;
 
     float lastX = 1, currentX = 1;
 
 
-    public ClientGameStage(Viewport viewport, Batch batch, MyGdxGame game) {
-        super(viewport, batch, game);
+    public ClientGameStage(MyGdxGame game) {
+        super(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), new SpriteBatch(), game);
     }
 
     @Override
@@ -120,6 +122,9 @@ public class ClientGameStage extends MyStage {
 
         addActor(phantomActor);
 
+        character = new Character(world, 1, 1);
+        //character.removeFromWorld();
+        addActor(character);
 
         g1 = new GrassActor(world, loader, -8, 0);
         g2 = new GrassActor(world, loader, 0, 0);
@@ -143,7 +148,7 @@ public class ClientGameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         elapsedtime += delta;
-        world.step(delta, 1, 1);
+        //world.step(delta, 1, 1);
         //controlStage.act(delta);
         adderStage.act();
         setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
@@ -171,7 +176,15 @@ public class ClientGameStage extends MyStage {
             phantomActor.maxSpeed += 1;
             elapsedtime = 0;
         }
-
+        String m;
+        if ((m = getMessage())!=null){
+            String[] strings = m.split(";");
+            if (strings.length==3){
+                if (strings[0].compareTo("c")==0){
+                    character.setPosition(Float.valueOf(strings[1]), Float.valueOf(strings[2]));
+                }
+            }
+        }
     }
     void add(float x, float y, int what){
         x = phantomActor.getX() + x - 3;

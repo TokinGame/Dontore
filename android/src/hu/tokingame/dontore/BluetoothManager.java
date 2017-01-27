@@ -1,6 +1,15 @@
 //https://algorhymes.wordpress.com/2013/02/07/java-bluetooth-on-android-with-and-wo-libgdx/
 package hu.tokingame.dontore;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.UUID;
+
+
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -13,16 +22,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.LinkedList;
-import java.util.UUID;
+import com.badlogic.gdx.utils.Queue;
 
 import hu.tokingame.dontore.MyBaseClasses.iBluetooth;
-
 
 public class BluetoothManager implements iBluetooth {
 
@@ -44,7 +48,8 @@ public class BluetoothManager implements iBluetooth {
     public boolean isConnected = false;
     public boolean canConnect = true;
 
-    public String message;
+    //public String message;
+    public Queue<String> messages = new Queue<String>();
     public boolean messageTaken = true;
 
     public BluetoothAdapter bta = null;
@@ -67,14 +72,16 @@ public class BluetoothManager implements iBluetooth {
     }
 
     public String getMessage() {
-        if (!messageTaken) {
+        if (messages.size>0){
+            return messages.removeFirst();
+        }
+        return null;
+        /*if (!messageTaken) {
             messageTaken = true;
-            /*if (message != null)
-                message = message.substring(0, 2);*/
             return message;
         }
 
-        return null;
+        return null;*/
     }
 
     public String getTest() {
@@ -364,6 +371,7 @@ public class BluetoothManager implements iBluetooth {
         private final BluetoothServerSocket mmServerSocket;
 
         public AcceptThread() {
+            messages.clear();
             BluetoothServerSocket tmp = null;
             try {
                 tmp = getAdapter()
@@ -422,6 +430,7 @@ public class BluetoothManager implements iBluetooth {
         private final BluetoothDevice mmDevice;
 
         public ConnectThread(BluetoothDevice device) {
+            messages.clear();
             BluetoothSocket tmp = null;
             mmDevice = device;
 
@@ -485,12 +494,14 @@ public class BluetoothManager implements iBluetooth {
         }
 
         public void run() {
-            byte[] buffer = new byte[1024];
             int bytes;
 
             while (true) {
                 try {
+                    byte[] buffer = new byte[1024];
                     bytes = mmInStream.read(buffer);
+                    Log.e("BTM", "Read (BT thread)");
+                    //Scanner scanner = new Scanner(mmInStream);
                     setMessage(new String(buffer, "UTF-8"));
                     mHandler.obtainMessage(BTActivity.MESSAGE_READ, bytes, -1,
                             buffer).sendToTarget();
@@ -518,9 +529,10 @@ public class BluetoothManager implements iBluetooth {
     }
 
     private void setMessage(String message) {
-        if (messageTaken) {
+/*        if (messageTaken) {
             this.message = message;
             messageTaken = false;
-        }
+        }*/
+        messages.addLast(message);
     }
 }
