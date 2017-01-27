@@ -48,6 +48,8 @@ public class SinglePlayerStage extends MyStage {
 
     public static Character character;
 
+    private MyLabel time;
+
     Vector<GrassActor> grassV;
     GrassActor g1, g2, g3;
 
@@ -78,7 +80,7 @@ public class SinglePlayerStage extends MyStage {
         world = new World(new Vector2(0, -20), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
-        controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
+        controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game, this);
 
         //pauseStage = new PauseStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
 
@@ -163,6 +165,7 @@ public class SinglePlayerStage extends MyStage {
 
             }
         });
+     startTimer();
     }
 
     @Override
@@ -218,6 +221,7 @@ public class SinglePlayerStage extends MyStage {
         updateFrustum(1.25f);
         super.draw();
         controlStage.draw();
+        controlStage.updateDisplayedTime();
         box2DDebugRenderer.render(world, getCamera().combined);
     }
 
