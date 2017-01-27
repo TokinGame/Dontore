@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import hu.tokingame.dontore.MyBaseClasses.BluetoothSingleton;
+
 public class BTActivity extends Activity {
 
     public static final int MESSAGE_STATE_CHANGE = 1;
