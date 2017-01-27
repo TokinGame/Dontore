@@ -236,6 +236,7 @@ public class SinglePlayerStage extends MyStage {
         controlStage.resize(screenWidth, screenHeight);
     }
 
+    
     void generateMap(){
         int ref = (int)grassV.get(2).getX();
         int nr = rdm(1, 2);
