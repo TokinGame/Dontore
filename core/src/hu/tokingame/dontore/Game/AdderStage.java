@@ -9,6 +9,9 @@ import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
+import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
+import hu.tokingame.dontore.MyBaseClasses.OneSpriteActor;
+import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -26,19 +29,41 @@ public class AdderStage extends MyStage {
 
     @Override
     public void init() {
-
-        addActor(new MyLabel("",MyLabel.style1){
+        /*addActor(new MyLabel("nem", MyLabel.style1){
             @Override
             public void init() {
                 super.init();
-                setPosition(0, 0);
+                setPosition(0,0);
+            }
+        });
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.CHARACTER)) {
+            @Override
+            public void init() {
+                super.init();
+                setPosition(0,0);
                 setSize(1280, 720);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
+                        System.out.println((float)Math.rint(x/128)+";"+(float)Math.rint(y/128));
                         gameStage.add((float)Math.rint(x/128), (float)Math.rint(y/128), 1);
-                        System.out.println(x+";"+y);
+                    }
+
+                });
+            }
+        });*/
+        addActor(new MyTextButton("doboz"){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(100, 100);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        gameStage.add(0,1, 1);
+                        System.out.println("k");
                     }
                 });
             }

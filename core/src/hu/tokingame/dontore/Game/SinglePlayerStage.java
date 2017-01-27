@@ -13,6 +13,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -27,6 +29,9 @@ import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Bodies.TopActor;
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.Global.Mode;
+import hu.tokingame.dontore.MenuScreen.MenuScreen;
+import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
@@ -71,7 +76,7 @@ public class SinglePlayerStage extends MyStage {
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.BACK){
-            game.setScreenBackByStackPop();
+            game.setScreen(new MenuScreen(game));
         }
         return false;
     }
@@ -232,6 +237,7 @@ public class SinglePlayerStage extends MyStage {
         controlStage.resize(screenWidth, screenHeight);
     }
 
+    
     void generateMap(){
         int ref = (int)grassV.get(2).getX();
         int nr = rdm(1, 2);
@@ -290,6 +296,7 @@ public class SinglePlayerStage extends MyStage {
             }
         });
         character.die();
+        stopTimer();
         controlStage.addActor(new MyLabel("DED", MyLabel.style1){
             @Override
             public void init() {
@@ -298,6 +305,22 @@ public class SinglePlayerStage extends MyStage {
             }
         });
 
+        controlStage.addActor(new BackgroundTextButton("Replay", 2){
+            @Override
+            protected void init() {
+                super.init();
+                this.setPosition(getViewport().getWorldWidth()-this.getWidth(),0);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        Globals.multiPlayer = false;
+                        Globals.gameMode = Mode.SinglePlayer;
+                        game.setScreen(new GameScreen(game));
+                    }
+                });
+            }
+        });
 
     }
 }
