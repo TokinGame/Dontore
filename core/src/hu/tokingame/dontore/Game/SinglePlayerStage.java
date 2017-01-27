@@ -295,6 +295,7 @@ public class SinglePlayerStage extends MyStage {
             }
         });
         character.die();
+        stopTimer();
         controlStage.addActor(new MyLabel("DED", MyLabel.style1){
             @Override
             public void init() {
