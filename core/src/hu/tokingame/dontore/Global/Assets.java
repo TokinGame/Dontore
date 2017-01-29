@@ -57,6 +57,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> BG3 = new AssetDescriptor<Texture>("textures/background/bg3.png", Texture.class);
     public static final AssetDescriptor<Texture> BG4 = new AssetDescriptor<Texture>("textures/background/bg4.png", Texture.class);
     public static final AssetDescriptor<Texture> BG5 = new AssetDescriptor<Texture>("textures/background/bg5.png", Texture.class);
+    public static final AssetDescriptor<Texture> BG_BLUR = new AssetDescriptor<Texture>("textures/background/blurbg.png", Texture.class);
     //</editor-fold>
 
     //<editor-fold desc="Music">
@@ -94,6 +95,7 @@ public class Assets {
         manager.load(BG3);
         manager.load(BG4);
         manager.load(BG5);
+        manager.load(BG_BLUR);
         //</editor-fold>
 
     }

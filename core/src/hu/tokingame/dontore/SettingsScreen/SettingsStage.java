@@ -48,8 +48,8 @@ public class SettingsStage extends MyStage {
 
         actorVector = new Vector<MenuBackgroundActor>();
         a1 = new MenuBackgroundActor(1, 0, 0);
-        a2 = new MenuBackgroundActor(2, 720, 0);
-        a3 = new MenuBackgroundActor(3, 1440, 0);
+        a2 = new MenuBackgroundActor(2, 2760, 0);
+        a3 = new MenuBackgroundActor(3, 2760*2, 0);
         actorVector.add(a1);
         actorVector.add(a2);
         actorVector.add(a3);
@@ -85,7 +85,7 @@ public class SettingsStage extends MyStage {
 
     }
     void moveBackground(){
-        if(actorVector.get(0).getX() < -719.9f) actorVector.get(0).setX(1440);
+        if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
         actorVector.add(actorVector.get(0)); actorVector.remove(0);
         actorVector.get(0).setX(actorVector.get(0).getX()-1f);
         actorVector.get(1).setX(actorVector.get(1).getX()-1f);
