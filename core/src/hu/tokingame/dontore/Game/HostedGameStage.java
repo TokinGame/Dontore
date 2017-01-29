@@ -210,6 +210,16 @@ abstract public class HostedGameStage extends BluetoothConnectedStage {
         }
         if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
         sendMessage("c;" + character.getX() + ";" + character.getY());
+
+        String m;
+        if ((m = getMessage())!=null){
+            String[] strings = m.split(";");
+            if (strings.length==3){
+                if (strings[0].compareTo("b")==0){
+                    add(Float.valueOf(strings[1]), Float.valueOf(strings[2]), Integer.valueOf(strings[3]));
+                }
+            }
+        }
     }
 
     @Override
@@ -259,5 +269,12 @@ abstract public class HostedGameStage extends BluetoothConnectedStage {
         });
 
 
+    }
+    void add(float x, float y, int what){
+        x = phantomActor.getX() + x - 3;
+        switch(what){
+            case 1: addActor(new CrateActor(world, loader, x, y)); break;
+            case 2: addActor(new SpikeActor(world, loader, x, y)); break;
+        }
     }
 }

@@ -29,14 +29,8 @@ public class AdderStage extends MyStage {
 
     @Override
     public void init() {
-        /*addActor(new MyLabel("nem", MyLabel.style1){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(0,0);
-            }
-        });
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.CHARACTER)) {
+
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.NEM)) {
             @Override
             public void init() {
                 super.init();
@@ -52,8 +46,8 @@ public class AdderStage extends MyStage {
 
                 });
             }
-        });*/
-        addActor(new MyTextButton("doboz"){
+        });
+        /*addActor(new MyTextButton("doboz"){
             @Override
             protected void init() {
                 super.init();
@@ -67,7 +61,7 @@ public class AdderStage extends MyStage {
                     }
                 });
             }
-        });
+        });*/
     }
 
     @Override

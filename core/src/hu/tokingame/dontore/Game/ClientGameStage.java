@@ -148,7 +148,7 @@ abstract public class ClientGameStage extends BluetoothConnectedStage {
     public void act(float delta) {
         super.act(delta);
         elapsedtime += delta;
-        //world.step(delta, 1, 1);
+        world.step(delta, 1, 1);
         //controlStage.act(delta);
         adderStage.act();
         setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
@@ -192,5 +192,6 @@ abstract public class ClientGameStage extends BluetoothConnectedStage {
             case 1: addActor(new CrateActor(world, loader, x, y)); break;
             case 2: addActor(new SpikeActor(world, loader, x, y)); break;
         }
+        sendMessage("b"+x+";"+y+";"+what);
     }
 }
