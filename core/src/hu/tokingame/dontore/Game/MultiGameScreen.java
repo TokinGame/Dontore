@@ -2,6 +2,8 @@ package hu.tokingame.dontore.Game;
 
 import com.badlogic.gdx.Gdx;
 
+import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MyBaseClasses.BluetoothChooseServerClientStage;
 import hu.tokingame.dontore.MyBaseClasses.BluetoothClientConnectionStage;
 import hu.tokingame.dontore.MyBaseClasses.BluetoothDisconectionStage;
@@ -51,6 +53,7 @@ public class MultiGameScreen extends MyScreen {
             @Override
             public void startServer() {
                 bluetoothState = BluetoothState.Listening;
+                Globals.gameMode = Mode.Host;
                 bluetoothServerListenStage = new BluetoothServerListenStage(game) {
                     @Override
                     public void init() {
@@ -83,6 +86,7 @@ public class MultiGameScreen extends MyScreen {
             @Override
             public void startClient() {
                 bluetoothState = BluetoothState.Discovering;
+                Globals.gameMode = Mode.Client;
                 bluetoothClientConnectionStage = new BluetoothClientConnectionStage(game) {
                     @Override
                     public void init() {
