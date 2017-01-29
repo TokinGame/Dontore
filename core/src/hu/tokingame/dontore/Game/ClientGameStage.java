@@ -50,7 +50,7 @@ abstract public class ClientGameStage extends BluetoothConnectedStage {
     GrassActor g1, g2, g3;
 
     Vector<BGActor> bgV;
-    BGActor bg1, bg2, bg3;
+    BGActor bg1, bg2, bg3, bg4, bg5;
 
     public Character character;
 
@@ -109,15 +109,21 @@ abstract public class ClientGameStage extends BluetoothConnectedStage {
 
         setCameraMoveToXY(1, 4, 0.01f, 10000);
 
-        bg1 = new BGActor(world, loader, -8, 0);
-        bg2 = new BGActor(world, loader, 0, 0);
-        bg3 = new BGActor(world, loader, 8, 0);
+        bg1 = new BGActor(world, loader, -20, 0, 1);
+        bg2 = new BGActor(world, loader, 0, 0, 2);
+        bg3 = new BGActor(world, loader, 20, 0, 3);
+        bg4 = new BGActor(world, loader, 40, 0, 4);
+        bg5 = new BGActor(world, loader, 60, 0, 5);
         bgV.add(bg1);
         bgV.add(bg2);
         bgV.add(bg3);
+        bgV.add(bg4);
+        bgV.add(bg5);
         addActor(bg1);
         addActor(bg2);
         addActor(bg3);
+        addActor(bg4);
+        addActor(bg5);
 
 
         addActor(phantomActor);
@@ -158,10 +164,12 @@ abstract public class ClientGameStage extends BluetoothConnectedStage {
         bg1.setX(bg1.getX() + currentX);
         bg2.setX(bg2.getX() + currentX);
         bg3.setX(bg3.getX() + currentX);
+        bg4.setX(bg4.getX() + currentX);
+        bg5.setX(bg5.getX() + currentX);
         lastX = phantomActor.getX();
 
-        if (phantomActor.getX() > bgV.get(2).getX()) {
-            bgV.get(0).setX(bgV.get(2).getX() + 8);
+        if (phantomActor.getX() > bgV.get(4).getX()) {
+            bgV.get(0).setX(bgV.get(4).getX() + 20);
             bgV.add(bgV.get(0));
             bgV.remove(0);
         }
