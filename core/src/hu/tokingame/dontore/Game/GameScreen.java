@@ -19,15 +19,11 @@ import hu.tokingame.dontore.MyGdxGame;
 
 public class GameScreen extends MyScreen {
 
-    SinglePlayerStage singlestage;
+    SingleJumpGameStage singlestage;
 
     public GameScreen(MyGdxGame game) {
         super(game);
-        singlestage = new SinglePlayerStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
-
-
-
-
+        singlestage = new SingleJumpGameStage(game);
     }
 
     @Override
@@ -44,8 +40,8 @@ public class GameScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-            singlestage.act(delta);
-            singlestage.draw();
+        singlestage.act(delta);
+        singlestage.draw();
     }
 
 

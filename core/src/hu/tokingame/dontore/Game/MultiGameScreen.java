@@ -25,8 +25,8 @@ public class MultiGameScreen extends MyScreen {
     BluetoothClientConnectionStage bluetoothClientConnectionStage;
     BluetoothDisconectionStage bluetoothDisconectionStage;
 
-    HostedGameStage hostedGameStage;
-    ClientGameStage clientGameStage;
+    BTJumpGameStage btJumpGameStage;
+    BTBuilderGameStage btBuilderGameStage;
 
     BluetoothState bluetoothState = BluetoothState.Choose;
 
@@ -63,9 +63,9 @@ public class MultiGameScreen extends MyScreen {
                     @Override
                     public void acceptConnection() {
                         bluetoothState = BluetoothState.Connected;
-                        hostedGameStage = new HostedGameStage(game){
+                        btJumpGameStage = new BTJumpGameStage(game){
                             @Override
-                            public void disconnected() {
+                            public void disconnect() {
                                 bluetoothDisconectionStage = new BluetoothDisconectionStage(game) {
 
                                     @Override
@@ -77,7 +77,7 @@ public class MultiGameScreen extends MyScreen {
                                 bluetoothState = BluetoothState.Disconnected;
                             }
                         };
-                        //Gdx.input.setInputProcessor(hostedGameStage);
+                        //Gdx.input.setInputProcessor(btJumpGameStage);
                     }
                 };
                 Gdx.input.setInputProcessor(bluetoothServerListenStage);
@@ -96,9 +96,9 @@ public class MultiGameScreen extends MyScreen {
                     @Override
                     public void startConnection() {
                         bluetoothState = BluetoothState.Connected;
-                        clientGameStage = new ClientGameStage(game){
+                        btBuilderGameStage = new BTBuilderGameStage(game){
                             @Override
-                            public void disconnected() {
+                            public void disconnect() {
                                 bluetoothDisconectionStage = new BluetoothDisconectionStage(game) {
 
                                     @Override
@@ -111,7 +111,7 @@ public class MultiGameScreen extends MyScreen {
                             }
 
                         };
-                        //Gdx.input.setInputProcessor(clientGameStage);
+                        //Gdx.input.setInputProcessor(btBuilderGameStage);
                     }
                 };
                 Gdx.input.setInputProcessor(bluetoothClientConnectionStage);
@@ -141,12 +141,12 @@ public class MultiGameScreen extends MyScreen {
                 bluetoothClientConnectionStage.draw();
                 break;
             case Connected:
-                if (clientGameStage == null){
-                    hostedGameStage.act(delta);
-                    hostedGameStage.draw();
+                if (btBuilderGameStage == null){
+                    btJumpGameStage.act(delta);
+                    btJumpGameStage.draw();
                 }else                {
-                    clientGameStage.act(delta);
-                    clientGameStage.draw();
+                    btBuilderGameStage.act(delta);
+                    btBuilderGameStage.draw();
                 }
                 break;
             case Disconnected:

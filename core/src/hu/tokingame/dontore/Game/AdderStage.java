@@ -1,12 +1,16 @@
 package hu.tokingame.dontore.Game;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Global.Assets;
+import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
@@ -20,10 +24,10 @@ import hu.tokingame.dontore.MyGdxGame;
 
 public class AdderStage extends MyStage {
 
-    ClientGameStage gameStage;
+    BTBuilderGameStage gameStage;
 
-    public AdderStage(Viewport viewport, Batch batch, MyGdxGame game, ClientGameStage g) {
-        super(viewport, batch, game);
+    public AdderStage(MyGdxGame game, BTBuilderGameStage g) {
+        super(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(), game);
         gameStage = g;
     }
 

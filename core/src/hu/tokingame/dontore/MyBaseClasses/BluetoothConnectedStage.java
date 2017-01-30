@@ -46,6 +46,7 @@ abstract public class BluetoothConnectedStage extends BluetoothStage {
 
     public void sendMessage(String msg){
         getBluetoothManager().sendMessage(msg);
+        Gdx.app.error("BTM", "Send: " + msg);
     }
 
 

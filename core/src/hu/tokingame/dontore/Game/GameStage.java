@@ -26,8 +26,8 @@ import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.PhantomActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
-import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Bodies.TopActor;
+import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;
@@ -38,20 +38,21 @@ import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
- * Created by davimatyi on 2017. 01. 18..
+ * Created by tuskeb on 2017. 01. 30..
  */
 
-public class SinglePlayerStage extends MyStage {
+abstract public class GameStage extends MyStage {
+
+    protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
 
     World world;
     Box2DDebugRenderer box2DDebugRenderer;
     WorldBodyEditorLoader loader;
-    ControlStage controlStage;
     PauseStage pauseStage;
     PhantomActor phantomActor;
     float elapsedtime = 0;
 
-    public static Character character;
+    public Character character;
 
     private MyLabel time;
 
@@ -68,9 +69,10 @@ public class SinglePlayerStage extends MyStage {
     int rdm(int a, int b){return (int)(Math.random()*(b-a+1)+a);}
 
 
-    public SinglePlayerStage(Viewport viewport, Batch batch, MyGdxGame game) {
-        super(viewport, batch, game);
-
+    public GameStage(MyGdxGame game) {
+        super(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+        inputMultiplexer.addProcessor(this);
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
@@ -85,23 +87,16 @@ public class SinglePlayerStage extends MyStage {
         world = new World(new Vector2(0, -20), false);
         box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
-        controlStage = new ControlStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game, this);
 
         //pauseStage = new PauseStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
 
         character = new Character(world, 1, 1);
         phantomActor = new PhantomActor(world, loader, 1, 1);
+        phantomActor.setSpeed(5);
         grassV = new Vector();
         bgV = new Vector();
         top = new TopActor(world, loader, character.getX(),2);
 
-        InputMultiplexer inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(this);
-        inputMultiplexer.addProcessor(controlStage);
-        //inputMultiplexer.addProcessor(pauseStage);
-        Gdx.input.setInputProcessor(inputMultiplexer);
-        //addActor(new CrateActor(world, loader, 0, 0));
-        //addActor(new SpikeActor(world, loader, 2, 0));
 
 
 
@@ -149,7 +144,7 @@ public class SinglePlayerStage extends MyStage {
                 if (contact.getFixtureA().getUserData() instanceof SpikeActor && contact.getFixtureB().getUserData() instanceof Character ||
                         contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof SpikeActor) {
                     System.out.println("collision");
-                    death();
+//                    death();
                 }
                 if (contact.getFixtureA().getUserData() instanceof CrateActor && contact.getFixtureB().getUserData() instanceof Character ||
                         contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof CrateActor){
@@ -176,21 +171,15 @@ public class SinglePlayerStage extends MyStage {
 
             }
         });
-     startTimer();
+        startTimer();
     }
 
-    @Override
-    public void dispose() {
-        super.dispose();
-        controlStage.dispose();
-    }
 
     @Override
     public void act(float delta) {
         super.act(delta);
+        world.step(delta, 5, 5);
         elapsedtime += delta;
-        world.step(delta, 1, 1);
-        controlStage.act(delta);
         if(character.alive) {
             setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
 
@@ -214,121 +203,31 @@ public class SinglePlayerStage extends MyStage {
                 grassV.get(0).setX(grassV.get(2).getX() + 8);
                 grassV.add(grassV.get(0));
                 grassV.remove(0);
-                generateMap();
             }
-            if(character.getX() < phantomActor.getX()-1){
-                character.getBody().applyForceToCenter(new Vector2((phantomActor.getX()-1-character.getX())* 500 * delta, 0), true);
-
-            }
-            if(elapsedtime > 20){
+            /*if(elapsedtime > 20){
                 character.maxSpeed += 1;
                 phantomActor.maxSpeed += 1;
                 elapsedtime = 0;
-            }
+            }*/
         }
-        if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
+        //if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
     }
 
     @Override
     public void draw() {
         updateFrustum(1.25f);
         super.draw();
-        controlStage.draw();
-        controlStage.updateDisplayedTime();
-        box2DDebugRenderer.render(world, getCamera().combined);
     }
 
 
     @Override
     public void resize(int screenWidth, int screenHeight) {
         super.resize(screenWidth, screenHeight);
-        controlStage.resize(screenWidth, screenHeight);
     }
 
-    
-    void generateMap(){
-        int ref = (int)grassV.get(2).getX();
-        int nr = rdm(1, 2);
-        switch(nr){
-            case 1:{
-                if(rdm(1,5) != 1){
-                    switch(rdm(1,3)){
-                        case 1: addActor(new CrateActor(world, loader, ref + 4, 1)); break;
-                        case 2: addActor(new CrateActor(world, loader, ref + 4, 1));
-                            addActor(new CrateActor(world, loader, ref + 4, 2)); break;
-                        case 3: addActor(new CrateActor(world, loader, ref + 4, 1));
-                            addActor(new CrateActor(world, loader, ref + 4, 2));
-                            addActor(new CrateActor(world, loader, ref + 4, 3)); break;
-                    }
-                }else addActor(new SpikeActor(world, loader, ref + 4, 1));
-                break;
-            }
-            case 2:{
-                if(rdm(1,5) != 1){
-                    switch(rdm(1,3)){
-                        case 1: addActor(new CrateActor(world, loader, ref + 2, 1)); break;
-                        case 2: addActor(new CrateActor(world, loader, ref + 2, 1));
-                            addActor(new CrateActor(world, loader, ref + 2, 2)); break;
-                        case 3: addActor(new CrateActor(world, loader, ref + 2, 1));
-                            addActor(new CrateActor(world, loader, ref + 2, 2));
-                            addActor(new CrateActor(world, loader, ref + 2, 3)); break;
-                    }
-                    switch(rdm(1,3)){
-                        case 1: addActor(new CrateActor(world, loader, ref + 5, 1)); break;
-                        case 2: addActor(new CrateActor(world, loader, ref + 5, 1));
-                            addActor(new CrateActor(world, loader, ref + 5, 2)); break;
-                        case 3: addActor(new CrateActor(world, loader, ref + 5, 1));
-                            addActor(new CrateActor(world, loader, ref + 5, 2));
-                            addActor(new CrateActor(world, loader, ref + 5, 3)); break;
-                    }
-                }else {
-                    addActor(new SpikeActor(world, loader, ref + 2, 1));
-                    addActor(new SpikeActor(world, loader, ref + 5, 1));
-                }
-                break;
-            }
-        }
-    }
+
 
     public PhantomActor getPhantomActor() {
         return phantomActor;
-    }
-
-    void death(){
-        controlStage.addActor(new ExplosionActor(){
-            @Override
-            public void init() {
-                super.init();
-                setSize(Globals.WORLD_HEIGHT, Globals.WORLD_HEIGHT);
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 0);
-            }
-        });
-        character.die();
-        stopTimer();
-        controlStage.addActor(new MyLabel("DED", MyLabel.style1){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, Globals.WORLD_HEIGHT/2-this.getHeight()/2);
-            }
-        });
-
-        controlStage.addActor(new BackgroundTextButton("Replay", 2){
-            @Override
-            protected void init() {
-                super.init();
-                this.setPosition(getViewport().getWorldWidth()-this.getWidth(),0);
-                addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        Globals.multiPlayer = false;
-                        Globals.gameMode = Mode.SinglePlayer;
-                        game.setScreen(new GameScreen(game));
-                    }
-                });
-            }
-        });
-
     }
 }

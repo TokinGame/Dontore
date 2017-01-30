@@ -311,4 +311,23 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
         return getY()-getOriginY();
     }
 
+
+    @Override
+    public String toString() {
+        Body b = getBody();
+        return b.getPosition().x + ";" + b.getPosition().y + ";" + b.getAngle() + ";" + b.getLinearVelocity().x + ";" + b.getLinearVelocity().y + ";" + b.getAngularVelocity();
+    }
+
+    public void fromString(String s){
+        String[] strings = s.split(";");
+        Body b = getBody();
+        try{
+            b.setTransform(Float.valueOf(strings[0]), Float.valueOf(strings[1]), Float.valueOf(strings[2]));
+            b.setAngularVelocity(Float.valueOf(strings[5]));
+            b.setLinearVelocity(Float.valueOf(strings[3]),Float.valueOf(strings[4]));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

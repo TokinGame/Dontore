@@ -26,7 +26,7 @@ public class Character extends WorldActorGroup {
     public boolean doubleJumpAvalaible = true;
 
     public Character(World world, float x, float y) {
-        super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 5, 0.2f, 5, false);
+        super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 0, 0.2f, 5, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CHARACTER));
         actor.setSize(0.5f, 1);
         setSize(0.5f, 1);
@@ -40,12 +40,12 @@ public class Character extends WorldActorGroup {
     @Override
     public void act(float delta) {
         super.act(delta);
-
+/*
         if(alive) {
             currentSpeed = (maxSpeed - this.getBody().getLinearVelocity().x) * 500;
             getBody().setLinearVelocity(getBody().getLinearVelocity());
             getBody().applyForceToCenter(new Vector2(currentSpeed * delta, 0), true);
-        }
+        }*/
     }
 
 
