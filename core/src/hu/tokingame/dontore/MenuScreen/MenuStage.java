@@ -20,6 +20,7 @@ import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
 import hu.tokingame.dontore.SettingsScreen.SettingsScreen;
+import hu.tokingame.dontore.HighScreen.HighScreen;
 
 /**
  * Created by M on 11/14/2016.
@@ -153,6 +154,21 @@ public class MenuStage extends MyStage {
                 });
             }
         });
+        addActor(new BackgroundTextButton("High Scores",1){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        game.setScreen(new HighScreen(game));
+                    }
+                });
+            }
+        });
+
 
 
     }
