@@ -13,6 +13,8 @@ public class SingleJumpGameStage extends JumpGameStage {
         super(game);
     }
 
+
+
     void generateMap(){
         int ref = (int)grassV.get(2).getX();
         int nr = rdm(1, 2);
@@ -60,8 +62,10 @@ public class SingleJumpGameStage extends JumpGameStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (phantomActor.getX() > grassV.get(2).getX()) {
-            generateMap();
-        }
+
+    }
+
+    public void generate(){
+        generateMap();
     }
 }
