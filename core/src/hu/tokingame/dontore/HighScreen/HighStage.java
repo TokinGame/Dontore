@@ -1,4 +1,4 @@
-package hu.tokingame.dontore.CreditsScreen;
+package hu.tokingame.dontore.HighScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -9,22 +9,25 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Vector;
 
+import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
+import hu.tokingame.dontore.MenuScreen.MenuScreen;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
+import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
- * Created by davimatyi on 2016. 11. 15..
+ * Created by Zoli on 2017.01.30..
  */
 
-public class CreditsStage extends MyStage {
+public class HighStage extends MyStage {
+    String s;
 
     MenuBackgroundActor a1, a2, a3;
     Vector<MenuBackgroundActor> actorVector;
 
-    String s;
-    public CreditsStage(Viewport viewport, Batch batch, MyGdxGame game) {
+    public HighStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
         Gdx.input.setCatchBackKey(true);
     }
@@ -36,6 +39,8 @@ public class CreditsStage extends MyStage {
         }
         return false;
     }
+
+
 
     @Override
     public void init() {
@@ -50,7 +55,6 @@ public class CreditsStage extends MyStage {
         addActor(a1);
         addActor(a2);
         addActor(a3);
-
 
         addActor(new BackgroundTextButton("Back", 2){
             @Override
@@ -68,6 +72,7 @@ public class CreditsStage extends MyStage {
         });
 
     }
+
     void moveBackground(){
         if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
         actorVector.add(actorVector.get(0)); actorVector.remove(0);
