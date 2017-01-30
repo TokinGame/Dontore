@@ -205,11 +205,10 @@ abstract public class GameStage extends MyStage {
                 grassV.remove(0);
                 if(Globals.gameMode == Mode.SinglePlayer) generateMap();
             }
-            /*if(elapsedtime > 20){
+            if(elapsedtime % 20 == 0){
                 character.maxSpeed += 1;
                 phantomActor.maxSpeed += 1;
-                elapsedtime = 0;
-            }*/
+            }
         }
         //if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
     }

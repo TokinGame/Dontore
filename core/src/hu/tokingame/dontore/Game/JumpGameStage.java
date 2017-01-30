@@ -28,10 +28,10 @@ abstract public class JumpGameStage extends GameStage {
     public void act(float delta) {
         super.act(delta);
         if(character.alive) {
-            character.getBody().setLinearVelocity(phantomActor.getSpeed(), character.getBody().getLinearVelocity().y);
-            /*if (character.getX() < phantomActor.getX() - 1) {
+            character.getBody().setLinearVelocity(phantomActor.getSpeed()*character.getMaxSpeed()/5, character.getBody().getLinearVelocity().y);
+            if (character.getX() < phantomActor.getX() - 1) {
                 character.getBody().applyForceToCenter(new Vector2((phantomActor.getX() - 1 - character.getX()) * 500 * delta, 0), true);
-            }*/
+            }
         }
         controlStage.act(delta);
     }

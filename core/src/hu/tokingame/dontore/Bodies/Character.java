@@ -84,4 +84,8 @@ public class Character extends WorldActorGroup {
     public float getY() {
         return super.getY();
     }
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
 }

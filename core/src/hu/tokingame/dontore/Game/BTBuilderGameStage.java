@@ -34,7 +34,7 @@ abstract public class BTBuilderGameStage extends GameStage {
     }
 
     void add(float x, float y, int what){
-        x = phantomActor.getX() + x + 2;
+        //x = phantomActor.getX() + x + 2;
         switch(what){
             case 1: addActor(new CrateActor(world, loader, x, y)); break;
             case 2: addActor(new SpikeActor(world, loader, x, y)); break;

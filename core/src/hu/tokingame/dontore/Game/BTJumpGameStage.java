@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
+import hu.tokingame.dontore.Bodies.CrateActor;
+import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.MyBaseClasses.BluetoothConnectedStage;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -41,6 +43,19 @@ abstract public class BTJumpGameStage extends JumpGameStage {
         if (lastSendPosition+sendPositionInterval<time) {
             lastSendPosition = time;
             bluetoothConnectedStage.sendMessage("c:" + character.toString());
+        }
+        String m = bluetoothConnectedStage.getMessage();
+        if(m.charAt(0) == 'b'){
+            m = m.substring(1);
+            String[] k = m.split(";");
+            add(Integer.parseInt(k[0]), Integer.parseInt(k[1]), Integer.parseInt(k[2]));
+        }
+    }
+    void add(float x, float y, int what){
+        x = phantomActor.getX() + x + 2;
+        switch(what){
+            case 1: addActor(new CrateActor(world, loader, x, y)); break;
+            case 2: addActor(new SpikeActor(world, loader, x, y)); break;
         }
     }
 
