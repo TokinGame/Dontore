@@ -19,7 +19,7 @@ import hu.tokingame.dontore.MyBaseClasses.WorldActorGroup;
 
 public class Character extends WorldActorGroup {
 
-    public OneSpriteActor actor;
+    public OneSpriteStaticActor actor;
     public boolean alive = true;
     public int maxSpeed = 5;
     float currentSpeed;
@@ -67,7 +67,8 @@ public class Character extends WorldActorGroup {
     public void die(){
         alive = false;
         removeFromWorld();
-        actor.remove();
+        actor.setTexture(Assets.manager.get(Assets.GRAVE));
+        actor.setSize(1,1.5f);
 
     }
     @Override

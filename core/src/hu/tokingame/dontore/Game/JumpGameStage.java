@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import hu.tokingame.dontore.Bodies.Character;
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.GrassActor;
+import hu.tokingame.dontore.Bodies.PaprikaActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
@@ -27,6 +28,7 @@ import static hu.tokingame.dontore.HighScreen.HighStage.highscore;
 abstract public class JumpGameStage extends GameStage {
     ControlStage controlStage;
     public float ripTime;
+    PaprikaActor paprika;
 
     public JumpGameStage(MyGdxGame game) {
         super(game);
@@ -71,6 +73,9 @@ abstract public class JumpGameStage extends GameStage {
 
             }
         });
+        paprika = new PaprikaActor(world, loader, -10, 4);
+        addActor(paprika);
+
     }
 
     @Override
@@ -109,10 +114,10 @@ abstract public class JumpGameStage extends GameStage {
     }
     public void death(){
         if (!dead) {
+            //paprika.setPosition(phantomActor.getX(), phantomActor.getY()); //TODO itt crashel az OpenJDK ha ez lefut kéne fix
             character.die();
             stopTimer();
             ripTime = getTime();
-
             highscore(ripTime);
             dead=true;
             controlStage.addActor(new MyLabel("You Died. No more paprika.", MyLabel.style1) {

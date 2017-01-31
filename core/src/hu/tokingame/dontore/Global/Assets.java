@@ -43,14 +43,16 @@ public class Assets {
 
 
     //<editor-fold desc="Map Elements">
-    public static final AssetDescriptor<Texture>  SPIKE = new AssetDescriptor<Texture>("textures/spikes.png", Texture.class);
-    public static final AssetDescriptor<Texture>  CRATE = new AssetDescriptor<Texture>("textures/wooden-crate.png", Texture.class);
+    public static final AssetDescriptor<Texture> SPIKE = new AssetDescriptor<Texture>("textures/spikes.png", Texture.class);
+    public static final AssetDescriptor<Texture> CRATE = new AssetDescriptor<Texture>("textures/wooden-crate.png", Texture.class);
     public static final AssetDescriptor<Texture> CHARACTER = new AssetDescriptor<Texture>("textures/weed.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_BG = new AssetDescriptor<Texture>("textures/buttonbg.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_BG_RED = new AssetDescriptor<Texture>("textures/buttonbg_red.png", Texture.class);
     public static final AssetDescriptor<Texture> GRASS = new AssetDescriptor<Texture>("textures/grass_seamless.png", Texture.class);
     public static final AssetDescriptor<Texture> NEM = new AssetDescriptor<Texture>("textures/zolipls.png", Texture.class);
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS = new AssetDescriptor<TextureAtlas>("textures/explosion.atlas", TextureAtlas.class);
+    public static final AssetDescriptor<Texture> GRAVE = new AssetDescriptor<Texture>("textures/RIP_grave.png", Texture.class);
+    public static final AssetDescriptor<Texture> PAPRIKA = new AssetDescriptor<Texture>("textures/paprika.png", Texture.class);
 
     public static final AssetDescriptor<Texture> BG1 = new AssetDescriptor<Texture>("textures/background/bg1.png", Texture.class);
     public static final AssetDescriptor<Texture> BG2 = new AssetDescriptor<Texture>("textures/background/bg2.png", Texture.class);
@@ -89,6 +91,8 @@ public class Assets {
         manager.load(GRASS);
         manager.load(NEM);
         manager.load(EXPLOSION_TEXTUREATLAS);
+        manager.load(GRAVE);
+        manager.load(PAPRIKA);
 
         manager.load(BG1);
         manager.load(BG2);

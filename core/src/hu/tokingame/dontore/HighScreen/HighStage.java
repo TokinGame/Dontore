@@ -22,7 +22,7 @@ import hu.tokingame.dontore.MyGdxGame;
 import static hu.tokingame.dontore.Global.Globals.MaxScores;
 
 /**
- * Created by Zoli on 2017.01.30..
+ * Created by Zoli szereti ha Windows XP de akkor is ha rondán néz ki és mindenki szerint olyan ocsmány hogy pfhuj on 1889.03.30..
  */
 
 public class HighStage extends MyStage {
