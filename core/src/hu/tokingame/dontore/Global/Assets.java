@@ -33,7 +33,7 @@ public class Assets {
         fontParameter2.fontFileName = "fonts/Anton-Regular.ttf";
         fontParameter2.fontParameters.size = 45;
         fontParameter2.fontParameters.characters = hu.tokingame.dontore.Global.Globals.CHARS;
-        fontParameter2.fontParameters.color = new Color(0.05098f, 0.05098f, 0.05098f, 1);
+        fontParameter2.fontParameters.color = Color.BLACK;
     }
     // Fonts
     public static final AssetDescriptor<BitmapFont> ANTON_FONT = new AssetDescriptor<BitmapFont>("Fonts/Anton-Regular.ttf", BitmapFont.class, fontParameter);

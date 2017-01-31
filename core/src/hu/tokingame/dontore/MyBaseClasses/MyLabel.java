@@ -21,6 +21,9 @@ public class MyLabel extends Label implements InitableInterface{
         style1 = new LabelStyle();
         style1.font = Assets.manager.get(Assets.ANTON_FONT);
         style1.fontColor = Color.WHITE;
+        style2 = new LabelStyle();
+        style2.font = Assets.manager.get(Assets.ANTON_FONT_B);
+        style2.fontColor = Color.BLACK;
 
     }
 
@@ -31,7 +34,12 @@ public class MyLabel extends Label implements InitableInterface{
 
     @Override
     public void init() {
-
+        style1 = new LabelStyle();
+        style1.font = Assets.manager.get(Assets.ANTON_FONT);
+        style1.fontColor = Color.WHITE;
+        style2 = new LabelStyle();
+        style2.font = Assets.manager.get(Assets.ANTON_FONT_B);
+        style2.fontColor = Color.BLACK;
     }
 
     protected float elapsedtime =0;

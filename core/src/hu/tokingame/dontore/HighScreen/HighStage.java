@@ -14,6 +14,7 @@ import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
+import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
@@ -71,6 +72,13 @@ public class HighStage extends MyStage {
                         game.setScreenBackByStackPop();
                     }
                 });
+            }
+        });
+        addActor(new MyLabel("ez a szöveg olyan sötét mint humorom,\ncsak gyapotot sajnos nem szed", MyLabel.style2){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
             }
         });
 
