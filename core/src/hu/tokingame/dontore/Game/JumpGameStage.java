@@ -1,9 +1,17 @@
 package hu.tokingame.dontore.Game;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import hu.tokingame.dontore.Bodies.Character;
+import hu.tokingame.dontore.Bodies.CrateActor;
+import hu.tokingame.dontore.Bodies.GrassActor;
+import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
@@ -21,6 +29,45 @@ abstract public class JumpGameStage extends GameStage {
         super(game);
         controlStage = new ControlStage(game, this);
         inputMultiplexer.addProcessor(0, controlStage);
+    }
+
+    @Override
+    public void init() {
+        super.init();
+
+        world.setContactListener(new ContactListener() {
+            @Override
+            public void beginContact(Contact contact) {
+                if (contact.getFixtureA().getUserData() instanceof SpikeActor && contact.getFixtureB().getUserData() instanceof Character ||
+                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof SpikeActor) {
+                    System.out.println("collision");
+                    death();
+                }
+                if (contact.getFixtureA().getUserData() instanceof CrateActor && contact.getFixtureB().getUserData() instanceof Character ||
+                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof CrateActor){
+                    character.doubleJumpAvalaible = true;
+                }
+                if (contact.getFixtureA().getUserData() instanceof GrassActor && contact.getFixtureB().getUserData() instanceof Character ||
+                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof GrassActor){
+                    character.doubleJumpAvalaible = true;
+                }
+            }
+
+            @Override
+            public void endContact(Contact contact) {
+
+            }
+
+            @Override
+            public void preSolve(Contact contact, Manifold oldManifold) {
+
+            }
+
+            @Override
+            public void postSolve(Contact contact, ContactImpulse impulse) {
+
+            }
+        });
     }
 
     @Override
@@ -75,8 +122,8 @@ abstract public class JumpGameStage extends GameStage {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH-this.getWidth()-10, 10);
-                addListener(new ClickListener(){
+                setPosition(Globals.WORLD_WIDTH - this.getWidth() - 10, 10);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
