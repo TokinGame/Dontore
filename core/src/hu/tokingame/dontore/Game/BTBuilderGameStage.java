@@ -47,7 +47,7 @@ abstract public class BTBuilderGameStage extends GameStage {
         super.act(delta);
         bluetoothConnectedStage.act();
         String m;
-        if ((m = bluetoothConnectedStage.getMessage())!=null){
+        while ((m = bluetoothConnectedStage.getMessage())!=null){
             String[] strings = m.split(":");
             if (strings.length==2 && strings[0].compareTo("c")==0){
                 character.fromString(strings[1]);

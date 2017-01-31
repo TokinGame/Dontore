@@ -44,11 +44,14 @@ abstract public class BTJumpGameStage extends JumpGameStage {
             lastSendPosition = time;
             bluetoothConnectedStage.sendMessage("c:" + character.toString());
         }
-        String m = bluetoothConnectedStage.getMessage();
-        if(m.charAt(0) == 'b'){
-            m = m.substring(1);
-            String[] k = m.split(";");
-            add(Integer.parseInt(k[0]), Integer.parseInt(k[1]), Integer.parseInt(k[2]));
+        String m;
+        while((m = bluetoothConnectedStage.getMessage())!=null){
+            if(m.length()==0) return;
+            if(m.charAt(0) == 'b'){
+                m = m.substring(1);
+                String[] k = m.split(";");
+                add(Integer.parseInt(k[0]), Integer.parseInt(k[1]), Integer.parseInt(k[2]));
+            }
         }
     }
     void add(float x, float y, int what){
