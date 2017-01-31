@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.Collections;
 import java.util.Vector;
 
 import hu.tokingame.dontore.Global.Globals;
@@ -16,6 +17,8 @@ import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
+
+import static hu.tokingame.dontore.Global.Globals.MaxScores;
 
 /**
  * Created by Zoli on 2017.01.30..
@@ -71,6 +74,23 @@ public class HighStage extends MyStage {
             }
         });
 
+    }
+
+    public static void highscore(float score){
+        if (MaxScores.size() >= 5) {
+            if (MaxScores.get(MaxScores.size()-1)<score){
+                Collections.sort(MaxScores);
+                Collections.reverse(MaxScores);
+                MaxScores.set(MaxScores.size()-1,score);
+            }
+        } else {
+            MaxScores.add(score);
+            Collections.sort(MaxScores);
+            Collections.reverse(MaxScores);
+        }
+        Collections.sort(MaxScores);
+        Collections.reverse(MaxScores);
+        System.out.println(MaxScores);
     }
 
     void moveBackground(){

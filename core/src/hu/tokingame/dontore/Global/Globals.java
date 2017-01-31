@@ -17,10 +17,11 @@ public class Globals {
     public static boolean music = true;
     public static boolean host = false;
     public static boolean multiPlayer = false;
+    public static boolean dead = false;
 
     public static Mode gameMode = Mode.SinglePlayer;
 
-    public static Vector<Float> MaxTimes = new Vector();
+    public static Vector<Float> MaxScores = new Vector();
 
 
 

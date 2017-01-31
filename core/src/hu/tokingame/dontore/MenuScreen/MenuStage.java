@@ -22,6 +22,8 @@ import hu.tokingame.dontore.MyGdxGame;
 import hu.tokingame.dontore.SettingsScreen.SettingsScreen;
 import hu.tokingame.dontore.HighScreen.HighScreen;
 
+import static hu.tokingame.dontore.Global.Globals.dead;
+
 /**
  * Created by M on 11/14/2016.
  */
@@ -90,6 +92,7 @@ public class MenuStage extends MyStage {
                         Globals.multiPlayer = false;
                         Globals.gameMode = Mode.SinglePlayer;
                         game.setScreen(new GameScreen(game));
+                        dead=false;
                     }
                 });
             }
