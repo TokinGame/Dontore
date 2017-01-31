@@ -199,18 +199,12 @@ abstract public class GameStage extends MyStage {
                 bgV.remove(0);
             }
 
-            if (phantomActor.getX() > grassV.get(2).getX()) {
-                grassV.get(0).setX(grassV.get(2).getX() + 8);
-                grassV.add(grassV.get(0));
-                grassV.remove(0);
-                if(Globals.gameMode == Mode.SinglePlayer) generateMap();
-            }
+
             if(elapsedtime % 20 == 0){
                 character.maxSpeed += 1;
                 phantomActor.maxSpeed += 1;
             }
         }
-        //if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
     }
 
     @Override
