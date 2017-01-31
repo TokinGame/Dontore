@@ -51,6 +51,15 @@ public class AdderStage extends MyStage {
                 });
             }
         });
+
+        addActor(new ChooseBuildingBlock(){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(0,1280-getHeight());
+                setSize(100,30);
+            }
+        });
         /*addActor(new MyTextButton("doboz"){
             @Override
             protected void init() {
