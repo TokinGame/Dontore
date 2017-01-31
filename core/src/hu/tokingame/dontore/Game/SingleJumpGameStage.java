@@ -2,6 +2,8 @@ package hu.tokingame.dontore.Game;
 
 import hu.tokingame.dontore.Bodies.CrateActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
+import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -62,6 +64,38 @@ public class SingleJumpGameStage extends JumpGameStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        //world.step(delta, 1, 1);
+        elapsedtime += delta;
+        if(character.alive) {
+            setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
+
+            top.setPosition(character.getX(), 7.5f);
+
+            currentX = (phantomActor.getX() - lastX) / 2;
+            bg1.setX(bg1.getX() + currentX);
+            bg2.setX(bg2.getX() + currentX);
+            bg3.setX(bg3.getX() + currentX);
+            bg4.setX(bg4.getX() + currentX);
+            bg5.setX(bg5.getX() + currentX);
+            lastX = phantomActor.getX();
+
+            if (phantomActor.getX() > bgV.get(2).getX()) {
+                bgV.get(0).setX(bgV.get(4).getX() + 20);
+                bgV.add(bgV.get(0));
+                bgV.remove(0);
+            }
+
+            if (phantomActor.getX() > grassV.get(2).getX()) {
+                grassV.get(0).setX(grassV.get(2).getX() + 8);
+                grassV.add(grassV.get(0));
+                grassV.remove(0);
+                generateMap();
+            }
+            if(elapsedtime % 20 == 0){
+                character.maxSpeed += 1;
+                phantomActor.maxSpeed += 1;
+            }
+        }
 
     }
 

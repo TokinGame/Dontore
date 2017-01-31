@@ -138,39 +138,7 @@ abstract public class GameStage extends MyStage {
         g3.setZIndex(10000);
 
 
-        world.setContactListener(new ContactListener() {
-            @Override
-            public void beginContact(Contact contact) {
-                if (contact.getFixtureA().getUserData() instanceof SpikeActor && contact.getFixtureB().getUserData() instanceof Character ||
-                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof SpikeActor) {
-                    System.out.println("collision");
-//                    death();
-                }
-                if (contact.getFixtureA().getUserData() instanceof CrateActor && contact.getFixtureB().getUserData() instanceof Character ||
-                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof CrateActor){
-                    character.doubleJumpAvalaible = true;
-                }
-                if (contact.getFixtureA().getUserData() instanceof GrassActor && contact.getFixtureB().getUserData() instanceof Character ||
-                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof GrassActor){
-                    character.doubleJumpAvalaible = true;
-                }
-            }
 
-            @Override
-            public void endContact(Contact contact) {
-
-            }
-
-            @Override
-            public void preSolve(Contact contact, Manifold oldManifold) {
-
-            }
-
-            @Override
-            public void postSolve(Contact contact, ContactImpulse impulse) {
-
-            }
-        });
         startTimer();
     }
 
@@ -199,18 +167,12 @@ abstract public class GameStage extends MyStage {
                 bgV.remove(0);
             }
 
-            if (phantomActor.getX() > grassV.get(2).getX()) {
-                grassV.get(0).setX(grassV.get(2).getX() + 8);
-                grassV.add(grassV.get(0));
-                grassV.remove(0);
-                if(Globals.gameMode == Mode.SinglePlayer) generateMap();
-            }
+
             if(elapsedtime % 20 == 0){
                 character.maxSpeed += 1;
                 phantomActor.maxSpeed += 1;
             }
         }
-        //if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
     }
 
     @Override

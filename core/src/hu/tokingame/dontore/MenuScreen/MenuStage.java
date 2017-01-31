@@ -22,6 +22,8 @@ import hu.tokingame.dontore.MyGdxGame;
 import hu.tokingame.dontore.SettingsScreen.SettingsScreen;
 import hu.tokingame.dontore.HighScreen.HighScreen;
 
+import static hu.tokingame.dontore.Global.Globals.dead;
+
 /**
  * Created by M on 11/14/2016.
  */
@@ -82,7 +84,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 400);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 410);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -90,6 +92,7 @@ public class MenuStage extends MyStage {
                         Globals.multiPlayer = false;
                         Globals.gameMode = Mode.SinglePlayer;
                         game.setScreen(new GameScreen(game));
+                        dead=false;
                     }
                 });
             }
