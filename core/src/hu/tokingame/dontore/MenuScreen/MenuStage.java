@@ -20,6 +20,7 @@ import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
 import hu.tokingame.dontore.SettingsScreen.SettingsScreen;
+import hu.tokingame.dontore.HighScreen.HighScreen;
 
 /**
  * Created by M on 11/14/2016.
@@ -51,8 +52,8 @@ public class MenuStage extends MyStage {
 
         actorVector = new Vector<MenuBackgroundActor>();
         a1 = new MenuBackgroundActor(1, 0, 0);
-        a2 = new MenuBackgroundActor(2, 720, 0);
-        a3 = new MenuBackgroundActor(3, 1440, 0);
+        a2 = new MenuBackgroundActor(2, 2760, 0);
+        a3 = new MenuBackgroundActor(3, 2760*2, 0);
         actorVector.add(a1);
         actorVector.add(a2);
         actorVector.add(a3);
@@ -98,7 +99,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 320);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 310);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -153,6 +154,21 @@ public class MenuStage extends MyStage {
                 });
             }
         });
+        addActor(new BackgroundTextButton("High Scores",1){
+            @Override
+            protected void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        game.setScreen(new HighScreen(game));
+                    }
+                });
+            }
+        });
+
 
 
     }
@@ -163,7 +179,7 @@ public class MenuStage extends MyStage {
         moveBackground();
     }
     void moveBackground(){
-        if(actorVector.get(0).getX() < -719.9f) actorVector.get(0).setX(1440);
+        if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
         actorVector.add(actorVector.get(0)); actorVector.remove(0);
         actorVector.get(0).setX(actorVector.get(0).getX()-1f);
         actorVector.get(1).setX(actorVector.get(1).getX()-1f);

@@ -1,5 +1,6 @@
 package hu.tokingame.dontore.Bodies;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
@@ -17,11 +18,11 @@ public class BGActor extends WorldActorGroup {
     public OneSpriteStaticActor actor;
 
 
-    public BGActor(World world, WorldBodyEditorLoader loader, float X, float Y) {
+    public BGActor(World world, WorldBodyEditorLoader loader, float X, float Y, int t) {
         super(world, loader, "bg.png", BodyDef.BodyType.StaticBody, 0, 0.2f, 5, false);
-        actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CRATE));
-        actor.setSize(8, 9);
-        setSize(8, 9);
+        actor = new OneSpriteStaticActor(tex(t));
+        actor.setSize(20, 7.6f);
+        setSize(20, 7.6f);
         setZIndex(0);
         addActor(actor);
         addToWorld();
@@ -33,6 +34,17 @@ public class BGActor extends WorldActorGroup {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+    }
+    Texture tex(int t){
+        switch(t){
+            case 1: return Assets.manager.get(Assets.BG1);
+            case 2: return Assets.manager.get(Assets.BG2);
+            case 3: return Assets.manager.get(Assets.BG3);
+            case 4: return Assets.manager.get(Assets.BG4);
+            case 5: return Assets.manager.get(Assets.BG5);
+            default: return null;
+        }
 
     }
 }

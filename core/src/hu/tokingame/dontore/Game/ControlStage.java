@@ -1,8 +1,11 @@
 package hu.tokingame.dontore.Game;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.tokingame.dontore.Global.Assets;
@@ -21,10 +24,10 @@ import hu.tokingame.dontore.MyGdxGame;
 public class ControlStage extends MyStage {
 
     MyLabel time;
-    MyStage gameStage;
+    GameStage gameStage;
 
-    public ControlStage(Viewport viewport, Batch batch, MyGdxGame game, MyStage sg) {
-        super(viewport, batch, game);
+    public ControlStage(MyGdxGame game, GameStage sg) {
+        super(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(), game);
         gameStage = sg;
         addActor(time = new MyLabel(Math.rint(gameStage.getTime()*10)/10+"",MyLabel.style1));
     }
@@ -51,14 +54,11 @@ public class ControlStage extends MyStage {
                 super.init();
                 setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
                 addListener(new ClickListener(){
+
                     @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        switch (Globals.gameMode){
-                            case SinglePlayer: SinglePlayerStage.character.jump(); break;
-                            case Host: HostedGameStage.character.jump(); break;
-                            case Client: break;
-                        }
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        gameStage.character.jump();
+                        return super.touchDown(event, x, y, pointer, button);
                     }
                 });
             }

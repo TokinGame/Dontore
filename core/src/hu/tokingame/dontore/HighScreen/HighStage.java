@@ -1,36 +1,33 @@
-package hu.tokingame.dontore.SettingsScreen;
+package hu.tokingame.dontore.HighScreen;
 
-import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
-import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
-import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import java.lang.String;
+
 import java.util.Vector;
 
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;
-import hu.tokingame.dontore.MyBaseClasses.MyLabel;
+import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
-import hu.tokingame.dontore.MyBaseClasses.OneSpriteAnimatedActor;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
- * Created by Zoli on 2017.01.20..
+ * Created by Zoli on 2017.01.30..
  */
 
-public class SettingsStage extends MyStage {
-
+public class HighStage extends MyStage {
+    String s;
 
     MenuBackgroundActor a1, a2, a3;
     Vector<MenuBackgroundActor> actorVector;
 
-    public SettingsStage(Viewport viewport, Batch batch, MyGdxGame game) {
+    public HighStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
         Gdx.input.setCatchBackKey(true);
     }
@@ -42,6 +39,8 @@ public class SettingsStage extends MyStage {
         }
         return false;
     }
+
+
 
     @Override
     public void init() {
@@ -56,16 +55,6 @@ public class SettingsStage extends MyStage {
         addActor(a1);
         addActor(a2);
         addActor(a3);
-
-
-        addActor(new MyTextButton("nem"){
-            @Override
-            public void init() {
-                super.init();
-                setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
-
-            }
-        });
 
         addActor(new BackgroundTextButton("Back", 2){
             @Override
@@ -82,8 +71,8 @@ public class SettingsStage extends MyStage {
             }
         });
 
-
     }
+
     void moveBackground(){
         if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
         actorVector.add(actorVector.get(0)); actorVector.remove(0);
@@ -97,4 +86,5 @@ public class SettingsStage extends MyStage {
         super.act(delta);
         moveBackground();
     }
+
 }

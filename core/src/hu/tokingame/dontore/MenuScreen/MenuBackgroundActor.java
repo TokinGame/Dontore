@@ -12,18 +12,10 @@ import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 
 public class MenuBackgroundActor extends OneSpriteStaticActor {
     public MenuBackgroundActor(int nr, float x, float y) {
-        super(Assets.manager.get(Assets.CRATE));
-        setTexture(getBG(nr));
-        setSize(Globals.WORLD_HEIGHT, Globals.WORLD_HEIGHT);
+        super(Assets.manager.get(Assets.BG_BLUR));
+        setTexture(Assets.manager.get(Assets.BG_BLUR));
+        setSize(2760, 720);
         setPosition(x, y);
     }
-    Texture getBG(int n){
-        switch(n){
-            case 1: return Assets.manager.get(Assets.CRATE);
-            case 2: return Assets.manager.get(Assets.CRATE);
-            case 3: return Assets.manager.get(Assets.CRATE);
 
-        }
-        return Assets.manager.get(Assets.CRATE);
-    }
 }

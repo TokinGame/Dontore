@@ -41,6 +41,7 @@ public class Assets {
 
 
 
+
     //<editor-fold desc="Map Elements">
     public static final AssetDescriptor<Texture>  SPIKE = new AssetDescriptor<Texture>("textures/spikes.png", Texture.class);
     public static final AssetDescriptor<Texture>  CRATE = new AssetDescriptor<Texture>("textures/wooden-crate.png", Texture.class);
@@ -50,6 +51,13 @@ public class Assets {
     public static final AssetDescriptor<Texture> GRASS = new AssetDescriptor<Texture>("textures/grass_seamless.png", Texture.class);
     public static final AssetDescriptor<Texture> NEM = new AssetDescriptor<Texture>("textures/zolipls.png", Texture.class);
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS = new AssetDescriptor<TextureAtlas>("textures/explosion.atlas", TextureAtlas.class);
+
+    public static final AssetDescriptor<Texture> BG1 = new AssetDescriptor<Texture>("textures/background/bg1.png", Texture.class);
+    public static final AssetDescriptor<Texture> BG2 = new AssetDescriptor<Texture>("textures/background/bg2.png", Texture.class);
+    public static final AssetDescriptor<Texture> BG3 = new AssetDescriptor<Texture>("textures/background/bg3.png", Texture.class);
+    public static final AssetDescriptor<Texture> BG4 = new AssetDescriptor<Texture>("textures/background/bg4.png", Texture.class);
+    public static final AssetDescriptor<Texture> BG5 = new AssetDescriptor<Texture>("textures/background/bg5.png", Texture.class);
+    public static final AssetDescriptor<Texture> BG_BLUR = new AssetDescriptor<Texture>("textures/background/blurbg.png", Texture.class);
     //</editor-fold>
 
     //<editor-fold desc="Music">
@@ -81,6 +89,13 @@ public class Assets {
         manager.load(GRASS);
         manager.load(NEM);
         manager.load(EXPLOSION_TEXTUREATLAS);
+
+        manager.load(BG1);
+        manager.load(BG2);
+        manager.load(BG3);
+        manager.load(BG4);
+        manager.load(BG5);
+        manager.load(BG_BLUR);
         //</editor-fold>
 
     }
