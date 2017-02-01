@@ -27,7 +27,6 @@ import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.PhantomActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Bodies.TopActor;
-import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;

@@ -5,7 +5,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
-import hu.tokingame.dontore.DarudeSandstorm.ExplosionActor;
 import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteActor;
