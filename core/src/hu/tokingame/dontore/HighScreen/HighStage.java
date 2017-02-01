@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Vector;
 
 import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MenuScreen.BGStage;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
@@ -25,11 +26,9 @@ import static hu.tokingame.dontore.Global.Globals.MaxScores;
  * Created by Zoli szereti ha Windows XP de akkor is ha rondán néz ki és mindenki szerint olyan ocsmány hogy pfhuj on 1889.03.30..
  */
 
-public class HighStage extends MyStage {
+public class HighStage extends BGStage {
     String s;
 
-    MenuBackgroundActor a1, a2, a3;
-    Vector<MenuBackgroundActor> actorVector;
     Vector<MyLabel> hsV;
 
     public HighStage(Viewport viewport, Batch batch, MyGdxGame game) {
@@ -49,18 +48,7 @@ public class HighStage extends MyStage {
 
     @Override
     public void init() {
-
-
-        actorVector = new Vector<MenuBackgroundActor>();
-        a1 = new MenuBackgroundActor(1, 0, 0);
-        a2 = new MenuBackgroundActor(2, 2760, 0);
-        a3 = new MenuBackgroundActor(3, 2760*2, 0);
-        actorVector.add(a1);
-        actorVector.add(a2);
-        actorVector.add(a3);
-        addActor(a1);
-        addActor(a2);
-        addActor(a3);
+        super.init();
 
         addActor(new BackgroundTextButton("Back", 2){
             @Override
@@ -131,18 +119,10 @@ public class HighStage extends MyStage {
         System.out.println(MaxScores);
     }
 
-    void moveBackground(){
-        if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
-        actorVector.add(actorVector.get(0)); actorVector.remove(0);
-        actorVector.get(0).setX(actorVector.get(0).getX()-1f);
-        actorVector.get(1).setX(actorVector.get(1).getX()-1f);
-        actorVector.get(2).setX(actorVector.get(2).getX()-1f);
-    }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        moveBackground();
     }
 
 }

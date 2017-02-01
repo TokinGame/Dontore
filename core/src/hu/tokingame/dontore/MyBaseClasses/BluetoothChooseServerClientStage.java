@@ -12,13 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.tokingame.dontore.MenuScreen.BGStage;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
  * Created by tuskeb on 2017. 01. 16..
  */
 
-abstract public class BluetoothChooseServerClientStage extends MyStage {
+abstract public class BluetoothChooseServerClientStage extends BGStage {
 
     public BluetoothChooseServerClientStage(MyGdxGame game) {
         super(new ExtendViewport(1280, 720, new OrthographicCamera(1280, 720)), new SpriteBatch(), game);
@@ -29,9 +30,10 @@ abstract public class BluetoothChooseServerClientStage extends MyStage {
 
     @Override
     public void init() {
+        super.init();
         Gdx.app.error("BTM", "Choose client/server");
         addBackEventStackListener();
-        addActor(new MyButton("Start server", game.getTextButtonStyle()) {
+        addActor(new BackgroundTextButton("Start server") {
             @Override
             public void init() {
                 super.init();
@@ -45,7 +47,7 @@ abstract public class BluetoothChooseServerClientStage extends MyStage {
                 });
             }
         });
-        addActor(new MyButton("Start client", game.getTextButtonStyle()) {
+        addActor(new BackgroundTextButton("Start client") {
             @Override
             public void init() {
                 super.init();
