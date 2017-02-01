@@ -21,7 +21,7 @@ public class Globals {
 
     public static Mode gameMode = Mode.SinglePlayer;
 
-    public static Vector<Float> MaxScores = new Vector(5,5);
+    public static Vector<Float> MaxScores = new Vector();
 
 
 

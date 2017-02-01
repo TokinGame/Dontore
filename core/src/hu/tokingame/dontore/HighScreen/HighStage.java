@@ -30,6 +30,7 @@ public class HighStage extends MyStage {
 
     MenuBackgroundActor a1, a2, a3;
     Vector<MenuBackgroundActor> actorVector;
+    Vector<MyLabel> hsV;
 
     public HighStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -49,11 +50,10 @@ public class HighStage extends MyStage {
     @Override
     public void init() {
 
-
-        for (int i = 0; i < 5; i++) {
+        /*for (int i = 0; i < 5; i++) {
             float a=0;
             MaxScores.add(a);
-        }
+        }*/
 
         actorVector = new Vector<MenuBackgroundActor>();
         a1 = new MenuBackgroundActor(1, 0, 0);
@@ -89,45 +89,32 @@ public class HighStage extends MyStage {
             }
         });
 
-        addActor(new MyLabel("1. "+MaxScores.get(0), MyLabel.style2){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
+        if(Globals.MaxScores.size()>0){
+            hsV = new Vector();
+            for (int i = 0; i < Globals.MaxScores.size(); i++) {
+                float k = Globals.MaxScores.get(i);
+                float b = Math.round(k*100)/100.0f;
+                final int finalI = i;
+                hsV.add(new MyLabel(i+1+". "+b+"", MyLabel.style2){
+                    @Override
+                    public void init() {
+                        super.init();
+                        setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, finalI > 0 ? hsV.get(finalI -1).getY()-75 : 500);
+                    }
+                });
+                addActor(hsV.get(i));
             }
-        });
+            hsV.clear();
+        }else{
+            addActor(new MyLabel("There are no scores yet.", MyLabel.style2){
+                @Override
+                public void init() {
+                    super.init();
+                    setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
+                }
+            });
+        }
 
-        addActor(new MyLabel("2. "+MaxScores.get(1), MyLabel.style2){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 425);
-            }
-        });
-
-        addActor(new MyLabel("3. "+MaxScores.get(2), MyLabel.style2){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 350);
-            }
-        });
-
-        addActor(new MyLabel("4. "+MaxScores.get(3), MyLabel.style2){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 275);
-            }
-        });
-
-        addActor(new MyLabel("5. "+MaxScores.get(4), MyLabel.style2){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
-            }
-        });
 
     }
 
