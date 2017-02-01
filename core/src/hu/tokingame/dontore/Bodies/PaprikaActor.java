@@ -17,7 +17,7 @@ public class PaprikaActor extends WorldActorGroup {
         public OneSpriteStaticActor actor;
 
     public PaprikaActor(World world, WorldBodyEditorLoader loader, float x, float y) {
-        super(world, loader, "bg.png", BodyDef.BodyType.DynamicBody, 1, 1, 1, false);
+        super(world, loader, "bg.png", BodyDef.BodyType.DynamicBody, 1, 0.2f, 10, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA));
         actor.setSize(1,1);
         addActor(actor);
@@ -25,6 +25,7 @@ public class PaprikaActor extends WorldActorGroup {
         setPosition(x, y);
         setSize(1,1);
         getBody().setFixedRotation(true);
+
 
     }
 
@@ -36,9 +37,9 @@ public class PaprikaActor extends WorldActorGroup {
     @Override
     public void act(float delta) {
         super.act(delta);
-        //setY(getY()+0.1f);
+        //setY(getY()+0.2f);
         //getBody().setLinearVelocity(getBody().getLinearVelocity());
-        getBody().applyForceToCenter(new Vector2(0, 1170*delta), true);
+        getBody().applyForceToCenter(new Vector2(0, 1200*delta), true);
     }
 
     @Override

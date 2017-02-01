@@ -51,6 +51,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> GRASS = new AssetDescriptor<Texture>("textures/grass_seamless.png", Texture.class);
     public static final AssetDescriptor<Texture> NEM = new AssetDescriptor<Texture>("textures/zolipls.png", Texture.class);
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_TEXTUREATLAS = new AssetDescriptor<TextureAtlas>("textures/explosion.atlas", TextureAtlas.class);
+    public static final AssetDescriptor<TextureAtlas> WALK_ATLAS = new AssetDescriptor<TextureAtlas>("textures/walk.txt", TextureAtlas.class);
     public static final AssetDescriptor<Texture> GRAVE = new AssetDescriptor<Texture>("textures/RIP_grave.png", Texture.class);
     public static final AssetDescriptor<Texture> PAPRIKA = new AssetDescriptor<Texture>("textures/paprika.png", Texture.class);
 
@@ -93,6 +94,7 @@ public class Assets {
         manager.load(EXPLOSION_TEXTUREATLAS);
         manager.load(GRAVE);
         manager.load(PAPRIKA);
+        manager.load(WALK_ATLAS);
 
         manager.load(BG1);
         manager.load(BG2);
