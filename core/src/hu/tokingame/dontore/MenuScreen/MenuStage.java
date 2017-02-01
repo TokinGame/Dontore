@@ -21,7 +21,6 @@ import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyGdxGame;
-import hu.tokingame.dontore.SettingsScreen.SettingsScreen;
 import hu.tokingame.dontore.HighScreen.HighScreen;
 
 import static hu.tokingame.dontore.Global.Globals.dead;
