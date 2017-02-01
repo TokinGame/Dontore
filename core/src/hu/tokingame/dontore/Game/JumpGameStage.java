@@ -56,6 +56,7 @@ abstract public class JumpGameStage extends GameStage {
                 if (contact.getFixtureA().getUserData() instanceof GrassActor && contact.getFixtureB().getUserData() instanceof Character ||
                         contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof GrassActor){
                     character.doubleJumpAvalaible = true;
+                    character.resumeRuning();
                 }
             }
 

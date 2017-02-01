@@ -66,10 +66,19 @@ public class Character extends WorldActorGroup {
                     doubleJumpAvalaible = false;
                 }
             }
-
+            pauseRuning();
         }
         System.out.println(getY());
     }
+
+    public void pauseRuning(){
+        actor.stop();
+    }
+
+    public void resumeRuning(){
+        actor.start();
+    }
+
     public void die(){
         alive = false;
         addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.GRAVE)){
