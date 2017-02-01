@@ -29,6 +29,7 @@ public class AndroidLauncher extends AndroidApplication {
 		BluetoothSingleton.getInstance().bluetoothManager = btm;
 
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+		config.useImmersiveMode = true;
 		config.useWakelock = true;
 		initialize(new MyGdxGame(), config);
 	}

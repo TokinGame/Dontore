@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.BGStage;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -47,6 +48,7 @@ abstract public class BluetoothChooseServerClientStage extends BGStage {
                 });
             }
         });
+
         addActor(new BackgroundTextButton("Start client") {
             @Override
             public void init() {
@@ -61,6 +63,22 @@ abstract public class BluetoothChooseServerClientStage extends BGStage {
                 });
             }
         });
+
+        addActor(new BackgroundTextButton("Back") {
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH-this.getWidth()-10, 10);
+                addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        game.setScreenBackByStackPop();
+                    }
+                });
+            }
+        });
+
     }
 }
 

@@ -5,13 +5,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
 
+import hu.tokingame.dontore.MenuScreen.BGStage;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
  * Created by tuskeb on 2017. 01. 17..
  */
 
-abstract public class BluetoothStage extends MyStage {
+abstract public class BluetoothStage extends BGStage {
 
 
 

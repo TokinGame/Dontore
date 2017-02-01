@@ -20,6 +20,7 @@ abstract public class BluetoothServerListenStage extends BluetoothStage {
     abstract public void acceptConnection();
 
     public void init() {
+        super.init();
         Gdx.app.error("BTM", "Server start listening");
         startBluetoothListening();
         addActor(waitingLabel = new MyLabel("", game.getLabelStyle()));
