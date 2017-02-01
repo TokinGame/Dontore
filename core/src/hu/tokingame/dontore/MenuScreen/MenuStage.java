@@ -29,11 +29,9 @@ import static hu.tokingame.dontore.Global.Globals.dead;
  * Created by M on 11/14/2016.
  */
 
-public class MenuStage extends MyStage {
+public class MenuStage extends BGStage {
 
     MyTextButton button;
-    MenuBackgroundActor a1, a2, a3;
-    Vector<MenuBackgroundActor> actorVector;
 
     public static boolean musicToggle = true;
 
@@ -52,18 +50,7 @@ public class MenuStage extends MyStage {
 
     @Override
     public void init() {
-
-        actorVector = new Vector<MenuBackgroundActor>();
-        a1 = new MenuBackgroundActor(1, 0, 0);
-        a2 = new MenuBackgroundActor(2, 2760, 0);
-        a3 = new MenuBackgroundActor(3, 2760*2, 0);
-        actorVector.add(a1);
-        actorVector.add(a2);
-        actorVector.add(a3);
-        addActor(a1);
-        addActor(a2);
-        addActor(a3);
-
+        super.init();
 
         addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.TITLE)){
             @Override
@@ -217,14 +204,7 @@ public class MenuStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        moveBackground();
     }
-    void moveBackground(){
-        if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
-        actorVector.add(actorVector.get(0)); actorVector.remove(0);
-        actorVector.get(0).setX(actorVector.get(0).getX()-1f);
-        actorVector.get(1).setX(actorVector.get(1).getX()-1f);
-        actorVector.get(2).setX(actorVector.get(2).getX()-1f);
-    }
+
 }
 

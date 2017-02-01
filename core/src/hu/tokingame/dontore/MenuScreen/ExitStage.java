@@ -18,7 +18,7 @@ import hu.tokingame.dontore.MyGdxGame;
  * Created by davimatyi on 2016. 12. 06..
  */
 
-public class ExitStage extends MyStage {
+public class ExitStage extends BGStage {
     public ExitStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
         Gdx.input.setCatchBackKey(true);
@@ -34,7 +34,7 @@ public class ExitStage extends MyStage {
 
     @Override
     public void init() {
-
+        super.init();
         addActor(new MyLabel("Are you sure want to exit?", MyLabel.style1){
             @Override
             public void init() {
