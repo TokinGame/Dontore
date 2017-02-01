@@ -50,10 +50,6 @@ public class HighStage extends MyStage {
     @Override
     public void init() {
 
-        /*for (int i = 0; i < 5; i++) {
-            float a=0;
-            MaxScores.add(a);
-        }*/
 
         actorVector = new Vector<MenuBackgroundActor>();
         a1 = new MenuBackgroundActor(1, 0, 0);
