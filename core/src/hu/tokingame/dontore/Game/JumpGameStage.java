@@ -119,7 +119,6 @@ abstract public class JumpGameStage extends GameStage {
 
     public void death(){
         if (!dead) {
-             //TODO itt crashel az OpenJDK ha ez lefut kéne fix
             character.die();
             stopTimer();
             ripTime = getTime();
