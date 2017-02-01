@@ -54,6 +54,7 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> WALK_ATLAS = new AssetDescriptor<TextureAtlas>("textures/walk.txt", TextureAtlas.class);
     public static final AssetDescriptor<Texture> GRAVE = new AssetDescriptor<Texture>("textures/RIP_grave.png", Texture.class);
     public static final AssetDescriptor<Texture> PAPRIKA = new AssetDescriptor<Texture>("textures/paprika.png", Texture.class);
+    public static final AssetDescriptor<Texture> TITLE = new AssetDescriptor<Texture>("textures/title.png", Texture.class);
 
     public static final AssetDescriptor<Texture> BG1 = new AssetDescriptor<Texture>("textures/background/bg1.png", Texture.class);
     public static final AssetDescriptor<Texture> BG2 = new AssetDescriptor<Texture>("textures/background/bg2.png", Texture.class);
@@ -95,6 +96,7 @@ public class Assets {
         manager.load(GRAVE);
         manager.load(PAPRIKA);
         manager.load(WALK_ATLAS);
+        manager.load(TITLE);
 
         manager.load(BG1);
         manager.load(BG2);

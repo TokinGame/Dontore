@@ -13,11 +13,13 @@ import hu.tokingame.dontore.CreditsScreen.CreditsScreen;
 import hu.tokingame.dontore.CreditsScreen.HowToPlayScreen;
 import hu.tokingame.dontore.Game.GameScreen;
 import hu.tokingame.dontore.Game.MultiGameScreen;
+import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
+import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyGdxGame;
 import hu.tokingame.dontore.SettingsScreen.SettingsScreen;
 import hu.tokingame.dontore.HighScreen.HighScreen;
@@ -64,12 +66,62 @@ public class MenuStage extends MyStage {
         addActor(a3);
 
 
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.TITLE)){
+            @Override
+            public void init() {
+                super.init();
+                setOriginCenter();
+                setSize(580, 240);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 430);
+            }
+            float elapsedTime = 0;
+            float maxWidth = 580, maxHeight = 240;
+            @Override
+            public void act(float delta) {
+                elapsedTime+=delta;
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 430);
+                super.act(delta);
+                setRotation((float)Math.sin(elapsedTime*1.2f)*15);
+                setWidth((float)Math.abs(Math.sin(elapsedTime*1.2f)*maxWidth/2)+maxWidth/2);
+                setHeight((float)Math.abs(Math.sin(elapsedTime*1.2f)*maxHeight/2)+maxHeight/2);
+            }
+        });
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(200, 200);
+                setPosition(1000, 400);
+            }
+            float elapsedTime = 0;
+            @Override
+            public void act(float delta) {
+                elapsedTime += delta;
+                super.act(delta);
+                setRotation((float)Math.sin(elapsedTime*5.5f)*15);
+            }
+        });addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(200, 200);
+                setPosition(80, 400);
+
+            }
+            float elapsedTime = 0;
+            @Override
+            public void act(float delta) {
+                elapsedTime += delta;
+                super.act(delta);
+                setRotation(-(float)Math.sin(elapsedTime*5.5f)*15);
+            }
+        });
 
         addActor(new BackgroundTextButton("How To Play",1){
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 100);
+                setPosition(Globals.WORLD_WIDTH/3*2-this.getWidth()/2, 10);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -84,7 +136,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 410);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 310);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -102,7 +154,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 310);
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 210);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -115,20 +167,7 @@ public class MenuStage extends MyStage {
             }
 
         });
-        addActor(new BackgroundTextButton("Credits",1){
-            @Override
-            protected void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 10);
-                addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreen(new CreditsScreen(game));
-                    }
-                });
-            }
-        });
+
         addActor(new BackgroundTextButton("Exit",2){
             @Override
             protected void init() {
@@ -143,7 +182,7 @@ public class MenuStage extends MyStage {
                 });
             }
         });
-        addActor(new BackgroundTextButton("Settings",1){
+        addActor(new BackgroundTextButton("Credits",1){
             @Override
             protected void init() {
                 super.init();
@@ -152,7 +191,7 @@ public class MenuStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreen(new SettingsScreen(game));
+                        game.setScreen(new CreditsScreen(game));
                     }
                 });
             }
@@ -161,7 +200,7 @@ public class MenuStage extends MyStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
+                setPosition(Globals.WORLD_WIDTH/3-this.getWidth()/2, 10);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
