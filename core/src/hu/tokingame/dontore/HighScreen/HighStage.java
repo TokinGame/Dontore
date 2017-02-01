@@ -74,7 +74,7 @@ public class HighStage extends MyStage {
                 });
             }
         });
-        addActor(new MyLabel("ez a szöveg olyan sötét mint humorom,\ncsak gyapotot sajnos nem szed", MyLabel.style2){
+        addActor(new MyLabel("1", MyLabel.style2){
             @Override
             public void init() {
                 super.init();

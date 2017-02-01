@@ -52,11 +52,11 @@ public class Character extends WorldActorGroup {
     public void jump(){
         if(alive){
             if(getY()<  1.25) {
-                getBody().applyForceToCenter(new Vector2(0, 2000), true);
+                getBody().applyForceToCenter(new Vector2(0, 1800), true);
                 doubleJumpAvalaible = true;
             }else{
                 if(doubleJumpAvalaible){
-                    getBody().applyForceToCenter(new Vector2(0, 2000), true);
+                    getBody().applyForceToCenter(new Vector2(0, 1800), true);
                     doubleJumpAvalaible = false;
                 }
             }

@@ -29,6 +29,7 @@ abstract public class JumpGameStage extends GameStage {
     ControlStage controlStage;
     public float ripTime;
     PaprikaActor paprika;
+    boolean paprikaThere = false;
 
     public JumpGameStage(MyGdxGame game) {
         super(game);
@@ -96,7 +97,10 @@ abstract public class JumpGameStage extends GameStage {
         }
         controlStage.act(delta);
         if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
-
+        if(dead && !paprikaThere){
+            paprika.setPosition(character.getX(), character.getY());
+            paprikaThere = true;
+        }
     }
 
     @Override
@@ -112,9 +116,10 @@ abstract public class JumpGameStage extends GameStage {
         super.resize(screenWidth, screenHeight);
         controlStage.resize(screenWidth, screenHeight);
     }
+
     public void death(){
         if (!dead) {
-            //paprika.setPosition(phantomActor.getX(), phantomActor.getY()); //TODO itt crashel az OpenJDK ha ez lefut kéne fix
+             //TODO itt crashel az OpenJDK ha ez lefut kéne fix
             character.die();
             stopTimer();
             ripTime = getTime();
