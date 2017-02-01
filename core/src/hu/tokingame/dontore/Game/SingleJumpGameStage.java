@@ -28,37 +28,37 @@ public class SingleJumpGameStage extends JumpGameStage {
             case 1:{
                 if(rdm(1,5) != 1){
                     switch(rdm(1,3)){
-                        case 1: addActor(new CrateActor(world, loader, ref + 4, 1)); break;
-                        case 2: addActor(new CrateActor(world, loader, ref + 4, 1));
-                            addActor(new CrateActor(world, loader, ref + 4, 2)); break;
-                        case 3: addActor(new CrateActor(world, loader, ref + 4, 1));
-                            addActor(new CrateActor(world, loader, ref + 4, 2));
-                            addActor(new CrateActor(world, loader, ref + 4, 3)); break;
+                        case 1: addCrate(ref + 4, 1); break;
+                        case 2: addCrate(ref + 4, 1);
+                            addCrate(ref + 4, 2); break;
+                        case 3: addCrate(ref + 4, 1);
+                            addCrate(ref + 4, 2);
+                            addCrate(ref + 4, 3); break;
                     }
-                }else addActor(new SpikeActor(world, loader, ref + 4, 1));
+                }else addSpike(ref + 4, 1);
                 break;
             }
             case 2:{
                 if(rdm(1,5) != 1){
                     switch(rdm(1,3)){
-                        case 1: addActor(new CrateActor(world, loader, ref + 2, 1)); break;
-                        case 2: addActor(new CrateActor(world, loader, ref + 2, 1));
-                            addActor(new CrateActor(world, loader, ref + 2, 2)); break;
-                        case 3: addActor(new CrateActor(world, loader, ref + 2, 1));
-                            addActor(new CrateActor(world, loader, ref + 2, 2));
-                            addActor(new CrateActor(world, loader, ref + 2, 3)); break;
+                        case 1: addCrate(ref + 2, 1); break;
+                        case 2: addCrate(ref + 2, 1);
+                                addCrate(ref + 2, 2); break;
+                        case 3: addCrate(ref + 2, 1);
+                                addCrate(ref + 2, 2);
+                                addCrate(ref + 2, 3); break;
                     }
                     switch(rdm(1,3)){
-                        case 1: addActor(new CrateActor(world, loader, ref + 5, 1)); break;
-                        case 2: addActor(new CrateActor(world, loader, ref + 5, 1));
-                            addActor(new CrateActor(world, loader, ref + 5, 2)); break;
-                        case 3: addActor(new CrateActor(world, loader, ref + 5, 1));
-                            addActor(new CrateActor(world, loader, ref + 5, 2));
-                            addActor(new CrateActor(world, loader, ref + 5, 3)); break;
+                        case 1: addCrate(ref + 5, 1); break;
+                        case 2: addCrate(ref + 5, 1);
+                                addCrate(ref + 5, 2); break;
+                        case 3: addCrate(ref + 5, 1);
+                                addCrate(ref + 5, 2);
+                                addCrate(ref + 5, 3); break;
                     }
                 }else {
-                    addActor(new SpikeActor(world, loader, ref + 2, 1));
-                    addActor(new SpikeActor(world, loader, ref + 5, 1));
+                    addSpike(ref + 2, 1);
+                    addSpike(ref + 5, 1);
                 }
                 break;
             }
