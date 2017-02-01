@@ -20,7 +20,7 @@ abstract public class BluetoothDisconectionStage extends BluetoothStage {
 
     @Override
     public void init() {
-        addActor(new MyButton("Disconnected. Click here to exit.", game.getTextButtonStyle()) {
+        addActor(new BackgroundTextButton("Disconnected. Click here to exit.") {
             @Override
             public void init() {
                 super.init();

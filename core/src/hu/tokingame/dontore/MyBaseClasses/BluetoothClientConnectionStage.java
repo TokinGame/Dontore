@@ -64,7 +64,7 @@ abstract public class BluetoothClientConnectionStage extends BluetoothStage {
 
         int d = 0;
         for (java.lang.String s : strings) {
-            final MyButton myButton = new MyButton(s, game.getTextButtonStyle());
+            final BackgroundTextButton myButton = new BackgroundTextButton(s);
             myButton.setPosition(0, 600 - d  * 70);
             myButton.setUserObject(new Integer(d));
             myButton.addListener(new ClickListener() {
