@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -12,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g3d.particles.values.GradientColorValue;
+
+import hu.tokingame.dontore.MyBaseClasses.MyStage;
 
 /**
  * Created by M on 10/7/2016.
@@ -65,7 +68,7 @@ public class Assets {
     //</editor-fold>
 
     //<editor-fold desc="Music">
-
+    public static final AssetDescriptor<Music> MAIN_MUSIC = new AssetDescriptor<Music>("music/paul-hartnett_07-160.mp3", Music.class);
     //</editor-fold>
 
 
@@ -104,12 +107,15 @@ public class Assets {
         manager.load(BG4);
         manager.load(BG5);
         manager.load(BG_BLUR);
+
+        manager.load(MAIN_MUSIC);
         //</editor-fold>
 
     }
 
     public static void afterLoaded(){
-
+        Assets.manager.get(Assets.MAIN_MUSIC).setLooping(true);
+        Assets.manager.get(Assets.MAIN_MUSIC).play();
     }
 
     public static void unload(){
