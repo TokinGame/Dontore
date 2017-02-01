@@ -79,9 +79,6 @@ public class HighStage extends MyStage {
                 });
             }
         });
-<<<<<<< Updated upstream
-        addActor(new MyLabel("1", MyLabel.style2){
-=======
 
         addActor(new MyLabel("High Scores", MyLabel.style2){
             @Override
@@ -92,7 +89,6 @@ public class HighStage extends MyStage {
         });
 
         addActor(new MyLabel("1. "+MaxScores.get(0), MyLabel.style2){
->>>>>>> Stashed changes
             @Override
             public void init() {
                 super.init();
