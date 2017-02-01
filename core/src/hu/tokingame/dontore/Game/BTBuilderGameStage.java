@@ -16,6 +16,7 @@ import hu.tokingame.dontore.MyGdxGame;
 
 abstract public class BTBuilderGameStage extends GameStage {
     BluetoothConnectedStage bluetoothConnectedStage;
+    AdderStage adderStage;
 
     public BTBuilderGameStage(MyGdxGame game) {
         super(game);
@@ -30,6 +31,7 @@ abstract public class BTBuilderGameStage extends GameStage {
 
             }
         };
+        adderStage = new AdderStage(game, this);
         //character.getBody().setType(BodyDef.BodyType.StaticBody);
     }
 
@@ -61,7 +63,19 @@ abstract public class BTBuilderGameStage extends GameStage {
                 character.fromString(strings[1]);
             }
         }
+        adderStage.act(delta);
+    }
 
+    @Override
+    public void draw() {
+        super.draw();
+        adderStage.draw();
+    }
+
+    @Override
+    public void dispose() {
+        adderStage.dispose();
+        super.dispose();
     }
 
     abstract public void  disconnect();

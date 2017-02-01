@@ -96,7 +96,7 @@ abstract public class JumpGameStage extends GameStage {
             }
         }
         controlStage.act(delta);
-        if(character.getX() < phantomActor.getX() - 7 && character.alive) death();
+        if(character.getX() < phantomActor.getX() - 8 && character.alive) death();
         if(dead && !paprikaThere){
             paprika.setPosition(character.getX(), character.getY());
             paprikaThere = true;

@@ -27,7 +27,7 @@ public class Character extends WorldActorGroup {
 
     public Character(World world, float x, float y) {
         super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 0, 0.2f, 5, false);
-        actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CHARACTER));
+        actor = new OneSpriteStaticActor(Assets.manager.get(Assets.CRATE));
         actor.setSize(0.5f, 1);
         setSize(0.5f, 1);
         addActor(actor);

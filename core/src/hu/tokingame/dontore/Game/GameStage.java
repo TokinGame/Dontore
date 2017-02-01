@@ -70,7 +70,7 @@ abstract public class GameStage extends MyStage {
 
 
     public GameStage(MyGdxGame game) {
-        super(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+        super(new ExtendViewport(16,9,new OrthographicCamera(16,9)), new SpriteBatch(), game);
         inputMultiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
@@ -100,7 +100,7 @@ abstract public class GameStage extends MyStage {
 
 
 
-        setCameraMoveToXY(1, 4, 0.01f, 10000);
+        //setCameraMoveToXY(1, 4, 0.01f, 10000);
 
         bg1 = new BGActor(world, loader, -20, 0, 1);
         bg2 = new BGActor(world, loader, 0, 0, 2);
@@ -149,7 +149,7 @@ abstract public class GameStage extends MyStage {
         world.step(delta, 5, 5);
         elapsedtime += delta;
         if(character.alive) {
-            setCameraMoveToXY(phantomActor.getX(), 4, 0.01f, 10000);
+            setCameraMoveToXY(phantomActor.getX(), 4, 1, 10000);
 
             top.setPosition(character.getX(), 7.5f);
 
