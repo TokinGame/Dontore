@@ -50,14 +50,14 @@ public class HighStage extends MyStage {
     public void init() {
 
         for (int i = 0; i < 5; i++) {
-            float a=0;
+            float a = 0;
             MaxScores.add(a);
         }
 
         actorVector = new Vector<MenuBackgroundActor>();
         a1 = new MenuBackgroundActor(1, 0, 0);
         a2 = new MenuBackgroundActor(2, 2760, 0);
-        a3 = new MenuBackgroundActor(3, 2760*2, 0);
+        a3 = new MenuBackgroundActor(3, 2760 * 2, 0);
         actorVector.add(a1);
         actorVector.add(a2);
         actorVector.add(a3);
@@ -65,12 +65,12 @@ public class HighStage extends MyStage {
         addActor(a2);
         addActor(a3);
 
-        addActor(new BackgroundTextButton("Back", 2){
+        addActor(new BackgroundTextButton("Back", 2) {
             @Override
             protected void init() {
                 super.init();
-                this.setPosition(getViewport().getWorldWidth()-this.getWidth(),0);
-                addListener(new ClickListener(){
+                this.setPosition(getViewport().getWorldWidth() - this.getWidth(), 0);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -79,61 +79,57 @@ public class HighStage extends MyStage {
                 });
             }
         });
-<<<<<<< Updated upstream
-        addActor(new MyLabel("1", MyLabel.style2){
-=======
-
-        addActor(new MyLabel("High Scores", MyLabel.style2){
+        addActor(new MyLabel("1", MyLabel.style2));
+        addActor(new MyLabel("High Scores", MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 600);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 600);
             }
         });
 
-        addActor(new MyLabel("1. "+MaxScores.get(0), MyLabel.style2){
->>>>>>> Stashed changes
+        addActor(new MyLabel("1. " + MaxScores.get(0), MyLabel.style2) {
+
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 500);
             }
         });
 
-        addActor(new MyLabel("2. "+MaxScores.get(1), MyLabel.style2){
+        addActor(new MyLabel("2. " + MaxScores.get(1), MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 425);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 425);
             }
         });
 
-        addActor(new MyLabel("3. "+MaxScores.get(2), MyLabel.style2){
+        addActor(new MyLabel("3. " + MaxScores.get(2), MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 350);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 350);
             }
         });
 
-        addActor(new MyLabel("4. "+MaxScores.get(3), MyLabel.style2){
+        addActor(new MyLabel("4. " + MaxScores.get(3), MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 275);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 275);
             }
         });
 
-        addActor(new MyLabel("5. "+MaxScores.get(4), MyLabel.style2){
+        addActor(new MyLabel("5. " + MaxScores.get(4), MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 200);
             }
         });
 
     }
-
     public static void highscore(float score){
         if (MaxScores.size() >= 5) {
             if (MaxScores.get(MaxScores.size()-1)<score){

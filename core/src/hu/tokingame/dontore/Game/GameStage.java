@@ -36,6 +36,7 @@ import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
+import sun.security.provider.ConfigFile;
 
 /**
  * Created by tuskeb on 2017. 01. 30..
@@ -44,6 +45,10 @@ import hu.tokingame.dontore.MyGdxGame;
 abstract public class GameStage extends MyStage {
 
     protected InputMultiplexer inputMultiplexer = new InputMultiplexer();
+
+
+    private float cameraOffset = 0;
+
 
     World world;
     Box2DDebugRenderer box2DDebugRenderer;
@@ -142,6 +147,16 @@ abstract public class GameStage extends MyStage {
         startTimer();
     }
 
+    public float getCameaOffset() {
+        return this.cameraOffset;
+    }
+
+    public void setCameraOffset(float cameraOffset){
+        this.cameraOffset = cameraOffset;
+    }
+
+
+
 
     @Override
     public void act(float delta) {
@@ -149,7 +164,7 @@ abstract public class GameStage extends MyStage {
         world.step(delta, 5, 5);
         elapsedtime += delta;
         if(character.alive) {
-            setCameraMoveToXY(phantomActor.getX(), 4, 1, 10000);
+            setCameraMoveToXY(phantomActor.getX() + cameraOffset, 4, 1, 100000);
 
             top.setPosition(character.getX(), 7.5f);
 
@@ -197,6 +212,19 @@ abstract public class GameStage extends MyStage {
     public PhantomActor getPhantomActor() {
         return phantomActor;
     }
+
+    public CrateActor addCrate(float x, float y){
+        CrateActor crateActor;
+        addActor(crateActor = new CrateActor(world, loader, x, y));
+        return  crateActor;
+    }
+
+    public SpikeActor addSpike(float x, float y){
+        SpikeActor spikeActor;
+        addActor(spikeActor = new SpikeActor(world, loader, x, y));
+        return spikeActor;
+    }
+
 /*
     void generateMap(){
         int ref = (int)grassV.get(2).getX();

@@ -13,12 +13,13 @@ import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 public class ChooseBuildingBlock extends Group implements InitableInterface{
     public ChooseBuildingBlock() {
         init();
+        setSize(3,1);
 
         addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.BUTTON_BG)){
             @Override
             public void init() {
                 super.init();
-                setSize(100,30);
+                setSize(3,1);
                 setPosition(0,0);
             }
         });
@@ -27,8 +28,8 @@ public class ChooseBuildingBlock extends Group implements InitableInterface{
             @Override
             public void init() {
                 super.init();
-                setSize(20,20);
-                setPosition(15,5);
+                setSize(1,1);
+                setPosition(1,0);
             }
         });
 
@@ -36,8 +37,8 @@ public class ChooseBuildingBlock extends Group implements InitableInterface{
             @Override
             public void init() {
                 super.init();
-                setSize(20,20);
-                setPosition(65,5);
+                setSize(1,1);
+                setPosition(2,0);
             }
         });
     }

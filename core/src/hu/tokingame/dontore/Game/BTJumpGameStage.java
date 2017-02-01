@@ -49,12 +49,12 @@ abstract public class BTJumpGameStage extends JumpGameStage {
             String[] strings = m.split(":");
             if (strings.length==2 && strings[0].compareTo("bc")==0){
                 CrateActor crateActor;
-                addActor(crateActor = new CrateActor(world, loader, 0, 0));
+                crateActor = addCrate(0,0);
                 crateActor.fromString(strings[1]);
             }
             if (strings.length==2 && strings[0].compareTo("bs")==0){
                 SpikeActor spikeActor;
-                addActor(spikeActor = new SpikeActor(world, loader, 0, 0));
+                spikeActor = addSpike(0,0);
                 spikeActor.fromString(strings[1]);
             }
         }

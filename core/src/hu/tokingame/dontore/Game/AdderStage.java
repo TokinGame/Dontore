@@ -24,40 +24,34 @@ import hu.tokingame.dontore.MyGdxGame;
 
 public class AdderStage extends MyStage {
 
-    BTBuilderGameStage gameStage;
+    GameStage gameStage;
 
-    public AdderStage(MyGdxGame game, BTBuilderGameStage g) {
-        super(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(), game);
+    public AdderStage(MyGdxGame game, GameStage g) {
+        super(new ExtendViewport(16,9,new OrthographicCamera(16,9)),new SpriteBatch(), game);
         gameStage = g;
     }
 
     @Override
     public void init() {
+        final OneSpriteStaticActor a;
 
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.NEM)) {
-            @Override
-            public void init() {
-                super.init();
-                setPosition(0,0);
-                setSize(1280, 720);
-                addListener(new ClickListener(){
+        addActor(a = new OneSpriteStaticActor(Assets.manager.get(Assets.NEM)));
+        a.setColor(1,1,1,0.2f);
+        a.setPosition(14,0);
+        a.setSize(2, 6);
+        a.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        System.out.println((float)Math.rint(x/128)+";"+(float)Math.rint(y/128));
-                        gameStage.add((float)Math.rint(x/128), (float)Math.rint(y/128), 1);
+                        gameStage.addCrate(x + gameStage.phantomActor.getX()+(a.getX()) / 2f-1f + gameStage.getCameaOffset(),y-1f);
                     }
-
-                });
-            }
         });
 
         addActor(new ChooseBuildingBlock(){
             @Override
             public void init() {
                 super.init();
-                setPosition(0,1280-getHeight());
-                setSize(100,30);
+                setPosition(5,5);
             }
         });
         /*addActor(new MyTextButton("doboz"){

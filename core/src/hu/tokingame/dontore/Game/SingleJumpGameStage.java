@@ -11,10 +11,13 @@ import hu.tokingame.dontore.MyGdxGame;
  */
 
 public class SingleJumpGameStage extends JumpGameStage {
+ //   AdderStage adderStage;
+
     public SingleJumpGameStage(MyGdxGame game) {
         super(game);
+//        adderStage = new AdderStage(game, this);
+//        inputMultiplexer.addProcessor(0,adderStage);
     }
-
 
 
     void generateMap(){
@@ -68,6 +71,7 @@ public class SingleJumpGameStage extends JumpGameStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+   //     adderStage.act(delta);
         //world.step(delta, 1, 1);
         elapsedtime += delta;
         if(character.alive) {
@@ -77,6 +81,18 @@ public class SingleJumpGameStage extends JumpGameStage {
             }
         }
 
+    }
+
+    @Override
+    public void draw() {
+        super.draw();
+  //      adderStage.draw();
+    }
+
+    @Override
+    public void dispose() {
+    //    adderStage.dispose();
+        super.dispose();
     }
 
     public void generate(){
