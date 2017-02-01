@@ -25,6 +25,7 @@ public class Character extends WorldActorGroup {
     float currentSpeed;
     public boolean doubleJumpAvalaible = true;
 
+    // Neve Pisti
     public Character(World world, float x, float y) {
         super(world, ShapeType.Rectangle, BodyDef.BodyType.DynamicBody, 0, 0.2f, 5, false);
         actor = new OneSpriteAnimatedActor(Assets.manager.get(Assets.WALK_ATLAS)){
