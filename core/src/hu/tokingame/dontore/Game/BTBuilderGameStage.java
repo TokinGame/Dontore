@@ -36,10 +36,18 @@ abstract public class BTBuilderGameStage extends GameStage {
     void add(float x, float y, int what){
         //x = phantomActor.getX() + x + 2;
         switch(what){
-            case 1: addActor(new CrateActor(world, loader, x, y)); break;
-            case 2: addActor(new SpikeActor(world, loader, x, y)); break;
+            case 1:
+                CrateActor crateActor;
+                addActor(crateActor = new CrateActor(world, loader, x, y));
+                bluetoothConnectedStage.sendMessage("bc:" + crateActor.toString());
+                break;
+            case 2:
+                SpikeActor spikeActor;
+                addActor(spikeActor = new SpikeActor(world, loader, x, y));
+                bluetoothConnectedStage.sendMessage("bs:" + spikeActor.toString());
+                break;
         }
-        bluetoothConnectedStage.sendMessage("b"+x+";"+y+";"+what);
+        //bluetoothConnectedStage.sendMessage("b:"+x+";"+y+";"+what);
     }
 
     @Override

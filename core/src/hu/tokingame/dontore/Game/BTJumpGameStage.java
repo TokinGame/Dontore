@@ -16,7 +16,7 @@ import hu.tokingame.dontore.MyGdxGame;
 abstract public class BTJumpGameStage extends JumpGameStage {
     BluetoothConnectedStage bluetoothConnectedStage;
 
-    private final float sendPositionInterval = 0.1f;
+    private final float sendPositionInterval = 0.05f;
     private float lastSendPosition = 0f;
     private float time = 0f;
 
@@ -46,14 +46,21 @@ abstract public class BTJumpGameStage extends JumpGameStage {
         }
         String m;
         while((m = bluetoothConnectedStage.getMessage())!=null){
-            if(m.length()==0) return;
-            if(m.charAt(0) == 'b'){
-                m = m.substring(1);
-                String[] k = m.split(";");
-                add(Integer.parseInt(k[0]), Integer.parseInt(k[1]), Integer.parseInt(k[2]));
+            String[] strings = m.split(":");
+            if (strings.length==2 && strings[0].compareTo("bc")==0){
+                CrateActor crateActor;
+                addActor(crateActor = new CrateActor(world, loader, 0, 0));
+                crateActor.fromString(strings[1]);
+            }
+            if (strings.length==2 && strings[0].compareTo("bs")==0){
+                SpikeActor spikeActor;
+                addActor(spikeActor = new SpikeActor(world, loader, 0, 0));
+                spikeActor.fromString(strings[1]);
             }
         }
     }
+
+    /*
     void add(float x, float y, int what){
         x = phantomActor.getX() + x + 2;
         switch(what){
@@ -61,7 +68,7 @@ abstract public class BTJumpGameStage extends JumpGameStage {
             case 2: addActor(new SpikeActor(world, loader, x, y)); break;
         }
     }
-
+*/
     abstract public void  disconnect();
 
 }

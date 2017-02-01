@@ -168,6 +168,11 @@ abstract public class GameStage extends MyStage {
             }
 
 
+            if (phantomActor.getX() > grassV.get(2).getX()) {
+                grassV.get(0).setX(grassV.get(2).getX() + 8);
+                grassV.add(grassV.get(0));
+                grassV.remove(0);
+            }
             if(elapsedtime % 20 == 0){
                 character.maxSpeed += 1;
                 phantomActor.maxSpeed += 1;
@@ -177,7 +182,7 @@ abstract public class GameStage extends MyStage {
 
     @Override
     public void draw() {
-        updateFrustum(1.25f);
+        //updateFrustum(1.25f);
         super.draw();
     }
 
@@ -192,7 +197,7 @@ abstract public class GameStage extends MyStage {
     public PhantomActor getPhantomActor() {
         return phantomActor;
     }
-
+/*
     void generateMap(){
         int ref = (int)grassV.get(2).getX();
         int nr = rdm(1, 2);
@@ -236,4 +241,5 @@ abstract public class GameStage extends MyStage {
             }
         }
     }
+    */
 }

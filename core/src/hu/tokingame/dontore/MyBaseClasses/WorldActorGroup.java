@@ -312,22 +312,25 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
     }
 
 
+    public float round(float f, int dig) {
+        return Math.round(f * (float) Math.pow(10.0, (double) dig)) / (float) Math.pow(10.0, (double) dig);
+    }
+
     @Override
     public String toString() {
         Body b = getBody();
-        return b.getPosition().x + ";" + b.getPosition().y + ";" + b.getAngle() + ";" + b.getLinearVelocity().x + ";" + b.getLinearVelocity().y + ";" + b.getAngularVelocity();
+        return round(b.getPosition().x,4) + ";" + round(b.getPosition().y,4) + ";" + round(b.getAngle(),4) + ";" + round(b.getLinearVelocity().x,4) + ";" + round(b.getLinearVelocity().y,4) + ";" + round(b.getAngularVelocity(),4);
     }
 
     public void fromString(String s){
         String[] strings = s.split(";");
         Body b = getBody();
-        try{
             b.setTransform(Float.valueOf(strings[0]), Float.valueOf(strings[1]), Float.valueOf(strings[2]));
             b.setAngularVelocity(Float.valueOf(strings[5]));
             b.setLinearVelocity(Float.valueOf(strings[3]),Float.valueOf(strings[4]));
-        }
+/*        }
         catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 }
