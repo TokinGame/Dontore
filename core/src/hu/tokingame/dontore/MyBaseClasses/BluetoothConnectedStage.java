@@ -24,6 +24,10 @@ abstract public class BluetoothConnectedStage extends BluetoothStage {
         return messages;
     }
 
+    @Override
+    public void init() {
+        super.init();
+    }
 
     public BluetoothConnectedStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);

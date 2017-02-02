@@ -13,6 +13,7 @@ public class Globals {
     public static final float WORLD_WIDTH = 1280;
     public static final float WORLD_HEIGHT = 720;
 
+    public static final String PREFS = "PistaScore";
 
     public static boolean music = true;
     public static boolean host = false;

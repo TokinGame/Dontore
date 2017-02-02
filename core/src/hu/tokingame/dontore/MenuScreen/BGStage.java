@@ -34,6 +34,9 @@ public class BGStage extends MyStage {
         addActor(a1);
         addActor(a2);
         addActor(a3);
+        a1.setZIndex(0);
+        a2.setZIndex(0);
+        a3.setZIndex(0);
     }
 
     @Override
@@ -53,6 +56,7 @@ public class BGStage extends MyStage {
     }
 
     void moveBackground(){
+        if (actorVector== null) return;
         if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
         actorVector.add(actorVector.get(0)); actorVector.remove(0);
         actorVector.get(0).setX(actorVector.get(0).getX()-1f);
