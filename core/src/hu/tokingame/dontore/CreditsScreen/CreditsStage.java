@@ -9,11 +9,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Vector;
 
+import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
+import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -53,12 +55,28 @@ public class CreditsStage extends MyStage {
         addActor(a2);
         addActor(a3);
 
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(200, 200);
+                setPosition(1000, 500);
+                setOriginCenter();
+            }
+            float elapsedTime = 0;
 
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+                elapsedTime += delta;
+                setRotation(elapsedTime*50);
+            }
+        });
         addActor(new BackgroundTextButton("Back", 2){
             @Override
             protected void init() {
                 super.init();
-                this.setPosition(getViewport().getWorldWidth()-this.getWidth(),0);
+                this.setPosition(getViewport().getWorldWidth()-this.getWidth()-10,10);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -69,34 +87,34 @@ public class CreditsStage extends MyStage {
 
             }
         });
-        addActor(new MyLabel("Bálint Dániel - Graphics", MyLabel.style2){
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.TOKIN)){
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
+                setSize(100, 100);
+                setPosition(200, 500);
             }
         });
-        addActor(new MyLabel("Dávid Mátyás - Coding", MyLabel.style2){
+        addActor(new MyLabel("Created by Tökin Game", MyLabel.style2){
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 400);
+                setPosition(350, 500);
             }
         });
-        addActor(new MyLabel("Kovács Zoltán - Coding", MyLabel.style2){
+        String s = "Bálint Dániel - Graphics\n" +
+                "Dávid Mátyás - Code\n" +
+                "Kovács Zoltán - Code\n" +
+                "Schuh Marcell - Code";
+
+        addActor(new MyLabel(s, MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 300);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 150);
             }
         });
-        addActor(new MyLabel("Schuh Marcell - Coding", MyLabel.style2){
-            @Override
-            public void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
-            }
-        });
+
     }
     void moveBackground(){
         if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);

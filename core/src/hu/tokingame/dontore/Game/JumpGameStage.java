@@ -126,7 +126,7 @@ abstract public class JumpGameStage extends GameStage {
             ripTime = getTime();
             highscore(ripTime);
             dead=true;
-            controlStage.addActor(new MyLabel("You Died. No more paprika.", MyLabel.style1) {
+            controlStage.addActor(new MyLabel("You Died", MyLabel.style2) {
                 @Override
                 public void init() {
                     super.init();

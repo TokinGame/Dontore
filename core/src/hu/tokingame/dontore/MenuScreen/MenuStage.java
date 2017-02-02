@@ -108,7 +108,7 @@ public class MenuStage extends BGStage {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/3*2-this.getWidth()/2, 10);
+                setPosition(Globals.WORLD_WIDTH/3*2-this.getWidth()/3, 10);
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -202,8 +202,9 @@ public class MenuStage extends BGStage {
             public void init() {
                 super.init();
                 setSize(100,100);
-                setPosition(50, Globals.WORLD_HEIGHT-this.getWidth()-10);
-                this.setPosition(50,Globals.WORLD_HEIGHT-this.getHeight()-10);
+                setPosition(10, Globals.WORLD_HEIGHT-this.getWidth()-10);
+                this.setPosition(10,Globals.WORLD_HEIGHT-this.getHeight()-10);
+                if(!Globals.music) setTexture(Assets.manager.get(Assets.SPEAKER_DISABLED));
                 addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {

@@ -68,6 +68,7 @@ public class Assets {
 
     public static final AssetDescriptor<Texture> SPEAKER = new AssetDescriptor<Texture>("textures/speaker_icon.png", Texture.class);
     public static final AssetDescriptor<Texture> SPEAKER_DISABLED = new AssetDescriptor<Texture>("textures/speaker_icon_disabled.png", Texture.class);
+    public static final AssetDescriptor<Texture> TOKIN = new AssetDescriptor<Texture>("textures/tokin.png", Texture.class);
     //</editor-fold>
 
     //<editor-fold desc="Music">
@@ -113,6 +114,7 @@ public class Assets {
 
         manager.load(SPEAKER);
         manager.load(SPEAKER_DISABLED);
+        manager.load(TOKIN);
 
         manager.load(MAIN_MUSIC);
         //</editor-fold>
