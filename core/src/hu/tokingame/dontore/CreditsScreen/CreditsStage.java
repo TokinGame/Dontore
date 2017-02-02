@@ -9,8 +9,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Vector;
 
+import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
+import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -64,9 +66,37 @@ public class CreditsStage extends MyStage {
                         game.setScreenBackByStackPop();
                     }
                 });
+
             }
         });
-
+        addActor(new MyLabel("Bálint Dániel - Graphics", MyLabel.style2){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
+            }
+        });
+        addActor(new MyLabel("Dávid Mátyás - Coding", MyLabel.style2){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 400);
+            }
+        });
+        addActor(new MyLabel("Kovács Zoltán - Coding", MyLabel.style2){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 300);
+            }
+        });
+        addActor(new MyLabel("Schuh Marcell - Coding", MyLabel.style2){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 200);
+            }
+        });
     }
     void moveBackground(){
         if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);

@@ -2,6 +2,7 @@ package hu.tokingame.dontore.MenuScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -192,6 +193,32 @@ public class MenuStage extends BGStage {
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
                         game.setScreen(new HighScreen(game));
+                    }
+                });
+            }
+        });
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.SPEAKER)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(100,100);
+                setPosition(50, Globals.WORLD_HEIGHT-this.getWidth()-10);
+                this.setPosition(50,Globals.WORLD_HEIGHT-this.getHeight()-10);
+                addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        musicToggle = !musicToggle;
+                        Globals.music = !Globals.music;
+
+                        if(musicToggle){
+                            setTexture(Assets.manager.get(Assets.SPEAKER));
+                            Assets.manager.get(Assets.MAIN_MUSIC).play();
+                        }
+                        else{
+                            setTexture(Assets.manager.get(Assets.SPEAKER_DISABLED));
+                            Assets.manager.get(Assets.MAIN_MUSIC).pause();
+                        }
                     }
                 });
             }
