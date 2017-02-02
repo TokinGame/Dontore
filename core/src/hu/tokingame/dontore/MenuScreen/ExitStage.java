@@ -32,10 +32,11 @@ public class ExitStage extends BGStage {
         return false;
     }
 
+
     @Override
     public void init() {
         super.init();
-        addActor(new MyLabel("Are you sure want to exit?", MyLabel.style1){
+        addActor(new MyLabel("Are you sure want to exit?", MyLabel.style2){
             @Override
             public void init() {
                 super.init();

@@ -1,9 +1,19 @@
 package hu.tokingame.dontore.LoadingScreen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.awt.Color;
+
+import hu.tokingame.dontore.Global.Assets;
+import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
+import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteAnimatedActor;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -14,7 +24,7 @@ import hu.tokingame.dontore.MyGdxGame;
 public class LoadingStage extends MyStage {
 
     private LoadingStage loadingStage;
-    private OneSpriteAnimatedActor cassetteActor;
+    private OneSpriteAnimatedActor paprikaLoading;
 
     public LoadingStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -23,22 +33,27 @@ public class LoadingStage extends MyStage {
 
     @Override
     public void init() {
-        /*loadingStage = this;
-        addActor(cassetteActor = new OneSpriteAnimatedActor("ButtonAndOther/loading.txt"){
+
+
+
+        loadingStage = this;
+        addActor( paprikaLoading = new OneSpriteAnimatedActor("textures/loading.txt"){
             @Override
             public void init() {
                 super.init();
                 stop();
                 setFrame(0);
-                setSize(loadingStage.getViewport().getWorldWidth(),loadingStage.getViewport().getWorldHeight());
+                setSize(200,200);
+                setPosition(Globals.WORLD_WIDTH/2- this.getWidth()/2, 400);
             }
-        });*/
+        });
+
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        //cassetteActor.setFramePercent(Assets.manager.getProgress());
-        //System.out.println(Assets.manager.getProgress());
+        paprikaLoading.setFramePercent(Assets.manager.getProgress());
+        System.out.println(Assets.manager.getProgress());
     }
 }

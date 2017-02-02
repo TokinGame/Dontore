@@ -8,8 +8,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Vector;
 
+import hu.tokingame.dontore.Global.Globals;
+import hu.tokingame.dontore.MenuScreen.BGStage;
 import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
+import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyGdxGame;
 
@@ -17,11 +20,8 @@ import hu.tokingame.dontore.MyGdxGame;
  * Created by davimatyi on 2016. 12. 09..
  */
 
-public class HowToPlayStage extends MyStage {
+public class HowToPlayStage extends BGStage {
     String s;
-
-    MenuBackgroundActor a1, a2, a3;
-    Vector<MenuBackgroundActor> actorVector;
 
     public HowToPlayStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
@@ -37,17 +37,19 @@ public class HowToPlayStage extends MyStage {
 
     @Override
     public void init() {
+        super.init();
+        s = "How to play:\n" +
+                "- Singleplayer: you only have to jump,\n  by pressing on the screen.\n" +
+                "- Multiplayer: the client has to build\n  obstacles for the other player,\n" +
+                "\t  and the host has to survive the map\n  built by the client";
 
-        actorVector = new Vector<MenuBackgroundActor>();
-        a1 = new MenuBackgroundActor(1, 0, 0);
-        a2 = new MenuBackgroundActor(2, 2760, 0);
-        a3 = new MenuBackgroundActor(3, 2760*2, 0);
-        actorVector.add(a1);
-        actorVector.add(a2);
-        actorVector.add(a3);
-        addActor(a1);
-        addActor(a2);
-        addActor(a3);
+        addActor(new MyLabel(s, MyLabel.style2){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 50);
+            }
+        });
 
         addActor(new BackgroundTextButton("Back", 2){
             @Override
@@ -66,18 +68,10 @@ public class HowToPlayStage extends MyStage {
 
     }
 
-    void moveBackground(){
-        if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
-        actorVector.add(actorVector.get(0)); actorVector.remove(0);
-        actorVector.get(0).setX(actorVector.get(0).getX()-1f);
-        actorVector.get(1).setX(actorVector.get(1).getX()-1f);
-        actorVector.get(2).setX(actorVector.get(2).getX()-1f);
-    }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        moveBackground();
     }
 
 }
