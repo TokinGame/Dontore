@@ -19,9 +19,8 @@ import static hu.tokingame.dontore.Global.Globals.PREFS;
 
 public class HighScreen extends MyScreen {
     private HighStage stage;
-
     //https://github.com/libgdx/libgdx/wiki/Preferences
-    private Preferences preferences = Gdx.app.getPreferences(PREFS);
+
 
     public HighScreen(MyGdxGame game) {
         super(game);
@@ -32,14 +31,6 @@ public class HighScreen extends MyScreen {
         super.init();
         stage = new HighStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
         Gdx.input.setInputProcessor(stage);
-
-        preferences.putInteger("Elso", 34);
-        preferences.putInteger("Easdasljk", 33);
-
-        preferences.getInteger("Elso");
-        preferences.getInteger("Elso", 0);
-
-        preferences.flush();
     }
 
     @Override
