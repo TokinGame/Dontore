@@ -30,16 +30,16 @@ public class MenuScreen extends MyScreen {
     public void init() {
         super.init();
         preferences = Gdx.app.getPreferences(PREFS);
-        stage = new MenuStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
-        if(firstLoad){
-            for (int i = 0; i < preferences.getInteger("size",0); i++) {
-                Globals.MaxScores.add(preferences.getFloat(i+"",0));
+        stage = new MenuStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+        if (firstLoad) {
+            for (int i = 0; i < preferences.getInteger("size", 0); i++) {
+                Globals.MaxScores.add(preferences.getFloat(i + "", 0));
             }
             firstLoad = false;
-        }else{
-            preferences.putInteger("size",Globals.MaxScores.size());
+        } else {
+            preferences.putInteger("size", Globals.MaxScores.size());
             for (int i = 0; i < Globals.MaxScores.size(); i++) {
-                preferences.putFloat(i+"",Globals.MaxScores.get(i));
+                preferences.putFloat(i + "", Globals.MaxScores.get(i));
             }
         }
 

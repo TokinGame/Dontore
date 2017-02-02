@@ -12,9 +12,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
-import com.badlogic.gdx.graphics.g3d.particles.values.GradientColorValue;
-
-import hu.tokingame.dontore.MyBaseClasses.MyStage;
 
 /**
  * Created by M on 10/7/2016.
@@ -25,24 +22,26 @@ public class Assets {
     public static AssetManager manager;
 
     static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+
     static {
         fontParameter.fontFileName = "fonts/Anton-Regular.ttf";
         fontParameter.fontParameters.size = 55;
         fontParameter.fontParameters.characters = hu.tokingame.dontore.Global.Globals.CHARS;
         fontParameter.fontParameters.color = Color.WHITE;
     }
+
     static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+
     static {
         fontParameter2.fontFileName = "fonts/Anton-Regular.ttf";
         fontParameter2.fontParameters.size = 45;
         fontParameter2.fontParameters.characters = hu.tokingame.dontore.Global.Globals.CHARS;
         fontParameter2.fontParameters.color = Color.BLACK;
     }
+
     // Fonts
     public static final AssetDescriptor<BitmapFont> ANTON_FONT = new AssetDescriptor<BitmapFont>("Fonts/Anton-Regular.ttf", BitmapFont.class, fontParameter);
     public static final AssetDescriptor<BitmapFont> ANTON_FONT_B = new AssetDescriptor<BitmapFont>("Fonts/Anton-Regular.ttf", BitmapFont.class, fontParameter2);
-
-
 
 
     //<editor-fold desc="Map Elements">
@@ -76,14 +75,12 @@ public class Assets {
     //</editor-fold>
 
 
-
-
     public static void prepare() {
         manager = new AssetManager();
         Texture.setAssetManager(manager);
     }
 
-    public static void load(){
+    public static void load() {
         FileHandleResolver resolver = new InternalFileHandleResolver();
         manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
         manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
@@ -121,12 +118,12 @@ public class Assets {
 
     }
 
-    public static void afterLoaded(){
+    public static void afterLoaded() {
         Assets.manager.get(Assets.MAIN_MUSIC).setLooping(true);
         Assets.manager.get(Assets.MAIN_MUSIC).play();
     }
 
-    public static void unload(){
+    public static void unload() {
         manager.dispose();
     }
 

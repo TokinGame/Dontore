@@ -86,7 +86,7 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
 
     @Override
     public void init() {
-        setSize(1,1);
+        setSize(1, 1);
     }
 
 
@@ -96,7 +96,7 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
         beforeAddToWorld();
         bodyDef = new BodyDef();
         bodyDef.type = bodyType;
-        bodyDef.position.set(getX(),getY());
+        bodyDef.position.set(getX(), getY());
         bodyDef.angle = getRotation();
 
         body = this.world.createBody(bodyDef);
@@ -104,34 +104,33 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
         body.setUserData(this);
 
         Shape shape;
-        switch (shapeType)
-        {
+        switch (shapeType) {
             case Circle:
                 shape = new CircleShape();
-                ((CircleShape)shape).setRadius((getWidth()+getHeight())/4);
+                ((CircleShape) shape).setRadius((getWidth() + getHeight()) / 4);
                 //((CircleShape)shape).setPosition(new Vector2((getWidth()+getHeight())/4, (getWidth()+getHeight())/4));
                 fixtureDef.shape = shape;
                 body.createFixture(fixtureDef);
-                setOrigin((getWidth()+getHeight())/4, (getWidth()+getHeight())/4);
+                setOrigin((getWidth() + getHeight()) / 4, (getWidth() + getHeight()) / 4);
                 shape.dispose();
                 break;
             case Rectangle:
                 shape = new PolygonShape();
                 //((PolygonShape)shape).setAsBox(getWidth()/2,getHeight()/2,new Vector2(getWidth()/2, getHeight()/2),0);
-                ((PolygonShape)shape).setAsBox(getWidth()/2,getHeight()/2,new Vector2(0, 0),0);
+                ((PolygonShape) shape).setAsBox(getWidth() / 2, getHeight() / 2, new Vector2(0, 0), 0);
                 fixtureDef.shape = shape;
                 body.createFixture(fixtureDef);
-                setOrigin(getWidth()/2,getHeight()/2);
+                setOrigin(getWidth() / 2, getHeight() / 2);
                 shape.dispose();
                 break;
             case Polygon:
-                loader.attachFixture(body, bodyID, fixtureDef, getWidth()>getHeight()?getWidth():getHeight());
-                Vector2 vector2 = loader.getOrigin(bodyID,getWidth()>getHeight()?getWidth():getHeight());
+                loader.attachFixture(body, bodyID, fixtureDef, getWidth() > getHeight() ? getWidth() : getHeight());
+                Vector2 vector2 = loader.getOrigin(bodyID, getWidth() > getHeight() ? getWidth() : getHeight());
                 setOrigin(vector2.x, vector2.y);
                 break;
         }
-        body.getMassData().center.set(getWidth()/2,getHeight()/2);
-        for(Fixture f : body.getFixtureList()) {
+        body.getMassData().center.set(getWidth() / 2, getHeight() / 2);
+        for (Fixture f : body.getFixtureList()) {
             f.setUserData(this);
         }
         if (visibilityControl) {
@@ -140,23 +139,19 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
         afterAddToWorld();
     }
 
-    protected void beforeAddToWorld()
-    {
+    protected void beforeAddToWorld() {
 
     }
 
-    protected void afterAddToWorld()
-    {
+    protected void afterAddToWorld() {
 
     }
 
-    protected void beforeRemoveFromWorld()
-    {
+    protected void beforeRemoveFromWorld() {
 
     }
 
-    protected void afterRemoveFromWorld()
-    {
+    protected void afterRemoveFromWorld() {
 
     }
 
@@ -165,12 +160,11 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
         return false;
     }
 
-    public void removeFromStage(){
-        if (getStage()==null) return;
+    public void removeFromStage() {
+        if (getStage() == null) return;
         if (!flaggedForDeleteFromWorld) {
             getStage().getActors().removeValue(this, true);
-        }else
-        {
+        } else {
             flaggedForDeleteFromStage = true;
         }
     }
@@ -225,35 +219,35 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
     }
 
     public void setSensor(boolean sensor) {
-        for (Fixture b:body.getFixtureList()) {
+        for (Fixture b : body.getFixtureList()) {
             b.setSensor(sensor);
         }
     }
 
     public void setFriction(float value) {
-        for (Fixture b:body.getFixtureList()) {
+        for (Fixture b : body.getFixtureList()) {
             b.setFriction(value);
         }
     }
 
     public void setRestitution(float value) {
-        for (Fixture b:body.getFixtureList()) {
+        for (Fixture b : body.getFixtureList()) {
             b.setRestitution(value);
         }
     }
 
     public void setDensity(float value) {
-        for (Fixture b:body.getFixtureList()) {
+        for (Fixture b : body.getFixtureList()) {
             b.setDensity(value);
         }
     }
 
 
-     @Override
+    @Override
     public void act(float delta) {
         super.act(delta);
-        if (body!=null) {
-            if (flaggedForDeleteFromWorld){
+        if (body != null) {
+            if (flaggedForDeleteFromWorld) {
                 removeFromWorld();
                 flaggedForDeleteFromWorld = false;
                 if (flaggedForDeleteFromStage) {
@@ -264,7 +258,7 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
             }
             changeByWorld = true;
             setPosition(body.getPosition().x - getOriginX(), body.getPosition().y - getOriginY());
-            setRotation(body.getAngle()* MathUtils.radiansToDegrees);
+            setRotation(body.getAngle() * MathUtils.radiansToDegrees);
             changeByWorld = false;
         }
     }
@@ -273,7 +267,7 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
     @Override
     protected void positionChanged() {
         super.positionChanged();
-        if (body!=null && !changeByWorld) {
+        if (body != null && !changeByWorld) {
             body.setTransform(getX(), getY(), body.getAngle());
         }
     }
@@ -281,15 +275,15 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
     @Override
     protected void rotationChanged() {
         super.rotationChanged();
-        if (body!=null && !changeByWorld) {
-            body.setTransform(getOriginX(), getOriginY(), getRotation()* MathUtils.degreesToRadians);
+        if (body != null && !changeByWorld) {
+            body.setTransform(getOriginX(), getOriginY(), getRotation() * MathUtils.degreesToRadians);
         }
     }
 
     @Override
     protected void sizeChanged() {
         super.sizeChanged();
-        if (body!=null && !changeByWorld) {
+        if (body != null && !changeByWorld) {
             removeFromWorld();
             addToWorld();
         }
@@ -300,15 +294,16 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
         return flaggedForDeleteFromWorld;
     }
 
-    public void setPositionByLeftBottomCorner(float x, float y){
-        setPosition(x+getOriginX(),y+getOriginY());
+    public void setPositionByLeftBottomCorner(float x, float y) {
+        setPosition(x + getOriginX(), y + getOriginY());
     }
 
-    public float getXByLeftBottomCorner(){
-        return getX()-getOriginX();
+    public float getXByLeftBottomCorner() {
+        return getX() - getOriginX();
     }
-    public float getYByLeftBottomCorner(){
-        return getY()-getOriginY();
+
+    public float getYByLeftBottomCorner() {
+        return getY() - getOriginY();
     }
 
 
@@ -319,15 +314,15 @@ public class WorldActorGroup extends Group implements WorldInterface, InitableIn
     @Override
     public String toString() {
         Body b = getBody();
-        return round(b.getPosition().x,4) + ";" + round(b.getPosition().y,4) + ";" + round(b.getAngle(),4) + ";" + round(b.getLinearVelocity().x,4) + ";" + round(b.getLinearVelocity().y,4) + ";" + round(b.getAngularVelocity(),4);
+        return round(b.getPosition().x, 4) + ";" + round(b.getPosition().y, 4) + ";" + round(b.getAngle(), 4) + ";" + round(b.getLinearVelocity().x, 4) + ";" + round(b.getLinearVelocity().y, 4) + ";" + round(b.getAngularVelocity(), 4);
     }
 
-    public void fromString(String s){
+    public void fromString(String s) {
         String[] strings = s.split(";");
         Body b = getBody();
-            b.setTransform(Float.valueOf(strings[0]), Float.valueOf(strings[1]), Float.valueOf(strings[2]));
-            b.setAngularVelocity(Float.valueOf(strings[5]));
-            b.setLinearVelocity(Float.valueOf(strings[3]),Float.valueOf(strings[4]));
+        b.setTransform(Float.valueOf(strings[0]), Float.valueOf(strings[1]), Float.valueOf(strings[2]));
+        b.setAngularVelocity(Float.valueOf(strings[5]));
+        b.setLinearVelocity(Float.valueOf(strings[3]), Float.valueOf(strings[4]));
 /*        }
         catch (Exception e){
             e.printStackTrace();

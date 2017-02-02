@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 /**
  * Created by davimatyi on 2017. 01. 10..
  */
-abstract public class MyActor extends Actor implements InitableInterface{
+abstract public class MyActor extends Actor implements InitableInterface {
 
     protected float elapsedTime = 0;
     protected Rectangle rectangle = new Rectangle();
@@ -45,10 +45,8 @@ abstract public class MyActor extends Actor implements InitableInterface{
         super.rotationChanged();
     }
 
-    public boolean overlaps(ShapeType shapeType, MyActor anotherActor)
-    {
-        switch (shapeType)
-        {
+    public boolean overlaps(ShapeType shapeType, MyActor anotherActor) {
+        switch (shapeType) {
             case Circle:
                 return circle.overlaps(anotherActor.circle);
             case Rectangle:
@@ -57,10 +55,8 @@ abstract public class MyActor extends Actor implements InitableInterface{
         return false;
     }
 
-    public static boolean overlaps(ShapeType shapeType, MyActor actorA, MyActor actorB)
-    {
-        switch (shapeType)
-        {
+    public static boolean overlaps(ShapeType shapeType, MyActor actorA, MyActor actorB) {
+        switch (shapeType) {
             case Circle:
                 return actorA.circle.overlaps(actorB.circle);
             case Rectangle:
@@ -69,8 +65,7 @@ abstract public class MyActor extends Actor implements InitableInterface{
         return false;
     }
 
-    public void resetElapsedTime()
-    {
+    public void resetElapsedTime() {
         elapsedTime = 0;
     }
 

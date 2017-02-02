@@ -1,9 +1,6 @@
 package hu.tokingame.dontore.MenuScreen;
 
-import com.badlogic.gdx.graphics.Texture;
-
 import hu.tokingame.dontore.Global.Assets;
-import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 
 /**

@@ -16,7 +16,7 @@ import hu.tokingame.dontore.MyGdxGame;
  */
 
 public class MultiGameScreen extends MyScreen {
-    public enum BluetoothState{
+    public enum BluetoothState {
         Choose, Listening, Discovering, Connected, Disconnected
     }
 
@@ -40,8 +40,6 @@ public class MultiGameScreen extends MyScreen {
         super.init();
 
 
-
-
         bluetoothChooseServerClientStage = new BluetoothChooseServerClientStage(game) {
             @Override
             public void init() {
@@ -60,10 +58,11 @@ public class MultiGameScreen extends MyScreen {
                         super.init();
                         addBackEventStackListener();
                     }
+
                     @Override
                     public void acceptConnection() {
                         bluetoothState = BluetoothState.Connected;
-                        btJumpGameStage = new BTJumpGameStage(game){
+                        btJumpGameStage = new BTJumpGameStage(game) {
                             @Override
                             public void disconnect() {
                                 bluetoothDisconectionStage = new BluetoothDisconectionStage(game) {
@@ -93,10 +92,11 @@ public class MultiGameScreen extends MyScreen {
                         super.init();
                         addBackEventStackListener();
                     }
+
                     @Override
                     public void startConnection() {
                         bluetoothState = BluetoothState.Connected;
-                        btBuilderGameStage = new BTBuilderGameStage(game){
+                        btBuilderGameStage = new BTBuilderGameStage(game) {
                             @Override
                             public void disconnect() {
                                 bluetoothDisconectionStage = new BluetoothDisconectionStage(game) {
@@ -119,15 +119,13 @@ public class MultiGameScreen extends MyScreen {
         };
 
 
-
-
         Gdx.input.setInputProcessor(bluetoothChooseServerClientStage);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
-        switch (bluetoothState){
+        switch (bluetoothState) {
             case Choose:
                 bluetoothChooseServerClientStage.act(delta);
                 bluetoothChooseServerClientStage.draw();
@@ -141,10 +139,10 @@ public class MultiGameScreen extends MyScreen {
                 bluetoothClientConnectionStage.draw();
                 break;
             case Connected:
-                if (btBuilderGameStage == null){
+                if (btBuilderGameStage == null) {
                     btJumpGameStage.act(delta);
                     btJumpGameStage.draw();
-                }else                {
+                } else {
                     btBuilderGameStage.act(delta);
                     btBuilderGameStage.draw();
                 }

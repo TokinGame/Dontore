@@ -13,22 +13,27 @@ public class BackgroundTextButton extends MyTextButton {
 
 
     public BackgroundTextButton(String text, int c) {
-        super(" "+text+" ");
+        super(" " + text + " ");
 
         color = c;
 
         setFont(Assets.manager.get(Assets.ANTON_FONT_B));
         //setStyle(new TextButtonStyle(null, null, null,Assets.manager.get(Assets.ANTON_FONT_B) ));
 
-        switch(color){
-            case 1: setTexture(Assets.manager.get(Assets.BUTTON_BG)); break;
-            case 2: setTexture(Assets.manager.get(Assets.BUTTON_BG_RED)); break;
-            default: break;
+        switch (color) {
+            case 1:
+                setTexture(Assets.manager.get(Assets.BUTTON_BG));
+                break;
+            case 2:
+                setTexture(Assets.manager.get(Assets.BUTTON_BG_RED));
+                break;
+            default:
+                break;
         }
     }
 
-    public BackgroundTextButton(String text){
-        super(" "+text+" ");
+    public BackgroundTextButton(String text) {
+        super(" " + text + " ");
         setFont(Assets.manager.get(Assets.ANTON_FONT_B));
         setTexture(Assets.manager.get(Assets.BUTTON_BG));
     }

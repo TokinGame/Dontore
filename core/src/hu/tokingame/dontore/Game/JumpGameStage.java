@@ -50,12 +50,12 @@ abstract public class JumpGameStage extends GameStage {
                     death();
                 }
                 if (contact.getFixtureA().getUserData() instanceof CrateActor && contact.getFixtureB().getUserData() instanceof Character ||
-                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof CrateActor){
+                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof CrateActor) {
                     character.setJumpAvalaible();
                     //character.resumeRuning();
                 }
                 if (contact.getFixtureA().getUserData() instanceof GrassActor && contact.getFixtureB().getUserData() instanceof Character ||
-                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof GrassActor){
+                        contact.getFixtureA().getUserData() instanceof Character && contact.getFixtureB().getUserData() instanceof GrassActor) {
                     character.setJumpAvalaible();
                     //character.resumeRuning();
                 }
@@ -91,15 +91,15 @@ abstract public class JumpGameStage extends GameStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(character.alive) {
-            character.getBody().setLinearVelocity(phantomActor.getSpeed()*character.getMaxSpeed()/5, character.getBody().getLinearVelocity().y);
+        if (character.alive) {
+            character.getBody().setLinearVelocity(phantomActor.getSpeed() * character.getMaxSpeed() / 5, character.getBody().getLinearVelocity().y);
             if (character.getX() < phantomActor.getX() - 1) {
                 character.getBody().applyForceToCenter(new Vector2((phantomActor.getX() - 1 - character.getX()) * 500 * delta, 0), true);
             }
         }
         controlStage.act(delta);
-        if(character.getX() < phantomActor.getX() - 8 && character.alive) death();
-        if(dead && !paprikaThere){
+        if (character.getX() < phantomActor.getX() - 8 && character.alive) death();
+        if (dead && !paprikaThere) {
             paprika.setPosition(character.getX(), character.getY());
             paprikaThere = true;
         }
@@ -110,7 +110,7 @@ abstract public class JumpGameStage extends GameStage {
         super.draw();
         controlStage.draw();
         controlStage.updateDisplayedTime();
-        box2DDebugRenderer.render(world, getCamera().combined);
+        //box2DDebugRenderer.render(world, getCamera().combined);
     }
 
     @Override
@@ -119,13 +119,13 @@ abstract public class JumpGameStage extends GameStage {
         controlStage.resize(screenWidth, screenHeight);
     }
 
-    public void death(){
+    public void death() {
         if (!dead) {
             character.die();
             stopTimer();
             ripTime = getTime();
             highscore(ripTime);
-            dead=true;
+            dead = true;
             controlStage.addActor(new MyLabel("You Died", MyLabel.style2) {
                 @Override
                 public void init() {
@@ -143,7 +143,7 @@ abstract public class JumpGameStage extends GameStage {
                         public void clicked(InputEvent event, float x, float y) {
                             super.clicked(event, x, y);
                             game.setScreen(new GameScreen(game));
-                            dead=false;
+                            dead = false;
                         }
                     });
                 }

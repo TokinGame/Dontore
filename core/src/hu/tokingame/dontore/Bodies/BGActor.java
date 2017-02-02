@@ -1,7 +1,6 @@
 package hu.tokingame.dontore.Bodies;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -27,7 +26,7 @@ public class BGActor extends WorldActorGroup {
         addActor(actor);
         addToWorld();
         setPosition(X, Y);
-        debug();
+        //debug();
         setZIndex(0);
     }
 
@@ -36,14 +35,21 @@ public class BGActor extends WorldActorGroup {
         super.act(delta);
 
     }
-    Texture tex(int t){
-        switch(t){
-            case 1: return Assets.manager.get(Assets.BG1);
-            case 2: return Assets.manager.get(Assets.BG2);
-            case 3: return Assets.manager.get(Assets.BG3);
-            case 4: return Assets.manager.get(Assets.BG4);
-            case 5: return Assets.manager.get(Assets.BG5);
-            default: return null;
+
+    Texture tex(int t) {
+        switch (t) {
+            case 1:
+                return Assets.manager.get(Assets.BG1);
+            case 2:
+                return Assets.manager.get(Assets.BG2);
+            case 3:
+                return Assets.manager.get(Assets.BG3);
+            case 4:
+                return Assets.manager.get(Assets.BG4);
+            case 5:
+                return Assets.manager.get(Assets.BG5);
+            default:
+                return null;
         }
 
     }

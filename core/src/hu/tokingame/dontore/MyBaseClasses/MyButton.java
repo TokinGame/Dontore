@@ -10,7 +10,7 @@ import hu.tokingame.dontore.Global.Assets;
 /**
  * Created by davimatyi on 2017. 01. 10..
  */
-public class MyButton extends TextButton implements InitableInterface{
+public class MyButton extends TextButton implements InitableInterface {
 
     private TextButtonStyle style;
 

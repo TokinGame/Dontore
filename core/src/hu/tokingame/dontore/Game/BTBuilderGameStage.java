@@ -2,7 +2,6 @@ package hu.tokingame.dontore.Game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import hu.tokingame.dontore.Bodies.CrateActor;
@@ -17,10 +16,11 @@ import hu.tokingame.dontore.MyGdxGame;
 abstract public class BTBuilderGameStage extends GameStage {
     BluetoothConnectedStage bluetoothConnectedStage;
     AdderStage adderStage;
+    boolean alive = true;
 
     public BTBuilderGameStage(MyGdxGame game) {
         super(game);
-        bluetoothConnectedStage = new BluetoothConnectedStage(new ExtendViewport(1,1,new OrthographicCamera(1,1)), new SpriteBatch(),game) {
+        bluetoothConnectedStage = new BluetoothConnectedStage(new ExtendViewport(1, 1, new OrthographicCamera(1, 1)), new SpriteBatch(), game) {
             @Override
             public void disconnected() {
                 disconnect();
@@ -51,33 +51,41 @@ abstract public class BTBuilderGameStage extends GameStage {
         bluetoothConnectedStage.sendMessage("bs:" + spikeActor.toString());
         return spikeActor;
     }
-/*
-    void add(float x, float y, int what){
-        //x = phantomActor.getX() + x + 2;
-        switch(what){
-            case 1:
-                bluetoothConnectedStage.sendMessage("bc:" + addCrate(x,y).toString());
-                break;
-            case 2:
-                bluetoothConnectedStage.sendMessage("bs:" + addSpike(x,y).toString());
-                break;
+
+    /*
+        void add(float x, float y, int what){
+            //x = phantomActor.getX() + x + 2;
+            switch(what){
+                case 1:
+                    bluetoothConnectedStage.sendMessage("bc:" + addCrate(x,y).toString());
+                    break;
+                case 2:
+                    bluetoothConnectedStage.sendMessage("bs:" + addSpike(x,y).toString());
+                    break;
+            }
+            //bluetoothConnectedStage.sendMessage("b:"+x+";"+y+";"+what);
         }
-        //bluetoothConnectedStage.sendMessage("b:"+x+";"+y+";"+what);
-    }
-*/
+    */
     @Override
     public void act(float delta) {
-        super.act(delta);
-        bluetoothConnectedStage.act();
-        String m;
-        while ((m = bluetoothConnectedStage.getMessage())!=null){
-            String[] strings = m.split(":");
-            if (strings.length==2 && strings[0].compareTo("c")==0){
-                character.fromString(strings[1]);
+        if (alive) {
+            super.act(delta);
+            bluetoothConnectedStage.act();
+            String m;
+            while ((m = bluetoothConnectedStage.getMessage()) != null) {
+                if (m.equals("death")) {
+                    death();
+                } else {
+                    String[] strings = m.split(":");
+                    if (strings.length == 2 && strings[0].compareTo("c") == 0) {
+                        character.fromString(strings[1]);
+                    }
+                }
             }
+            adderStage.act(delta);
         }
-        adderStage.act(delta);
     }
+    // Never gonna give you up never gonna let you down, never gonna run around and desert you
 
     @Override
     public void draw() {
@@ -91,6 +99,11 @@ abstract public class BTBuilderGameStage extends GameStage {
         super.dispose();
     }
 
-    abstract public void  disconnect();
+    void death() {
+        alive = false;
+        disconnect();
+    }
+
+    abstract public void disconnect();
 
 }

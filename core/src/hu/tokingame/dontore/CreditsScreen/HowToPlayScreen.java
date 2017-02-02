@@ -15,6 +15,7 @@ import hu.tokingame.dontore.MyGdxGame;
 
 public class HowToPlayScreen extends MyScreen {
     HowToPlayStage stage;
+
     public HowToPlayScreen(MyGdxGame game) {
         super(game);
     }
@@ -22,7 +23,7 @@ public class HowToPlayScreen extends MyScreen {
     @Override
     public void init() {
         super.init();
-        stage = new HowToPlayStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
+        stage = new HowToPlayStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         Gdx.input.setInputProcessor(stage);
     }
 

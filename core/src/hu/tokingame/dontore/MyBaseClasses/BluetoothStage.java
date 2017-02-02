@@ -15,8 +15,6 @@ import hu.tokingame.dontore.MyGdxGame;
 abstract public class BluetoothStage extends BGStage {
 
 
-
-
     public float getElapsedTime() {
         return elapsedTime;
     }
@@ -31,13 +29,13 @@ abstract public class BluetoothStage extends BGStage {
         super(viewport, batch, game);
     }
 
-    public void startBluetoothListening(){
+    public void startBluetoothListening() {
         getBluetoothManager().enableBluetooth();
         getBluetoothManager().enableDiscoveribility();
         getBluetoothManager().startServer();
     }
 
-    public void startBluetoothDiscovering(){
+    public void startBluetoothDiscovering() {
         getBluetoothManager().enableBluetooth();
         getBluetoothManager().discoverDevices();
     }
@@ -45,10 +43,10 @@ abstract public class BluetoothStage extends BGStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        elapsedTime+=delta;
+        elapsedTime += delta;
     }
 
-    public ArrayList<String> getDiscoveredDevicesName(){
+    public ArrayList<String> getDiscoveredDevicesName() {
         ArrayList<String> strings = new ArrayList<String>();
         while (!getBluetoothManager().isFirst()) {
             getBluetoothManager().switchToPrevDevice();
@@ -64,7 +62,7 @@ abstract public class BluetoothStage extends BGStage {
         return strings;
     }
 
-    public void startConnectingToDevice(int discoveredDeviceNum){
+    public void startConnectingToDevice(int discoveredDeviceNum) {
         while (!getBluetoothManager().isFirst()) {
             getBluetoothManager().switchToPrevDevice();
         }
@@ -73,4 +71,6 @@ abstract public class BluetoothStage extends BGStage {
         }
         getBluetoothManager().connectToServer();
     }
+
+    // ez atomfizika
 }

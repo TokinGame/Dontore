@@ -25,8 +25,6 @@ public class Globals {
     public static Vector<Float> MaxScores = new Vector();
 
 
-
-
 }
 
 

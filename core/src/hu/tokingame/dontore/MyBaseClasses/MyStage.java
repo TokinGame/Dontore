@@ -31,13 +31,12 @@ abstract public class MyStage extends Stage implements InitableInterface {
     }
 
 
-
-    public void addBackEventStackListener()    {
+    public void addBackEventStackListener() {
         addListener(new InputListener() {
 
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
-                if(keycode== Input.Keys.BACK || keycode == Input.Keys.ESCAPE) {
+                if (keycode == Input.Keys.BACK || keycode == Input.Keys.ESCAPE) {
                     game.setScreenBackByStackPop();
                 }
                 return true;
@@ -46,14 +45,13 @@ abstract public class MyStage extends Stage implements InitableInterface {
     }
 
     public Actor getLastAdded() {
-        return getActors().get(getActors().size-1);
+        return getActors().get(getActors().size - 1);
     }
 
-    public void setCameraZoomXY(float x, float y, float zoom)
-    {
-        OrthographicCamera c = (OrthographicCamera)getCamera();
-        c.zoom=zoom;
-        c.position.set(x,y,0);
+    public void setCameraZoomXY(float x, float y, float zoom) {
+        OrthographicCamera c = (OrthographicCamera) getCamera();
+        c.zoom = zoom;
+        c.position.set(x, y, 0);
         c.update();
     }
 
@@ -73,8 +71,7 @@ abstract public class MyStage extends Stage implements InitableInterface {
     private float cameraRotation = 0;
     private float rotateTo = 0;
 
-    public void setCameraMoveToXY(float x, float y, float zoom, float speed, float rotate)
-    {
+    public void setCameraMoveToXY(float x, float y, float zoom, float speed, float rotate) {
         cameraTargetX = x;
         cameraTargetY = y;
         cameraTargetZoom = zoom;
@@ -83,16 +80,14 @@ abstract public class MyStage extends Stage implements InitableInterface {
 
     }
 
-    public void setCameraMoveToXY(float x, float y, float zoom, float speed)
-    {
+    public void setCameraMoveToXY(float x, float y, float zoom, float speed) {
         cameraTargetX = x;
         cameraTargetY = y;
         cameraTargetZoom = zoom;
         cameraMoveSpeed = speed;
     }
 
-    public void setCameraResetToCenterOfScreen()
-    {
+    public void setCameraResetToCenterOfScreen() {
         if (getViewport() instanceof ExtendViewport) {
             OrthographicCamera c = (OrthographicCamera) getCamera();
             ExtendViewport v = (ExtendViewport) getViewport();
@@ -102,134 +97,129 @@ abstract public class MyStage extends Stage implements InitableInterface {
             c.update();
         }
     }
-    public void setCameraResetToLeftBottomOfScreen(){
-        OrthographicCamera c = (OrthographicCamera)getCamera();
+
+    public void setCameraResetToLeftBottomOfScreen() {
+        OrthographicCamera c = (OrthographicCamera) getCamera();
         Viewport v = getViewport();
-        setCameraZoomXY(v.getWorldWidth()/2, v.getWorldHeight()/2,1);
+        setCameraZoomXY(v.getWorldWidth() / 2, v.getWorldHeight() / 2, 1);
         c.update();
 
     }
 
-    public void resize(int screenWidth, int screenHeight){
+    public void resize(int screenWidth, int screenHeight) {
         getViewport().update(screenWidth, screenHeight, true);
         resized();
     }
 
-    protected void resized(){
+    protected void resized() {
         setCameraResetToCenterOfScreen();
-    };
+    }
+
+    ;
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        if (timerRunning){
+        if (timerRunning) {
             timer += delta;
         }
-        OrthographicCamera c = (OrthographicCamera)getCamera();
-        if (cameraTargetX!=c.position.x || cameraTargetY!=c.position.y || cameraTargetZoom!=c.zoom){
-            if (Math.abs(c.position.x-cameraTargetX)<cameraMoveSpeed*delta) {
+        OrthographicCamera c = (OrthographicCamera) getCamera();
+        if (cameraTargetX != c.position.x || cameraTargetY != c.position.y || cameraTargetZoom != c.zoom) {
+            if (Math.abs(c.position.x - cameraTargetX) < cameraMoveSpeed * delta) {
                 c.position.x = (c.position.x + cameraTargetX) / 2;
             } else {
-                if (c.position.x<cameraTargetX){
-                    c.position.x += cameraMoveSpeed*delta;
-                }else{
-                    c.position.x -= cameraMoveSpeed*delta;
+                if (c.position.x < cameraTargetX) {
+                    c.position.x += cameraMoveSpeed * delta;
+                } else {
+                    c.position.x -= cameraMoveSpeed * delta;
                 }
             }
-            if (Math.abs(c.position.y-cameraTargetY)<cameraMoveSpeed*delta) {
+            if (Math.abs(c.position.y - cameraTargetY) < cameraMoveSpeed * delta) {
                 c.position.y = (c.position.y + cameraTargetY) / 2;
             } else {
-                if (c.position.y<cameraTargetY){
-                    c.position.y += cameraMoveSpeed*delta;
-                }else{
-                    c.position.y -= cameraMoveSpeed*delta;
+                if (c.position.y < cameraTargetY) {
+                    c.position.y += cameraMoveSpeed * delta;
+                } else {
+                    c.position.y -= cameraMoveSpeed * delta;
                 }
             }
-            if (Math.abs(c.zoom-cameraTargetZoom)<cameraMoveSpeed*delta) {
+            if (Math.abs(c.zoom - cameraTargetZoom) < cameraMoveSpeed * delta) {
                 c.zoom = (c.zoom + cameraTargetZoom) / 2;
             } else {
-                if (c.zoom<cameraTargetZoom){
-                    c.zoom += cameraMoveSpeed*delta;
-                }else{
-                    c.zoom -= cameraMoveSpeed*delta;
+                if (c.zoom < cameraTargetZoom) {
+                    c.zoom += cameraMoveSpeed * delta;
+                } else {
+                    c.zoom -= cameraMoveSpeed * delta;
                 }
             }
             //System.out.println(cameraRotation + " ... " + rotateTo);
-            if (Math.abs(cameraRotation - rotateTo)<0.01f){
+            if (Math.abs(cameraRotation - rotateTo) < 0.01f) {
                 cameraRotation = rotateTo;
-            }else{
-                float sp = Math.abs(cameraRotation - rotateTo)/2f;
-                if (sp>cameraMoveSpeed*delta*100){
-                    sp = cameraMoveSpeed*delta*100;
+            } else {
+                float sp = Math.abs(cameraRotation - rotateTo) / 2f;
+                if (sp > cameraMoveSpeed * delta * 100) {
+                    sp = cameraMoveSpeed * delta * 100;
                 }
-                if(cameraRotation > rotateTo) {
+                if (cameraRotation > rotateTo) {
                     c.rotate(sp);
-                    cameraRotation-=sp;
-                }else{
+                    cameraRotation -= sp;
+                } else {
                     c.rotate(-sp);
-                    cameraRotation+=sp;
+                    cameraRotation += sp;
                 }
 
             }
-            /*
-            if(cameraRotation > rotateTo){
-                c.rotate(-((cameraRotation + rotateTo) / 2f)); cameraRotation-=(cameraRotation + rotateTo) / 2f;
-            } else {
-                if (cameraRotation < rotateTo){
-                    c.rotate((cameraRotation + rotateTo) / 2f); cameraRotation+=(cameraRotation + rotateTo) / 2f;
-                }
-            }
-*/
+
             c.update();
 
         }
 
     }
 
-    public void updateFrustum(){
+    public void updateFrustum() {
         Camera c = getCamera();
-        for (Actor a: getActors()) {
-            a.setVisible(isActorShowing(c,a));
+        for (Actor a : getActors()) {
+            a.setVisible(isActorShowing(c, a));
         }
     }
 
-    public void updateFrustum(float margin){
-        OrthographicCamera c = (OrthographicCamera)getCamera();
-        for (Actor a: getActors()) {
-            a.setVisible(isActorShowing(c,a, margin));
+    public void updateFrustum(float margin) {
+        OrthographicCamera c = (OrthographicCamera) getCamera();
+        for (Actor a : getActors()) {
+            a.setVisible(isActorShowing(c, a, margin));
         }
     }
 
-    public void startTimer(){
+    public void startTimer() {
         timerRunning = true;
     }
 
-    public float getTime(){
+    public float getTime() {
         return timer;
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         timerRunning = false;
     }
 
-    public void resetTimer(){
+    public void resetTimer() {
         timer = 0;
     }
 
-    public boolean isTimerRunning(){
+    public boolean isTimerRunning() {
         return timerRunning;
     }
 
-    private static boolean isActorShowing(Camera c, Actor a){
+    private static boolean isActorShowing(Camera c, Actor a) {
         return c.frustum.pointInFrustum(a.getX(), a.getY(), 0) || c.frustum.pointInFrustum(a.getX() + a.getWidth(), a.getY() + a.getHeight(), 0) ||
                 c.frustum.pointInFrustum(a.getX() + a.getWidth(), a.getY(), 0) || c.frustum.pointInFrustum(a.getX(), a.getY() + a.getHeight(), 0);
     }
 
-    private static boolean isActorShowing(OrthographicCamera c, Actor a, float zoom){
+    private static boolean isActorShowing(OrthographicCamera c, Actor a, float zoom) {
         float z = c.zoom;
         c.zoom *= zoom;
         c.update();
-        boolean b = isActorShowing(c,a);
+        boolean b = isActorShowing(c, a);
         c.zoom = z;
         c.update();
         return b;

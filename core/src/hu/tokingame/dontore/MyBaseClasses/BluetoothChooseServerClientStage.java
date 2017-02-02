@@ -2,15 +2,10 @@ package hu.tokingame.dontore.MyBaseClasses;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.BGStage;
@@ -27,6 +22,7 @@ abstract public class BluetoothChooseServerClientStage extends BGStage {
     }
 
     abstract public void startServer();
+
     abstract public void startClient();
 
     @Override
@@ -68,7 +64,7 @@ abstract public class BluetoothChooseServerClientStage extends BGStage {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH-this.getWidth()-10, 10);
+                setPosition(Globals.WORLD_WIDTH - this.getWidth() - 10, 10);
                 addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {

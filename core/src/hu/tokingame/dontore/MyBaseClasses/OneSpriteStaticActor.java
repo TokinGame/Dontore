@@ -16,16 +16,15 @@ public class OneSpriteStaticActor extends OneSpriteActor {
         super(new Sprite(texture));
     }
 
-    public Texture getTexture()
-    {
+    public Texture getTexture() {
         return sprite.getTexture();
     }
 
-    public void setTexture(Texture texture){
+    public void setTexture(Texture texture) {
         sprite.setTexture(texture);
     }
 
-    public void setOriginCenter(){
-        setOrigin(this.getWidth()/2, this.getHeight()/2);
+    public void setOriginCenter() {
+        setOrigin(this.getWidth() / 2, this.getHeight() / 2);
     }
 }

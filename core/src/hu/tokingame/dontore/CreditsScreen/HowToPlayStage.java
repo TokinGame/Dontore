@@ -6,14 +6,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import java.util.Vector;
-
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.BGStage;
-import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
-import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -29,7 +25,7 @@ public class HowToPlayStage extends BGStage {
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.BACK){
+        if (keycode == Input.Keys.BACK) {
             game.setScreenBackByStackPop();
         }
         return false;
@@ -41,22 +37,23 @@ public class HowToPlayStage extends BGStage {
         s = "How to play:\n" +
                 "- Singleplayer: you only have to jump,\n  by pressing on the screen.\n" +
                 "- Multiplayer: the client has to build\n  obstacles for the other player,\n" +
-                "\t  and the host has to survive the map\n  built by the client";
+                "\t  and the host has to survive the map\n  built by the client\n" +
+                "  building spikes has a cooldown of 3sec";
 
-        addActor(new MyLabel(s, MyLabel.style2){
+        addActor(new MyLabel(s, MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 50);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 50);
             }
         });
 
-        addActor(new BackgroundTextButton("Back", 2){
+        addActor(new BackgroundTextButton("Back", 2) {
             @Override
             protected void init() {
                 super.init();
-                this.setPosition(getViewport().getWorldWidth()-this.getWidth(),0);
-                addListener(new ClickListener(){
+                this.setPosition(getViewport().getWorldWidth() - this.getWidth()-10, 10);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);

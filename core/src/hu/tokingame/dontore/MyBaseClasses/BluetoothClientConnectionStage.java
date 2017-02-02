@@ -45,39 +45,13 @@ abstract public class BluetoothClientConnectionStage extends BluetoothStage {
         Gdx.app.error("BTM", "Client start discovering");
         startBluetoothDiscovering();
         addActor(waitingLabel = new MyLabel("", game.getLabelStyle()));
-        waitingLabel.setPosition(300,300);
+        waitingLabel.setPosition(300, 300);
     }
 
     abstract public void startConnection();
 
 
-/*
-    public void refreshDeviceButtons() {
-        for (Actor a : getActors()) {
-            if (a instanceof MyButton) {
-                if (a.getUserObject() instanceof Integer) {
-                    getActors().removeValue(a, true);
-                }
-            }
-        }
-        ArrayList<java.lang.String> strings = getDiscoveredDevicesName();
 
-        int d = 0;
-        for (java.lang.String s : strings) {
-            final BackgroundTextButton myButton = new BackgroundTextButton(s);
-            myButton.setPosition(0, 600 - d  * 70);
-            myButton.setUserObject(new Integer(d));
-            myButton.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    startConnectingToDevice((Integer)myButton.getUserObject());
-                }
-            });
-            d++;
-            addActor(myButton);
-        }
-    }*/
 
     public void refreshDeviceButtons() {
         for (Actor a : getActors()) {
@@ -91,9 +65,9 @@ abstract public class BluetoothClientConnectionStage extends BluetoothStage {
 
         int d = 0;
         for (java.lang.String s : strings) {
-            if (s!=null) {
+            if (s != null) {
                 final BackgroundTextButton myButton = new BackgroundTextButton(s);
-                myButton.setPosition(0, 600 - d * 70);
+                myButton.setPosition(10, 600 - d * 70 - 10);
                 myButton.setUserObject(new Integer(d));
                 myButton.addListener(new ClickListener() {
                     @Override

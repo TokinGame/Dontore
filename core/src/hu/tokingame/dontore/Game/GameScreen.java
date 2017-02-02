@@ -1,15 +1,5 @@
 package hu.tokingame.dontore.Game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.utils.shapebuilders.ConeShapeBuilder;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-
-import hu.tokingame.dontore.Global.Globals;
-import hu.tokingame.dontore.Global.Mode;
-import hu.tokingame.dontore.MenuScreen.MenuScreen;
 import hu.tokingame.dontore.MyBaseClasses.MyScreen;
 import hu.tokingame.dontore.MyGdxGame;
 

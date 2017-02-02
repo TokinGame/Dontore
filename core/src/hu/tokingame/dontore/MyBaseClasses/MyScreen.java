@@ -13,10 +13,9 @@ import hu.tokingame.dontore.MyGdxGame;
  */
 abstract public class MyScreen implements Screen, InitableInterface {
 
-    public float r=0,g=0,b=0;
+    public float r = 0, g = 0, b = 0;
 
     public final MyGdxGame game;
-
 
 
     public MyScreen(MyGdxGame game) {
@@ -45,16 +44,8 @@ abstract public class MyScreen implements Screen, InitableInterface {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //spriteBatch.setProjectionMatrix(camera.combined);
     }
-/*
-    public void setCameraReset(ExtendViewport viewport, int width, int height)
-    {
-        viewport.update(width, height, true);
-        ((OrthographicCamera)viewport.getCamera()).setToOrtho(false, viewport.getWorldWidth(), viewport.getWorldHeight());
-        ((OrthographicCamera)viewport.getCamera()).translate((viewport.getWorldWidth() -  - viewport.getMinWorldWidth() / 2) < 0 ? 0 : -((viewport.getWorldWidth()  - viewport.getMinWorldWidth()) / 2),
-                ((viewport.getWorldHeight()  - viewport.getMinWorldHeight()) / 2) < 0 ? 0 : -((viewport.getWorldHeight() - viewport.getMinWorldHeight()) / 2));
-        ((OrthographicCamera)viewport.getCamera()).update();
-    }
-*/
+
+
     @Override
     public void resize(int width, int height) {
         //setCameraReset(viewport, width, height);
@@ -74,18 +65,14 @@ abstract public class MyScreen implements Screen, InitableInterface {
         return game;
     }
 
-    public void setBackGroundColor(float r, float g, float b)
-    {
-        this.r=r;
+    public void setBackGroundColor(float r, float g, float b) {
+        this.r = r;
         this.g = g;
         this.b = b;
     }
 
     @Override
     public void init() {
-        //camera.setToOrtho(false);
-        /*
-        camera.translate(WORLD_WIDTH/2, WORLD_HEIGHT/2);*/
-        //camera.update();
+
     }
 }

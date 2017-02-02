@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -24,7 +25,7 @@ abstract public class BluetoothServerListenStage extends BluetoothStage {
         Gdx.app.error("BTM", "Server start listening");
         startBluetoothListening();
         addActor(waitingLabel = new MyLabel("", game.getLabelStyle()));
-        waitingLabel.setPosition(300,300);
+        waitingLabel.setPosition(300, 300);
     }
 
     public void act(float delta) {

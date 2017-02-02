@@ -22,7 +22,7 @@ abstract public class BTJumpGameStage extends JumpGameStage {
 
     public BTJumpGameStage(MyGdxGame game) {
         super(game);
-        bluetoothConnectedStage = new BluetoothConnectedStage(new ExtendViewport(1,1,new OrthographicCamera(1,1)), new SpriteBatch(),game) {
+        bluetoothConnectedStage = new BluetoothConnectedStage(new ExtendViewport(1, 1, new OrthographicCamera(1, 1)), new SpriteBatch(), game) {
             @Override
             public void disconnected() {
                 disconnect();
@@ -38,37 +38,35 @@ abstract public class BTJumpGameStage extends JumpGameStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        time+=delta;
+        time += delta;
         bluetoothConnectedStage.act();
-        if (lastSendPosition+sendPositionInterval<time) {
+        if (lastSendPosition + sendPositionInterval < time) {
             lastSendPosition = time;
             bluetoothConnectedStage.sendMessage("c:" + character.toString());
         }
         String m;
-        while((m = bluetoothConnectedStage.getMessage())!=null){
+        while ((m = bluetoothConnectedStage.getMessage()) != null) {
             String[] strings = m.split(":");
-            if (strings.length==2 && strings[0].compareTo("bc")==0){
+            if (strings.length == 2 && strings[0].compareTo("bc") == 0) {
                 CrateActor crateActor;
-                crateActor = addCrate(0,0);
+                crateActor = addCrate(0, 0);
                 crateActor.fromString(strings[1]);
             }
-            if (strings.length==2 && strings[0].compareTo("bs")==0){
+            if (strings.length == 2 && strings[0].compareTo("bs") == 0) {
                 SpikeActor spikeActor;
-                spikeActor = addSpike(0,0);
+                spikeActor = addSpike(0, 0);
                 spikeActor.fromString(strings[1]);
             }
         }
     }
+    // https://www.youtube.com/watch?v=JtA_WnBP_Co ez vicces de tényleg
 
-    /*
-    void add(float x, float y, int what){
-        x = phantomActor.getX() + x + 2;
-        switch(what){
-            case 1: addActor(new CrateActor(world, loader, x, y)); break;
-            case 2: addActor(new SpikeActor(world, loader, x, y)); break;
-        }
+
+    abstract public void disconnect();
+
+    @Override
+    public void death() {
+        super.death();
+        bluetoothConnectedStage.sendMessage("death");
     }
-*/
-    abstract public void  disconnect();
-
 }

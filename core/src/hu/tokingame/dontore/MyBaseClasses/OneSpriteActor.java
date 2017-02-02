@@ -10,15 +10,14 @@ abstract public class OneSpriteActor extends MyActor implements InitableInterfac
     protected Sprite sprite;
 
     public OneSpriteActor(Sprite sprite) {
-        if (sprite!=null) {
+        if (sprite != null) {
             this.sprite = sprite;
             init();
         }
     }
 
     @Override
-    public void init()
-    {
+    public void init() {
         setSize(sprite.getWidth(), sprite.getHeight());
     }
 
@@ -52,6 +51,6 @@ abstract public class OneSpriteActor extends MyActor implements InitableInterfac
     protected void sizeChanged() {
         super.sizeChanged();
         sprite.setSize(getWidth(), getHeight());
-        sprite.setOrigin(getWidth()/2, getHeight()/2);
+        sprite.setOrigin(getWidth() / 2, getHeight() / 2);
     }
 }

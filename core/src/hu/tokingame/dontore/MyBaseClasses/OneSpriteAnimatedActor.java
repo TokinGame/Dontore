@@ -56,8 +56,8 @@ public class OneSpriteAnimatedActor extends OneSpriteActor {
     public void act(float delta) {
         super.act(delta);
         if (running) {
-            if (!looping){
-                if (textureAtlas.getRegions().size <=((int) (elapsedTime * fps))) {
+            if (!looping) {
+                if (textureAtlas.getRegions().size <= ((int) (elapsedTime * fps))) {
                     stop();
                     return;
                 }
@@ -66,27 +66,23 @@ public class OneSpriteAnimatedActor extends OneSpriteActor {
         }
     }
 
-    public void setFrame(int frame)
-    {
+    public void setFrame(int frame) {
         sprite.setRegion(textureAtlas.getRegions().get(frame % textureAtlas.getRegions().size));
     }
 
     public void setFramePercent(float percent) {
-        setFrame((int)((getFrameCount()-1)*percent));
+        setFrame((int) ((getFrameCount() - 1) * percent));
     }
 
-    public int getFrameCount()
-    {
+    public int getFrameCount() {
         return textureAtlas.getRegions().size;
     }
 
-    public void start()
-    {
+    public void start() {
         running = true;
     }
 
-    public void stop()
-    {
+    public void stop() {
         running = false;
     }
 

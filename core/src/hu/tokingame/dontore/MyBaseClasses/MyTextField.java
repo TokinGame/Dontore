@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 /**
  * Created by davimatyi on 2017. 01. 10..
  */
-public class MyTextField extends TextField implements InitableInterface{
+public class MyTextField extends TextField implements InitableInterface {
 
     public MyTextField(String text, TextFieldStyle style) {
         super(text, style);

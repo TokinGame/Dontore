@@ -28,6 +28,7 @@ public class CreditsStage extends MyStage {
     Vector<MenuBackgroundActor> actorVector;
 
     String s;
+
     public CreditsStage(Viewport viewport, Batch batch, MyGdxGame game) {
         super(viewport, batch, game);
         Gdx.input.setCatchBackKey(true);
@@ -35,7 +36,7 @@ public class CreditsStage extends MyStage {
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.BACK){
+        if (keycode == Input.Keys.BACK) {
             game.setScreenBackByStackPop();
         }
         return false;
@@ -47,7 +48,7 @@ public class CreditsStage extends MyStage {
         actorVector = new Vector<MenuBackgroundActor>();
         a1 = new MenuBackgroundActor(1, 0, 0);
         a2 = new MenuBackgroundActor(2, 2760, 0);
-        a3 = new MenuBackgroundActor(3, 2760*2, 0);
+        a3 = new MenuBackgroundActor(3, 2760 * 2, 0);
         actorVector.add(a1);
         actorVector.add(a2);
         actorVector.add(a3);
@@ -55,7 +56,7 @@ public class CreditsStage extends MyStage {
         addActor(a2);
         addActor(a3);
 
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)){
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)) {
             @Override
             public void init() {
                 super.init();
@@ -63,21 +64,22 @@ public class CreditsStage extends MyStage {
                 setPosition(1000, 500);
                 setOriginCenter();
             }
+
             float elapsedTime = 0;
 
             @Override
             public void act(float delta) {
                 super.act(delta);
                 elapsedTime += delta;
-                setRotation(elapsedTime*50);
+                setRotation(elapsedTime * 50);
             }
         });
-        addActor(new BackgroundTextButton("Back", 2){
+        addActor(new BackgroundTextButton("Back", 2) {
             @Override
             protected void init() {
                 super.init();
-                this.setPosition(getViewport().getWorldWidth()-this.getWidth()-10,10);
-                addListener(new ClickListener(){
+                this.setPosition(getViewport().getWorldWidth() - this.getWidth() - 10, 10);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -87,7 +89,7 @@ public class CreditsStage extends MyStage {
 
             }
         });
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.TOKIN)){
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.TOKIN)) {
             @Override
             public void init() {
                 super.init();
@@ -95,7 +97,7 @@ public class CreditsStage extends MyStage {
                 setPosition(200, 500);
             }
         });
-        addActor(new MyLabel("Created by Tökin Game", MyLabel.style2){
+        addActor(new MyLabel("Created by Tökin Game", MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
@@ -114,14 +116,23 @@ public class CreditsStage extends MyStage {
                 setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 150);
             }
         });
+        addActor(new MyLabel("Music used: paul-hartnett_07-160 from sampleswap.org", MyLabel.style2){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(10, 80);
+            }
+        });
 
     }
-    void moveBackground(){
-        if(actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760*2);
-        actorVector.add(actorVector.get(0)); actorVector.remove(0);
-        actorVector.get(0).setX(actorVector.get(0).getX()-1f);
-        actorVector.get(1).setX(actorVector.get(1).getX()-1f);
-        actorVector.get(2).setX(actorVector.get(2).getX()-1f);
+
+    void moveBackground() {
+        if (actorVector.get(0).getX() < -2759.9f) actorVector.get(0).setX(2760 * 2);
+        actorVector.add(actorVector.get(0));
+        actorVector.remove(0);
+        actorVector.get(0).setX(actorVector.get(0).getX() - 1f);
+        actorVector.get(1).setX(actorVector.get(1).getX() - 1f);
+        actorVector.get(2).setX(actorVector.get(2).getX() - 1f);
     }
 
     @Override

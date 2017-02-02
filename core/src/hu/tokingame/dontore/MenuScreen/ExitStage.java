@@ -10,8 +10,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
-import hu.tokingame.dontore.MyBaseClasses.MyStage;
-import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
 
 /**
@@ -26,7 +24,7 @@ public class ExitStage extends BGStage {
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.BACK){
+        if (keycode == Input.Keys.BACK) {
             game.setScreenBackByStackPop();
         }
         return false;
@@ -36,20 +34,20 @@ public class ExitStage extends BGStage {
     @Override
     public void init() {
         super.init();
-        addActor(new MyLabel("Are you sure want to exit?", MyLabel.style2){
+        addActor(new MyLabel("Are you sure want to exit?", MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                this.setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
+                this.setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 500);
             }
         });
 
-        addActor(new BackgroundTextButton("Yes", 2){
+        addActor(new BackgroundTextButton("Yes", 2) {
             @Override
             protected void init() {
                 super.init();
-                this.setPosition(Globals.WORLD_WIDTH/3-this.getWidth()/2, 350);
-                addListener(new ClickListener(){
+                this.setPosition(Globals.WORLD_WIDTH / 3 - this.getWidth() / 2, 350);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -58,12 +56,12 @@ public class ExitStage extends BGStage {
                 });
             }
         });
-        addActor(new BackgroundTextButton("No", 1){
+        addActor(new BackgroundTextButton("No", 1) {
             @Override
             protected void init() {
                 super.init();
-                this.setPosition(Globals.WORLD_WIDTH/3*2-this.getWidth()/2, 350);
-                addListener(new ClickListener(){
+                this.setPosition(Globals.WORLD_WIDTH / 3 * 2 - this.getWidth() / 2, 350);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);

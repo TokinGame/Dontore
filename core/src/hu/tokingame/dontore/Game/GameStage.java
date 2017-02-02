@@ -4,19 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Vector;
 
@@ -27,15 +18,11 @@ import hu.tokingame.dontore.Bodies.GrassActor;
 import hu.tokingame.dontore.Bodies.PhantomActor;
 import hu.tokingame.dontore.Bodies.SpikeActor;
 import hu.tokingame.dontore.Bodies.TopActor;
-import hu.tokingame.dontore.Global.Globals;
-import hu.tokingame.dontore.Global.Mode;
 import hu.tokingame.dontore.MenuScreen.MenuScreen;
-import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
 import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
 import hu.tokingame.dontore.MyGdxGame;
-import sun.security.provider.ConfigFile;
 
 /**
  * Created by tuskeb on 2017. 01. 30..
@@ -50,7 +37,7 @@ abstract public class GameStage extends MyStage {
 
 
     World world;
-    Box2DDebugRenderer box2DDebugRenderer;
+    //Box2DDebugRenderer box2DDebugRenderer;
     WorldBodyEditorLoader loader;
     PauseStage pauseStage;
     PhantomActor phantomActor;
@@ -61,7 +48,7 @@ abstract public class GameStage extends MyStage {
     private MyLabel time;
 
     Vector<GrassActor> grassV;
-    GrassActor g1, g2, g3;
+    GrassActor g1, g2, g3, g4, g5;
 
     Vector<BGActor> bgV;
     BGActor bg1, bg2, bg3, bg4, bg5;
@@ -70,26 +57,29 @@ abstract public class GameStage extends MyStage {
 
     float lastX = 1, currentX = 1;
 
-    int rdm(int a, int b){return (int)(Math.random()*(b-a+1)+a);}
+    int rdm(int a, int b) {
+        return (int) (Math.random() * (b - a + 1) + a);
+    }
 
 
     public GameStage(MyGdxGame game) {
-        super(new ExtendViewport(16,9,new OrthographicCamera(16,9)), new SpriteBatch(), game);
+        super(new ExtendViewport(16, 9, new OrthographicCamera(16, 9)), new SpriteBatch(), game);
         inputMultiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.BACK){
+        if (keycode == Input.Keys.BACK) {
             game.setScreen(new MenuScreen(game));
         }
         return false;
     }
+
     @Override
     public void init() {
         world = new World(new Vector2(0, -20), false);
-        box2DDebugRenderer = new Box2DDebugRenderer();
+        //box2DDebugRenderer = new Box2DDebugRenderer();
         loader = new WorldBodyEditorLoader(Gdx.files.internal("phys.json"));
 
         //pauseStage = new PauseStage(new ExtendViewport(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT,new OrthographicCamera(Globals.WORLD_WIDTH,Globals.WORLD_HEIGHT)),new SpriteBatch(),game);
@@ -99,9 +89,7 @@ abstract public class GameStage extends MyStage {
         phantomActor.setSpeed(5);
         grassV = new Vector();
         bgV = new Vector();
-        top = new TopActor(world, loader, character.getX(),2);
-
-
+        top = new TopActor(world, loader, character.getX(), 2);
 
 
         //setCameraMoveToXY(1, 4, 0.01f, 10000);
@@ -131,16 +119,23 @@ abstract public class GameStage extends MyStage {
         g1 = new GrassActor(world, loader, -8, 0);
         g2 = new GrassActor(world, loader, 0, 0);
         g3 = new GrassActor(world, loader, 8, 0);
+        g4 = new GrassActor(world, loader, 16, 0);
+        g5 = new GrassActor(world, loader, 24, 0);
         grassV.add(g1);
         grassV.add(g2);
         grassV.add(g3);
+        grassV.add(g4);
+        grassV.add(g5);
         addActor(g1);
         addActor(g2);
         addActor(g3);
+        addActor(g4);
+        addActor(g5);
         g1.setZIndex(10000);
         g2.setZIndex(10000);
         g3.setZIndex(10000);
-
+        g4.setZIndex(10000);
+        g5.setZIndex(10000);
 
 
         startTimer();
@@ -150,11 +145,9 @@ abstract public class GameStage extends MyStage {
         return this.cameraOffset;
     }
 
-    public void setCameraOffset(float cameraOffset){
+    public void setCameraOffset(float cameraOffset) {
         this.cameraOffset = cameraOffset;
     }
-
-
 
 
     @Override
@@ -162,7 +155,7 @@ abstract public class GameStage extends MyStage {
         super.act(delta);
         world.step(delta, 10, 10);
         elapsedtime += delta;
-        if(character.alive) {
+        if (character.alive) {
             setCameraMoveToXY(phantomActor.getX() + cameraOffset, 4, 1, 100000);
 
             top.setPosition(character.getX(), 7.5f);
@@ -182,12 +175,12 @@ abstract public class GameStage extends MyStage {
             }
 
 
-            if (phantomActor.getX() > grassV.get(2).getX()) {
-                grassV.get(0).setX(grassV.get(2).getX() + 8);
+            if (phantomActor.getX() > grassV.get(3).getX()) {
+                grassV.get(0).setX(grassV.get(4).getX() + 8);
                 grassV.add(grassV.get(0));
                 grassV.remove(0);
             }
-            if(elapsedtime % 20 == 0){
+            if (elapsedtime % 20 == 0) {
                 character.maxSpeed += 1;
                 phantomActor.maxSpeed += 1;
             }
@@ -207,18 +200,17 @@ abstract public class GameStage extends MyStage {
     }
 
 
-
     public PhantomActor getPhantomActor() {
         return phantomActor;
     }
 
-    public CrateActor addCrate(float x, float y){
+    public CrateActor addCrate(float x, float y) {
         CrateActor crateActor;
         addActor(crateActor = new CrateActor(world, loader, x, y));
-        return  crateActor;
+        return crateActor;
     }
 
-    public SpikeActor addSpike(float x, float y){
+    public SpikeActor addSpike(float x, float y) {
         SpikeActor spikeActor;
         addActor(spikeActor = new SpikeActor(world, loader, x, y));
         return spikeActor;

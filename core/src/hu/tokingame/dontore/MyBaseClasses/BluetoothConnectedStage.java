@@ -12,9 +12,9 @@ import hu.tokingame.dontore.MyGdxGame;
  */
 
 abstract public class BluetoothConnectedStage extends BluetoothStage {
-    private static final String HELLO_MSG="HelloBT";
-    private static final float HELLO_INTERVAL=0.4f;
-    private static final float HELLO_TIMEOUT=2.1f;
+    private static final String HELLO_MSG = "HelloBT";
+    private static final float HELLO_INTERVAL = 0.4f;
+    private static final float HELLO_TIMEOUT = 2.1f;
     private float lastReceiveHello = 0;
     private float lastSendHello = 0;
 
@@ -34,21 +34,21 @@ abstract public class BluetoothConnectedStage extends BluetoothStage {
         Gdx.app.error("BTM", "Connected");
     }
 
-    private void sendHello(){
+    private void sendHello() {
         Gdx.app.error("BTM", "Send HELLO");
         getBluetoothManager().sendMessage(HELLO_MSG);
     }
 
     abstract public void disconnected();
 
-    public String getMessage(){
-        if (messages.size>0){
+    public String getMessage() {
+        if (messages.size > 0) {
             return messages.removeFirst();
         }
         return null;
     }
 
-    public void sendMessage(String msg){
+    public void sendMessage(String msg) {
         getBluetoothManager().sendMessage(msg);
         Gdx.app.error("BTM", "Send: " + msg);
     }
@@ -57,7 +57,7 @@ abstract public class BluetoothConnectedStage extends BluetoothStage {
     @Override
     public void act(float delta) {
         String s;
-        while ((s = getBluetoothManager().getMessage())!= null) {
+        while ((s = getBluetoothManager().getMessage()) != null) {
             s = s.trim();
             Gdx.app.error("BTM", "Receive " + s);
             if (s.compareTo(HELLO_MSG) == 0) {
@@ -67,11 +67,11 @@ abstract public class BluetoothConnectedStage extends BluetoothStage {
                 messages.addLast(s);
             }
         }
-        if (getElapsedTime() - HELLO_INTERVAL> lastSendHello) {
+        if (getElapsedTime() - HELLO_INTERVAL > lastSendHello) {
             lastSendHello = getElapsedTime();
             sendHello();
         }
-        if (getElapsedTime() - HELLO_TIMEOUT> lastReceiveHello){
+        if (getElapsedTime() - HELLO_TIMEOUT > lastReceiveHello) {
             getBluetoothManager().stop();
             Gdx.app.error("BTM", "Timeout. Start disconnecting.");
             disconnected();

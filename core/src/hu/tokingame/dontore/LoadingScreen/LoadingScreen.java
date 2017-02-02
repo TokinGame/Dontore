@@ -57,7 +57,7 @@ public class LoadingScreen extends MyScreen {
     @Override
     public void init() {
         super.init();
-        stage = new LoadingStage(new ExtendViewport(1280,720,new OrthographicCamera(1280,720)), new SpriteBatch(), game);
+        stage = new LoadingStage(new ExtendViewport(1280, 720, new OrthographicCamera(1280, 720)), new SpriteBatch(), game);
     }
 
     @Override

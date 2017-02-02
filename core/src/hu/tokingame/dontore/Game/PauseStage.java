@@ -31,26 +31,26 @@ public class PauseStage extends MyStage {
     @Override
     public void init() {
 
-        addActor(new MyLabel("Game is paused", MyLabel.style1){
+        addActor(new MyLabel("Game is paused", MyLabel.style1) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 400);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 400);
             }
         });
 
-        addActor(new MyTextButton("Quit to menu"){
+        addActor(new MyTextButton("Quit to menu") {
             @Override
             protected void init() {
                 super.init();
                 setPosition(100, 300);
             }
         });
-        addActor(new MyTextButton("Back to game"){
+        addActor(new MyTextButton("Back to game") {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH-this.getWidth()-100, 300);
+                setPosition(Globals.WORLD_WIDTH - this.getWidth() - 100, 300);
 
             }
         });

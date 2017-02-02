@@ -12,18 +12,14 @@ import java.util.Vector;
 
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.MenuScreen.BGStage;
-import hu.tokingame.dontore.MenuScreen.MenuBackgroundActor;
-import hu.tokingame.dontore.MenuScreen.MenuScreen;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
 import hu.tokingame.dontore.MyBaseClasses.MyLabel;
-import hu.tokingame.dontore.MyBaseClasses.MyStage;
-import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyGdxGame;
 
 import static hu.tokingame.dontore.Global.Globals.MaxScores;
 
 /**
- * Created by Zoli szereti ha Windows XP de akkor is ha rondán néz ki és mindenki szerint olyan ocsmány hogy pfhuj on 1889.03.30..
+ * Created by Zoli szereti ha Windows XP de akkor is ha rondán néz ki és mindenki szerint olyan ocsmány hogy pfhuj on 1889.05.68..
  */
 
 public class HighStage extends BGStage {
@@ -38,24 +34,23 @@ public class HighStage extends BGStage {
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.BACK){
+        if (keycode == Input.Keys.BACK) {
             game.setScreenBackByStackPop();
         }
         return false;
     }
 
 
-
     @Override
     public void init() {
         super.init();
 
-        addActor(new BackgroundTextButton("Back", 2){
+        addActor(new BackgroundTextButton("Back", 2) {
             @Override
             protected void init() {
                 super.init();
-                this.setPosition(getViewport().getWorldWidth()-this.getWidth(),0);
-                addListener(new ClickListener(){
+                this.setPosition(getViewport().getWorldWidth() - this.getWidth()-10, 10);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -65,36 +60,36 @@ public class HighStage extends BGStage {
             }
         });
 
-        addActor(new MyLabel("High Scores", MyLabel.style2){
+        addActor(new MyLabel("High Scores", MyLabel.style2) {
             @Override
             public void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 600);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 600);
             }
         });
 
-        if(Globals.MaxScores.size()>0){
+        if (Globals.MaxScores.size() > 0) {
             hsV = new Vector();
             for (int i = 0; i < Globals.MaxScores.size(); i++) {
                 float k = Globals.MaxScores.get(i);
-                float b = Math.round(k*100)/100.0f;
+                float b = Math.round(k * 100) / 100.0f;
                 final int finalI = i;
-                hsV.add(new MyLabel(i+1+". "+b+"", MyLabel.style2){
+                hsV.add(new MyLabel(i + 1 + ". " + b + "", MyLabel.style2) {
                     @Override
                     public void init() {
                         super.init();
-                        setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, finalI > 0 ? hsV.get(finalI -1).getY()-75 : 500);
+                        setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, finalI > 0 ? hsV.get(finalI - 1).getY() - 75 : 500);
                     }
                 });
                 addActor(hsV.get(i));
-            }
+            } // Egy megérett a meggy. Kettő megérett a meggy. Három megérett a meggy...
             hsV.clear();
-        }else{
-            addActor(new MyLabel("There are no scores yet.", MyLabel.style2){
+        } else {
+            addActor(new MyLabel("There are no scores yet.", MyLabel.style2) {
                 @Override
                 public void init() {
                     super.init();
-                    setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 500);
+                    setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 500);
                 }
             });
         }
@@ -102,12 +97,12 @@ public class HighStage extends BGStage {
 
     }
 
-    public static void highscore(float score){
+    public static void highscore(float score) {
         if (MaxScores.size() >= 5) {
-            if (MaxScores.get(MaxScores.size()-1)<score){
+            if (MaxScores.get(MaxScores.size() - 1) < score) {
                 Collections.sort(MaxScores);
                 Collections.reverse(MaxScores);
-                MaxScores.set(MaxScores.size()-1,score);
+                MaxScores.set(MaxScores.size() - 1, score);
             }
         } else {
             MaxScores.add(score);

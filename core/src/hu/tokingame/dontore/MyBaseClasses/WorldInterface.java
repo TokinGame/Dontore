@@ -8,10 +8,16 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 public interface WorldInterface {
     public void addToWorld();
+
     public void removeFromWorld();
+
     public void setInActive();
+
     public void setActive();
+
     public boolean isActive();
+
     public Body getBody();
+
     public void setSensor(boolean sensor);
 }

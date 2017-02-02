@@ -14,16 +14,16 @@ import hu.tokingame.dontore.MyBaseClasses.WorldBodyEditorLoader;
  */
 
 public class PaprikaActor extends WorldActorGroup {
-        public OneSpriteStaticActor actor;
+    public OneSpriteStaticActor actor;
 
     public PaprikaActor(World world, WorldBodyEditorLoader loader, float x, float y) {
         super(world, loader, "bg.png", BodyDef.BodyType.DynamicBody, 1, 0.2f, 10, false);
         actor = new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA));
-        actor.setSize(1,1);
+        actor.setSize(1, 1);
         addActor(actor);
         addToWorld();
         setPosition(x, y);
-        setSize(1,1);
+        setSize(1, 1);
         getBody().setFixedRotation(true);
 
 
@@ -39,7 +39,7 @@ public class PaprikaActor extends WorldActorGroup {
         super.act(delta);
         //setY(getY()+0.2f);
         //getBody().setLinearVelocity(getBody().getLinearVelocity());
-        getBody().applyForceToCenter(new Vector2(0, 1200*delta), true);
+        getBody().applyForceToCenter(new Vector2(0, 1200 * delta), true);
     }
 
     @Override

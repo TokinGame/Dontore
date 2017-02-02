@@ -1,6 +1,5 @@
 package hu.tokingame.dontore.Bodies;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -37,12 +36,12 @@ public class PhantomActor extends WorldActorGroup {
 
     }
 
-    public void setSpeed(float speed){
+    public void setSpeed(float speed) {
         getBody().setLinearVelocity(speed, 0);
         currentSpeed = speed;
     }
 
-    public float getSpeed(){
+    public float getSpeed() {
         return currentSpeed;
     }
 

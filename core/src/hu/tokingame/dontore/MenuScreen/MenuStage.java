@@ -2,13 +2,10 @@ package hu.tokingame.dontore.MenuScreen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import java.util.Vector;
 
 import hu.tokingame.dontore.CreditsScreen.CreditsScreen;
 import hu.tokingame.dontore.CreditsScreen.HowToPlayScreen;
@@ -17,12 +14,11 @@ import hu.tokingame.dontore.Game.MultiGameScreen;
 import hu.tokingame.dontore.Global.Assets;
 import hu.tokingame.dontore.Global.Globals;
 import hu.tokingame.dontore.Global.Mode;
+import hu.tokingame.dontore.HighScreen.HighScreen;
 import hu.tokingame.dontore.MyBaseClasses.BackgroundTextButton;
-import hu.tokingame.dontore.MyBaseClasses.MyStage;
 import hu.tokingame.dontore.MyBaseClasses.MyTextButton;
 import hu.tokingame.dontore.MyBaseClasses.OneSpriteStaticActor;
 import hu.tokingame.dontore.MyGdxGame;
-import hu.tokingame.dontore.HighScreen.HighScreen;
 
 import static hu.tokingame.dontore.Global.Globals.dead;
 
@@ -43,7 +39,7 @@ public class MenuStage extends BGStage {
 
     @Override
     public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.BACK){
+        if (keycode == Input.Keys.BACK) {
             game.setScreen(new ExitScreen(game));
         }
         return false;
@@ -53,41 +49,49 @@ public class MenuStage extends BGStage {
     public void init() {
         super.init();
 
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.TITLE)){
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.TITLE)) {
             @Override
             public void init() {
                 super.init();
                 setOriginCenter();
                 setSize(580, 240);
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 430);
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 430);
             }
+
             float elapsedTime = 0;
             float maxWidth = 580, maxHeight = 240;
+
             @Override
             public void act(float delta) {
-                elapsedTime+=delta;
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 430);
+                elapsedTime += delta;
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 430);
                 super.act(delta);
-                setRotation((float)Math.sin(elapsedTime*1.2f)*15);
-                setWidth((float)Math.abs(Math.sin(elapsedTime*1.2f)*maxWidth/2)+maxWidth/2);
-                setHeight((float)Math.abs(Math.sin(elapsedTime*1.2f)*maxHeight/2)+maxHeight/2);
+                setRotation((float) Math.sin(elapsedTime * 1.2f) * 15);
+                setWidth((float) Math.abs(Math.sin(elapsedTime * 1.2f) * maxWidth / 2) + maxWidth / 2);
+                setHeight((float) Math.abs(Math.sin(elapsedTime * 1.2f) * maxHeight / 2) + maxHeight / 2);
             }
         });
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)){
+
+        // Csókólom ági van?
+
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)) {
             @Override
             public void init() {
                 super.init();
                 setSize(200, 200);
                 setPosition(1000, 400);
             }
+
             float elapsedTime = 0;
+
             @Override
             public void act(float delta) {
                 elapsedTime += delta;
                 super.act(delta);
-                setRotation((float)Math.sin(elapsedTime*5.5f)*15);
+                setRotation((float) Math.sin(elapsedTime * 5.5f) * 15);
             }
-        });addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)){
+        });
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.PAPRIKA)) {
             @Override
             public void init() {
                 super.init();
@@ -95,21 +99,23 @@ public class MenuStage extends BGStage {
                 setPosition(80, 400);
 
             }
+
             float elapsedTime = 0;
+
             @Override
             public void act(float delta) {
                 elapsedTime += delta;
                 super.act(delta);
-                setRotation(-(float)Math.sin(elapsedTime*5.5f)*15);
+                setRotation(-(float) Math.sin(elapsedTime * 5.5f) * 15);
             }
         });
 
-        addActor(new BackgroundTextButton("How To Play",1){
+        addActor(new BackgroundTextButton("How To Play", 1) {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/3*2-this.getWidth()/3, 10);
-                addListener(new ClickListener(){
+                setPosition(Globals.WORLD_WIDTH / 3 * 2 - this.getWidth() / 3, 10);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -119,30 +125,30 @@ public class MenuStage extends BGStage {
             }
         });
 
-        addActor(new BackgroundTextButton("Play singleplayer",1){
+        addActor(new BackgroundTextButton("Play singleplayer", 1) {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 310);
-                addListener(new ClickListener(){
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 310);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
                         Globals.multiPlayer = false;
                         Globals.gameMode = Mode.SinglePlayer;
                         game.setScreen(new GameScreen(game));
-                        dead=false;
+                        dead = false;
                     }
                 });
             }
 
         });
-        addActor(new BackgroundTextButton("Play bluetooth multiplayer",1){
+        addActor(new BackgroundTextButton("Play bluetooth multiplayer", 1) {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/2-this.getWidth()/2, 210);
-                addListener(new ClickListener(){
+                setPosition(Globals.WORLD_WIDTH / 2 - this.getWidth() / 2, 210);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -155,12 +161,12 @@ public class MenuStage extends BGStage {
 
         });
 
-        addActor(new BackgroundTextButton("Exit",2){
+        addActor(new BackgroundTextButton("Exit", 2) {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH-this.getWidth()-10, 10);
-                addListener(new ClickListener(){
+                setPosition(Globals.WORLD_WIDTH - this.getWidth() - 10, 10);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -169,12 +175,12 @@ public class MenuStage extends BGStage {
                 });
             }
         });
-        addActor(new BackgroundTextButton("Credits",1){
+        addActor(new BackgroundTextButton("Credits", 1) {
             @Override
             protected void init() {
                 super.init();
                 setPosition(10, 10);
-                addListener(new ClickListener(){
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -183,12 +189,12 @@ public class MenuStage extends BGStage {
                 });
             }
         });
-        addActor(new BackgroundTextButton("High Scores",1){
+        addActor(new BackgroundTextButton("High Scores", 1) {
             @Override
             protected void init() {
                 super.init();
-                setPosition(Globals.WORLD_WIDTH/3-this.getWidth()/2, 10);
-                addListener(new ClickListener(){
+                setPosition(Globals.WORLD_WIDTH / 3 - this.getWidth() / 2, 10);
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
@@ -197,26 +203,25 @@ public class MenuStage extends BGStage {
                 });
             }
         });
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.SPEAKER)){
+        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.SPEAKER)) {
             @Override
             public void init() {
                 super.init();
-                setSize(100,100);
-                setPosition(10, Globals.WORLD_HEIGHT-this.getWidth()-10);
-                this.setPosition(10,Globals.WORLD_HEIGHT-this.getHeight()-10);
-                if(!Globals.music) setTexture(Assets.manager.get(Assets.SPEAKER_DISABLED));
-                addListener(new ClickListener(){
+                setSize(100, 100);
+                setPosition(10, Globals.WORLD_HEIGHT - this.getWidth() - 10);
+                this.setPosition(10, Globals.WORLD_HEIGHT - this.getHeight() - 10);
+                if (!Globals.music) setTexture(Assets.manager.get(Assets.SPEAKER_DISABLED));
+                addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
                         musicToggle = !musicToggle;
                         Globals.music = !Globals.music;
 
-                        if(musicToggle){
+                        if (musicToggle) {
                             setTexture(Assets.manager.get(Assets.SPEAKER));
                             Assets.manager.get(Assets.MAIN_MUSIC).play();
-                        }
-                        else{
+                        } else {
                             setTexture(Assets.manager.get(Assets.SPEAKER_DISABLED));
                             Assets.manager.get(Assets.MAIN_MUSIC).pause();
                         }
@@ -224,7 +229,6 @@ public class MenuStage extends BGStage {
                 });
             }
         });
-
 
 
     }
