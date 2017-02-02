@@ -55,6 +55,7 @@ public class ControlStage extends MyStage {
                 setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
                 addListener(new ClickListener(){
 
+
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                         gameStage.character.jump();

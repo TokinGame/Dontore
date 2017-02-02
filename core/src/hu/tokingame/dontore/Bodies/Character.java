@@ -23,7 +23,15 @@ public class Character extends WorldActorGroup {
     public boolean alive = true;
     public int maxSpeed = 5;
     float currentSpeed;
-    public boolean doubleJumpAvalaible = true;
+
+
+    private int jumpCount = 2;
+    private float lastJumpTime = 0;
+    private float elapsedTime = 0;
+
+    public void setJumpAvalaible() {
+        jumpCount = 2;
+    }
 
     // Neve Pisti
     public Character(World world, float x, float y) {
@@ -44,9 +52,27 @@ public class Character extends WorldActorGroup {
         setZIndex(60);
     }
 
+
+
+    private float lastVelocityX = 0;
     @Override
     public void act(float delta) {
+        elapsedTime+=delta;
+        if (lastVelocityX == 0 ){
+            lastVelocityX = getX();
+        }
         super.act(delta);
+        if (Math.abs(getBody().getLinearVelocity().y)<0.4f){
+            resumeRuning();
+            //actor.setFps(Math.round(Math.abs((lastVelocityX-getX()))/delta/2)*2+1);
+            //System.out.println(actor.getFps());
+        }else
+        {
+            pauseRuning();
+        }
+        lastVelocityX = getX();
+
+        //System.out.println(getBody().getLinearVelocity().x + " : " + getBody().getLinearVelocity().y);
 /*
         if(alive) {
             currentSpeed = (maxSpeed - this.getBody().getLinearVelocity().x) * 500;
@@ -56,8 +82,16 @@ public class Character extends WorldActorGroup {
     }
 
 
+
     public void jump(){
         if(alive){
+            if (jumpCount>0 && elapsedTime - lastJumpTime>0.2) {
+                System.out.println("JUMP " + jumpCount + " - " + elapsedTime);
+                //getBody().applyForceToCenter(new Vector2(0, 1500), true);
+                getBody().setLinearVelocity(getBody().getLinearVelocity().x, getBody().getLinearVelocity().y+10);
+                jumpCount--;
+            }
+            /*
             if(getY()<  1.25) {
                 getBody().applyForceToCenter(new Vector2(0, 2800), true);
                 doubleJumpAvalaible = true;
@@ -67,7 +101,8 @@ public class Character extends WorldActorGroup {
                     doubleJumpAvalaible = false;
                 }
             }
-            pauseRuning();
+            */
+            //pauseRuning();
         }
         System.out.println(getY());
     }
