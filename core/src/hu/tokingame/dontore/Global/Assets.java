@@ -65,6 +65,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> BG4 = new AssetDescriptor<Texture>("textures/background/bg4.png", Texture.class);
     public static final AssetDescriptor<Texture> BG5 = new AssetDescriptor<Texture>("textures/background/bg5.png", Texture.class);
     public static final AssetDescriptor<Texture> BG_BLUR = new AssetDescriptor<Texture>("textures/background/blurbg.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> SPEAKER = new AssetDescriptor<Texture>("textures/speaker_icon.png", Texture.class);
+    public static final AssetDescriptor<Texture> SPEAKER_DISABLED = new AssetDescriptor<Texture>("textures/speaker_icon_disabled.png", Texture.class);
     //</editor-fold>
 
     //<editor-fold desc="Music">
@@ -107,6 +110,9 @@ public class Assets {
         manager.load(BG4);
         manager.load(BG5);
         manager.load(BG_BLUR);
+
+        manager.load(SPEAKER);
+        manager.load(SPEAKER_DISABLED);
 
         manager.load(MAIN_MUSIC);
         //</editor-fold>
