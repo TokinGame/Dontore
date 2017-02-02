@@ -160,7 +160,7 @@ abstract public class GameStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        world.step(delta, 5, 5);
+        world.step(delta, 10, 10);
         elapsedtime += delta;
         if(character.alive) {
             setCameraMoveToXY(phantomActor.getX() + cameraOffset, 4, 1, 100000);
